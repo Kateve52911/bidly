@@ -5,18 +5,21 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prepare": "husky install",
     "build": "tsc && vite build && sass src/scss:dist/css",
     "preview": "vite preview",
-    "prepare": "husky install",
     "test": "vitest"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
     "husky": "^9.1.7",
     "jsdom": "^27.0.1",
     "lint-staged": "^16.2.7",
     "prettier": "^3.3.1",
     "sass": "^1.94.2",
-    "typescript": "^5.2.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.49.0",
     "vite": "^5.2.0",
     "vitest": "^3.2.4"
   },
@@ -24,7 +27,6 @@
     "*.{ts,html,css,md}": "prettier --write",
     "*.ts": "eslint --cache --fix"
   },
-
   "dependencies": {
     "bootstrap": "^5.3.8"
   }
