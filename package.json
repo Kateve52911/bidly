@@ -21,8 +21,10 @@
     "vitest": "^3.2.4"
   },
   "lint-staged": {
-    "*.{js,css,md}": "prettier --write"
+    "*.{ts,html,css,md}": "prettier --write",
+    "*.ts": "eslint --cache --fix"
   },
+
   "dependencies": {
     "bootstrap": "^5.3.8"
   }
