@@ -1,12 +1,11 @@
-export function saveKey(key: string, value: string) {
+export function saveKey(key: string, value: string): void {
   localStorage.setItem(key, value);
 }
 
-export function loadKey(key: string) {
-  const value = localStorage.getItem(key);
-  return value ? JSON.parse(value) : null;
+export function loadKey(key: string): string | null {
+  return localStorage.getItem(key);
 }
 
-export function removeKey(key: string) {
-  localStorage.removeItem(key);
-}
+// export function removeKey(key: string): void {
+//   localStorage.removeItem(key);
+// }
