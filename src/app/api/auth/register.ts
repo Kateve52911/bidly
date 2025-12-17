@@ -1,5 +1,6 @@
-import { AUTH, BASE_URL, REGISTER } from '../constants/constants.ts';
+import { AUTH, BASE_URL, REGISTER } from '../config/constants.ts';
 import { UserData } from '../types/api.ts';
+import { authFetch } from '../config/authFetch.ts';
 
 interface RegisterSuccess {
   success: true;
@@ -24,13 +25,13 @@ export async function register(
   userData: RegisterCredentials,
 ): Promise<RegisterResult> {
   try {
-    const response: Response = await fetch(`${BASE_URL}${AUTH}${REGISTER}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const response: Response = await authFetch(
+      `${BASE_URL}${AUTH}${REGISTER}`,
+      {
+        method: 'POST',
+        body: JSON.stringify(userData),
       },
-      body: JSON.stringify(userData),
-    });
+    );
 
     const data = await response.json();
     console.log(data);

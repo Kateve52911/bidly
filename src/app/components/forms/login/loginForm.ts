@@ -74,7 +74,7 @@ async function onLoginFormSubmit(event: Event) {
   const result = await login(credentials);
   if (result.success) {
     console.log('Login successful!', result);
-    window.location.reload();
+    window.location.href = '/index';
   } else {
     console.error('Registration failed', result.error);
   }

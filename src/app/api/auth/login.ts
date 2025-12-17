@@ -1,6 +1,7 @@
-import { AUTH, BASE_URL, LOGIN } from '../constants/constants.ts';
+import { AUTH, BASE_URL, LOGIN } from '../config/constants.ts';
 import { saveKey } from '../../utils/storage/storage.ts';
 import type { UserData } from '../types/api.ts';
+import { authFetch } from '../config/authFetch.ts';
 
 interface LoginSuccess {
   success: true;
@@ -22,11 +23,8 @@ type LoginResult = LoginSuccess | LoginFailure;
 
 export async function login(userData: LoginCredentials): Promise<LoginResult> {
   try {
-    const response: Response = await fetch(`${BASE_URL}${AUTH}${LOGIN}`, {
+    const response: Response = await authFetch(`${BASE_URL}${AUTH}${LOGIN}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify(userData),
     });
 
