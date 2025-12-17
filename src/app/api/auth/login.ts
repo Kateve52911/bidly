@@ -13,9 +13,14 @@ interface LoginFailure {
   statusCode?: number;
 }
 
+interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
 type LoginResult = LoginSuccess | LoginFailure;
 
-export async function login(userData: object): Promise<LoginResult> {
+export async function login(userData: LoginCredentials): Promise<LoginResult> {
   try {
     const response: Response = await fetch(`${BASE_URL}${AUTH}${LOGIN}`, {
       method: 'POST',

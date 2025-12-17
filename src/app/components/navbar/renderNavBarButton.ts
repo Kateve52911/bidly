@@ -1,4 +1,5 @@
 import { isAuthenticated } from '../../utils/auth/auth.ts';
+import { logout } from '../../api/auth/logout.ts';
 
 export function renderNavBarButton() {
   const navbarList: HTMLElement | null =
@@ -11,6 +12,9 @@ export function renderNavBarButton() {
     const logoutButton: HTMLButtonElement = document.createElement('button');
     logoutButton.textContent = 'Logout';
     logoutButton.className = 'btn btn-success';
+    logoutButton.id = 'logoutButton';
+
+    logoutButton.addEventListener('click', logout);
 
     li.appendChild(logoutButton);
     navbarList?.appendChild(li);

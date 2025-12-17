@@ -6,6 +6,6 @@ export function loadKey(key: string): string | null {
   return localStorage.getItem(key);
 }
 
-// export function removeKey(key: string): void {
-//   localStorage.removeItem(key);
-// }
+export function removeKey(key: string): void {
+  localStorage.removeItem(key);
+}

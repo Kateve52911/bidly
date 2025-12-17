@@ -12,9 +12,17 @@ interface RegisterFailure {
   statusCode?: number;
 }
 
+interface RegisterCredentials {
+  name: string;
+  email: string;
+  password: string;
+}
+
 type RegisterResult = RegisterSuccess | RegisterFailure;
 
-export async function register(userData: object): Promise<RegisterResult> {
+export async function register(
+  userData: RegisterCredentials,
+): Promise<RegisterResult> {
   try {
     const response: Response = await fetch(`${BASE_URL}${AUTH}${REGISTER}`, {
       method: 'POST',

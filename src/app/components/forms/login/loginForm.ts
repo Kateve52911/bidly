@@ -59,14 +59,22 @@ export function createLoginForm(): HTMLDivElement {
 async function onLoginFormSubmit(event: Event) {
   event.preventDefault();
   const formData = new FormData(event.target as HTMLFormElement);
-  const formFields = Object.fromEntries(formData);
+  const email: FormDataEntryValue | null = formData.get('email');
+  const password: FormDataEntryValue | null = formData.get('password');
 
-  console.log('Form fields:', formFields);
+  if (!email || !password) {
+    throw new Error('Invalid email or password');
+  }
 
-  const result = await login(formFields);
+  const credentials = {
+    email: email.toString(),
+    password: password.toString(),
+  };
+
+  const result = await login(credentials);
   if (result.success) {
     console.log('Login successful!', result);
-    //window.location.href="/profile";
+    window.location.reload();
   } else {
     console.error('Registration failed', result.error);
   }

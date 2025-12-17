@@ -26,7 +26,6 @@ export function createRegisterUserForm(): HTMLDivElement {
   formContainer.append(info);
 
   const form: HTMLFormElement = document.createElement('form');
-  // form.className = "form-control";
   form.id = 'register-user-form';
 
   const nameGroup: HTMLDivElement = document.createElement('div');
@@ -67,11 +66,21 @@ export function createRegisterUserForm(): HTMLDivElement {
 async function onRegisterFormSubmit(event: Event): Promise<void> {
   event.preventDefault();
   const formData = new FormData(event.target as HTMLFormElement);
-  const formFields = Object.fromEntries(formData);
+  const name: FormDataEntryValue | null = formData.get('name');
+  const email: FormDataEntryValue | null = formData.get('email');
+  const password: FormDataEntryValue | null = formData.get('password');
 
-  console.log('Form fields:', formFields);
+  if (!name || !email || !password) {
+    throw new Error('Please enter a name, email and password');
+  }
 
-  const result = await register(formFields);
+  const credentials = {
+    name: name.toString(),
+    email: email.toString(),
+    password: password.toString(),
+  };
+
+  const result = await register(credentials);
 
   if (result.success) {
     console.log('Registration successful!', result.data);
