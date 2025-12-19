@@ -29,7 +29,6 @@ export async function login(userData: LoginCredentials): Promise<LoginResult> {
     });
 
     const json = await response.json();
-    console.log(json);
 
     if (!response.ok) {
       return {
