@@ -3,7 +3,10 @@ export interface Data {
   title: string;
   description: string;
   tags: Array<string>;
-  media: Array<object>;
+  media: Array<{
+    url: string;
+    alt: string;
+  }>;
   created: string;
   updated: string;
   endsAt: string;

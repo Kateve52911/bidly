@@ -8,7 +8,7 @@ export async function fetchAllListings() {
       {},
     );
     const json = await response.json();
-    console.log(json.data[0]);
+    console.log(json.data[12]);
     return json.data;
   } catch (error) {
     console.error(error);
