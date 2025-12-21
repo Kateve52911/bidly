@@ -2,6 +2,10 @@ import { createUserInput } from '../../../utils/helpers/forms/createInput.ts';
 import { createLabel } from '../../../utils/helpers/forms/createLabel.ts';
 import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts';
 import { register } from '../../../api/auth/register.ts';
+import {
+  checkPassword,
+  validatePassword,
+} from '../../../ui/auth/passwordValidation.ts';
 
 export function createRegisterUserForm(): HTMLDivElement {
   const outerContainer: HTMLDivElement = document.createElement('div');
@@ -31,19 +35,30 @@ export function createRegisterUserForm(): HTMLDivElement {
   const nameGroup: HTMLDivElement = document.createElement('div');
   nameGroup.className = 'mb-3';
   nameGroup.appendChild(createLabel('Name', 'name'));
-  nameGroup.appendChild(createUserInput('Enter your name', 'text', 'name'));
+  nameGroup.appendChild(
+    createUserInput('Enter your name', 'text', 'name', 'name'),
+  );
 
   const emailGroup: HTMLDivElement = document.createElement('div');
   emailGroup.className = 'mb-3';
   emailGroup.appendChild(createLabel('Email', 'email'));
-  emailGroup.appendChild(createUserInput('Enter your email', 'email', 'email'));
+  emailGroup.appendChild(
+    createUserInput('Enter your email', 'email', 'email', 'email'),
+  );
 
   const passwordGroup: HTMLDivElement = document.createElement('div');
   passwordGroup.className = 'mb-3';
   passwordGroup.appendChild(createLabel('Password', 'password'));
   passwordGroup.appendChild(
-    createUserInput('Enter your password', 'password', 'password'),
+    createUserInput('Enter your password', 'password', 'password', 'password'),
   );
+
+  const passwordError: HTMLDivElement = document.createElement('div');
+  passwordError.id = 'passwordError';
+  passwordError.className = 'text-danger invalid-feedback';
+  //passwordError.className = 'error-message mb-3 text-danger invalid-feedback';
+  passwordError.innerHTML = 'Password must be at least 8 characters';
+  passwordGroup.appendChild(passwordError);
 
   const button: HTMLDivElement = document.createElement('div');
   button.appendChild(createSubmitButton('Register'));
@@ -72,6 +87,11 @@ async function onRegisterFormSubmit(event: Event): Promise<void> {
 
   if (!name || !email || !password) {
     throw new Error('Please enter a name, email and password');
+  }
+
+  if (!password || !checkPassword(password.toString())) {
+    validatePassword();
+    return;
   }
 
   const credentials = {

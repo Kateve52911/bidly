@@ -16,11 +16,11 @@ async function renderAllListings(): Promise<HTMLElement | null> {
     console.error('Could not find listing container'); // TODO: Throw error
   } else {
     const numListings: number = allListings.length;
-    const numRows: number = Math.ceil(numListings / 4);
+    const numRows: number = Math.ceil(numListings / 3);
     let itemCount: number = 0;
     for (let i: number = 0; i < numRows; i++) {
       const row: HTMLDivElement = createListingRow();
-      for (let j: number = 0; j < 4; j++) {
+      for (let j: number = 0; j < 3; j++) {
         const child: HTMLDivElement = createListingCard(allListings[itemCount]);
         row.appendChild(child);
         itemCount++;

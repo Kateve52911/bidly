@@ -11,6 +11,14 @@ export interface Data {
   updated: string;
   endsAt: string;
   _count: object;
-  seller: object;
+  seller: {
+    name: string;
+    email: string;
+    bio: string;
+    avatar: {
+      url: string;
+      alt: string;
+    };
+  };
   bids: boolean;
 }

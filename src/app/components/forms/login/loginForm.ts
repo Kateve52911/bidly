@@ -30,14 +30,25 @@ export function createLoginForm(): HTMLDivElement {
   const emailGroup: HTMLDivElement = document.createElement('div');
   emailGroup.className = 'mb-3';
   emailGroup.appendChild(createLabel('Email', 'email'));
-  emailGroup.appendChild(createUserInput('Enter your email', 'email', 'email'));
+  emailGroup.appendChild(
+    createUserInput('Enter your email', 'email', 'email', 'email'),
+  );
+
+  const emailError: HTMLDivElement = document.createElement('div');
+  emailError.className = 'mb-3';
+  emailError.id = 'emailError';
 
   const passwordGroup: HTMLDivElement = document.createElement('div');
   passwordGroup.className = 'mb-3';
   passwordGroup.appendChild(createLabel('Password', 'password'));
   passwordGroup.appendChild(
-    createUserInput('Enter your password', 'password', 'password'),
+    createUserInput('Enter your password', 'password', 'password', 'password'),
   );
+
+  const passwordError: HTMLDivElement = document.createElement('div');
+  passwordError.className = 'mb-3 text-danger invalid-feedback';
+  passwordError.id = 'passwordError';
+  passwordError.textContent = 'Password must be at least 8 characters';
 
   const button: HTMLDivElement = document.createElement('div');
   button.appendChild(createSubmitButton('Login'));
@@ -45,6 +56,7 @@ export function createLoginForm(): HTMLDivElement {
 
   form.appendChild(emailGroup);
   form.appendChild(passwordGroup);
+  form.appendChild(passwordError);
   form.appendChild(button);
 
   form.addEventListener('submit', onLoginFormSubmit);
@@ -74,7 +86,7 @@ async function onLoginFormSubmit(event: Event) {
   const result = await login(credentials);
   if (result.success) {
     console.log('Login successful!', result);
-    window.location.href = '/index';
+    //window.location.href = '/index';
   } else {
     console.error('Registration failed', result.error);
   }

@@ -24,5 +24,6 @@
     "src/**/*",
     "vitest.config.ts",
     "vite-env.d.ts",
+    "tests/**/*"
   ]
 }
