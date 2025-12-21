@@ -49,15 +49,34 @@ export function createLoginForm(): HTMLDivElement {
   passwordError.className = 'mb-3 text-danger invalid-feedback';
   passwordError.id = 'passwordError';
   passwordError.textContent = 'Password must be at least 8 characters';
+  passwordGroup.appendChild(passwordError);
 
   const button: HTMLDivElement = document.createElement('div');
   button.appendChild(createSubmitButton('Login'));
   button.className = 'd-grid mt-3';
 
+  const lineBreak: HTMLDivElement = document.createElement('hr');
+  lineBreak.className = ' border-1 border-top border-black';
+
+  const signupMessage: HTMLDivElement = document.createElement('div');
+  signupMessage.className = 'mb-3';
+
+  const SignUpParagraph: HTMLParagraphElement = document.createElement('p');
+  SignUpParagraph.className = 'text-center text-black';
+  SignUpParagraph.innerText = 'Dont have an account?';
+  signupMessage.appendChild(SignUpParagraph);
+
+  const signupLink: HTMLAnchorElement = document.createElement('a');
+  signupLink.className = 'd-grid m-0 text-center text-success nav-link fw-bold';
+  signupLink.textContent = 'Join BIdly!';
+  signupLink.href = '/register.html';
+  signupMessage.appendChild(signupLink);
+
   form.appendChild(emailGroup);
   form.appendChild(passwordGroup);
-  form.appendChild(passwordError);
   form.appendChild(button);
+  form.appendChild(lineBreak);
+  form.appendChild(signupMessage);
 
   form.addEventListener('submit', onLoginFormSubmit);
 

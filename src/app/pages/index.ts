@@ -1,6 +1,15 @@
 import { fetchAllListings } from '../api/listings/fetch/fetchAllListings.ts';
 import { createListingCard } from '../utils/helpers/card/createListingCard.ts';
 import { Data } from '../utils/helpers/card/type/card.ts';
+import { initNavbar } from '../components/navbar/initNavBar.ts';
+
+export function initPage(): void {
+  const navbar = document.getElementById('navbar-links');
+  if (navbar) {
+    initNavbar();
+  }
+}
+document.addEventListener('DOMContentLoaded', initPage);
 
 function createListingRow(): HTMLDivElement {
   const row: HTMLDivElement = document.createElement('div');

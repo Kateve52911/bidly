@@ -27,8 +27,12 @@ export function renderNavBarButton() {
 
     const loginButton: HTMLButtonElement = document.createElement('button');
     loginButton.className = 'btn btn-outline-primary';
+    loginButton.id = 'loginButton';
+    loginButton.addEventListener('click', () => {
+      window.location.href = '/login.html';
+    });
 
-    loginButton.appendChild(loginIcon); // Icon first
+    loginButton.appendChild(loginIcon);
     loginButton.append(' Login');
 
     li.appendChild(loginButton);
