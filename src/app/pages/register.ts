@@ -1,6 +1,6 @@
 import { initNavbar } from '../components/navbar/initNavBar.ts';
 import { createRegisterUserForm } from '../components/forms/registerUser/registerUserForm.ts';
-import { validatePassword } from '../ui/auth/passwordValidation.ts';
+import { validateInputFields } from '../ui/auth/inputValidation.ts';
 
 export function initPage(): void {
   const navbar = document.getElementById('navbar-links');
@@ -16,7 +16,7 @@ export function initPage(): void {
 
   if (app) {
     app.appendChild(form);
-    validatePassword();
+    validateInputFields();
   } else {
     console.error('App element not found');
   }

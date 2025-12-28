@@ -2,10 +2,7 @@ import { createUserInput } from '../../../utils/helpers/forms/createInput.ts';
 import { createLabel } from '../../../utils/helpers/forms/createLabel.ts';
 import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts';
 import { register } from '../../../api/auth/register.ts';
-import {
-  checkPassword,
-  validatePassword,
-} from '../../../ui/auth/passwordValidation.ts';
+import { validateInputFields } from '../../../ui/auth/inputValidation.ts';
 
 export function createRegisterUserForm(): HTMLDivElement {
   const outerContainer: HTMLDivElement = document.createElement('div');
@@ -45,6 +42,13 @@ export function createRegisterUserForm(): HTMLDivElement {
   emailGroup.appendChild(
     createUserInput('Enter your email', 'email', 'email', 'email'),
   );
+
+  const emailError: HTMLDivElement = document.createElement('div');
+  emailError.id = 'emailError';
+  emailError.className = 'text-danger invalid-feedback';
+  //passwordError.className = 'error-message mb-3 text-danger invalid-feedback';
+  emailError.innerHTML = 'Email must end with @stud.noroff.no';
+  emailGroup.appendChild(emailError);
 
   const passwordGroup: HTMLDivElement = document.createElement('div');
   passwordGroup.className = 'mb-3';
@@ -89,10 +93,7 @@ async function onRegisterFormSubmit(event: Event): Promise<void> {
     throw new Error('Please enter a name, email and password');
   }
 
-  if (!password || !checkPassword(password.toString())) {
-    validatePassword();
-    return;
-  }
+  validateInputFields();
 
   const credentials = {
     name: name.toString(),

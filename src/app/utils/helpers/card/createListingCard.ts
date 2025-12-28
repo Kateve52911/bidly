@@ -10,7 +10,7 @@ export function createListingCard(data: Data) {
   card.className = 'card-body';
 
   const image: HTMLImageElement = document.createElement('img');
-  image.className = 'card-image img-fluid mh-50';
+  image.className = 'card-image img-fluid mh-50 rounded mt-0';
   image.src = data?.media[0]?.url || '.src/app/assets/images/logo-icon.png';
 
   // console.log(data.media[0].url)
@@ -21,7 +21,7 @@ export function createListingCard(data: Data) {
 
   const description: HTMLParagraphElement = document.createElement('p');
   description.innerHTML = data.description;
-  description.className = 'card-description text-center text-primary';
+  description.className = 'card-description text-left text-primary';
 
   /*const created = document.createElement('h5')
   created.innerHTML = data.created*/

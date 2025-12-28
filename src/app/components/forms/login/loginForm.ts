@@ -31,7 +31,7 @@ export function createLoginForm(): HTMLDivElement {
   emailGroup.className = 'mb-3';
   emailGroup.appendChild(createLabel('Email', 'email'));
   emailGroup.appendChild(
-    createUserInput('Enter your email', 'email', 'email', 'email'),
+    createUserInput('Enter your email', 'email', 'email', 'email-input'),
   );
 
   const emailError: HTMLDivElement = document.createElement('div');
