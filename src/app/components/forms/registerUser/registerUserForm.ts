@@ -46,7 +46,6 @@ export function createRegisterUserForm(): HTMLDivElement {
   const emailError: HTMLDivElement = document.createElement('div');
   emailError.id = 'emailError';
   emailError.className = 'text-danger invalid-feedback';
-  //passwordError.className = 'error-message mb-3 text-danger invalid-feedback';
   emailError.innerHTML = 'Email must end with @stud.noroff.no';
   emailGroup.appendChild(emailError);
 
@@ -60,7 +59,6 @@ export function createRegisterUserForm(): HTMLDivElement {
   const passwordError: HTMLDivElement = document.createElement('div');
   passwordError.id = 'passwordError';
   passwordError.className = 'text-danger invalid-feedback';
-  //passwordError.className = 'error-message mb-3 text-danger invalid-feedback';
   passwordError.innerHTML = 'Password must be at least 8 characters';
   passwordGroup.appendChild(passwordError);
 

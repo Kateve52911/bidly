@@ -10,7 +10,9 @@ export interface Data {
   created: string;
   updated: string;
   endsAt: string;
-  _count: object;
+  _count: {
+    bids: number;
+  };
   seller: {
     name: string;
     email: string;
@@ -20,5 +22,18 @@ export interface Data {
       alt: string;
     };
   };
-  bids: boolean;
+  _bids: boolean;
+  bids: Array<{
+    id: string;
+    amount: number;
+    //bidder: Profile;
+    created: Date;
+  }>;
+}
+
+export interface Bid {
+  id: string;
+  amount: number;
+  //bidder: Profile;
+  created: Date;
 }

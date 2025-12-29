@@ -1,5 +1,5 @@
 import { fetchAllListings } from '../api/listings/fetch/fetchAllListings.ts';
-import { createListingCard } from '../utils/helpers/card/createListingCard.ts';
+import { createListingCard } from '../components/listings/card/createListingCard.ts';
 import { Data } from '../utils/helpers/card/type/card.ts';
 import { initNavbar } from '../components/navbar/initNavBar.ts';
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', initPage);
 
 function createListingRow(): HTMLDivElement {
   const row: HTMLDivElement = document.createElement('div');
-  row.classList = 'row gap-2 m-2';
+  row.classList = 'row gap-4 m-4';
   return row;
 }
 
