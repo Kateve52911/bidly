@@ -1,5 +1,5 @@
 import { AUTH, BASE_URL, LOGIN } from '../config/constants.ts';
-import { saveKey } from '../../utils/storage/storage.ts';
+import { saveKey, storeUser } from '../../utils/storage/storage.ts';
 import type { UserData } from '../types/api.ts';
 import { authFetch } from '../config/authFetch.ts';
 
@@ -42,7 +42,8 @@ export async function login(userData: LoginCredentials): Promise<LoginResult> {
     const userDetails = json.data;
 
     saveKey('accessToken', accessToken);
-    saveKey('currentUser', JSON.stringify(userDetails));
+    storeUser(userDetails);
+    //saveKey('currentUser', JSON.stringify(userDetails));
 
     return {
       success: true,

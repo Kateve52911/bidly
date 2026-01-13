@@ -16,6 +16,11 @@
     />
     <script type="module" src="/src/main.ts"></script>
     <script type="module" src="/src/app/pages/index.ts"></script>
+    <script type="module" src="/src/app/api/user/fetchUser.ts"></script>
+    <script
+      type="module"
+      src="/src/app/components/profile/renderProfilePage.ts"
+    ></script>
     <!--    <script type="module" src="/src/app/pages/register.ts"></script>-->
   </head>
   <body class="d-flex flex-column h-100">
@@ -23,26 +28,40 @@
       <nav id="navbar" class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand me-4" href="index.html">
-            <a href="index.html" class="navbar-brand"
-              ><img
-                src="./src/assets/images/logo-icon.png"
-                alt="Purple circle with a white mallet in inside."
-                class="logo-icon"
-            /></a>
             <img
-              src="./src/assets/images/bidly.png"
-              alt="bidly logo"
-              class="logo m-0"
-            />
-          </a>
-          <ul id="navbar-links" class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item me-2">
-              <a href="login.html" class="nav-link">Listings</a>
-            </li>
-            <li class="nav-item me-2">
-              <a href="profile.html" class="nav-link">Profile</a>
-            </li>
-          </ul>
+              src="./src/assets/images/logo-icon.png"
+              alt="Purple circle with a white mallet in inside."
+              class="logo-icon"
+          /></a>
+          <img
+            src="./src/assets/images/bidly.png"
+            alt="bidly logo"
+            class="logo m-0"
+          />
+
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarLinks"
+            aria-controls="navbarLinks"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            id="navbarToggler"
+          >
+            <i class="bi bi-list fs-1" id="togglerIcon"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarLinks">
+            <ul id="navbar-links" class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item me-2">
+                <a href="index.html" class="nav-link active">Listings</a>
+              </li>
+              <li class="nav-item me-2">
+                <a href="profile.html" class="nav-link">Profile</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
