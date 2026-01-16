@@ -1,8 +1,9 @@
 import { Profile } from '../../../api/user/types/profile.ts';
-import { renderAllListings } from '../../../pages';
+import { renderUserListings } from '../../../components/listings/userListings/renderUserListings.ts';
+//import { renderAllListings } from '../../../pages';
 //import { createListingCard } from '../../../components/listings/card/createListingCard.ts';
 
-export function createUserProfile(user: Profile) {
+export async function createUserProfile(user: Profile) {
   const container: HTMLDivElement = document.createElement('div');
   container.classList = 'container d-flex flex-column justify-content-center ';
 
@@ -42,25 +43,31 @@ export function createUserProfile(user: Profile) {
   infoText.innerHTML = user.bio || 'No bio has been provided';
   infoContainer.appendChild(infoText);
 
-  const userPosts: HTMLDivElement = document.createElement('div');
-  userPosts.classList = 'user-posts';
-  userPosts.id = 'user-posts';
-  userPosts.innerHTML = 'No listings';
-  if (user.listings.length > 0) {
-    renderAllListings();
-  }
+  const userListingsContainer: HTMLDivElement = document.createElement('div');
+  userListingsContainer.classList = 'user-posts';
+  userListingsContainer.id = 'user-posts-container';
 
-  // userPosts.innerHTML = forEach(listing => {
-  //   return createListingCard(user.listings) || "No listings found";
-  // })
-  console.log(user.listings);
+  const userListingsTitle: HTMLDivElement = document.createElement('h2');
+  userListingsTitle.className = 'user-title text-dark';
+  userListingsTitle.innerHTML = `${user.name}'s listings:`;
+  userListingsContainer.appendChild(userListingsTitle);
+
+  const userListings: HTMLDivElement = document.createElement('div');
+  userListings.classList = 'user-posts';
+  userListings.id = 'user-posts';
+  if (user.listings.length > 0) {
+    await renderUserListings(user.name);
+  } else
+    userListings.innerHTML =
+      "User has no listings. Click 'Create Listings' to create a listing ";
+  userListingsContainer.appendChild(userListings);
 
   bannerContainer.appendChild(banner);
   bannerContainer.appendChild(username);
   bannerContainer.appendChild(avatarContainer);
   bannerContainer.appendChild(infoContainer);
-  container.appendChild(userPosts);
   container.appendChild(bannerContainer);
+  container.appendChild(userListingsContainer);
 
   return container;
 }

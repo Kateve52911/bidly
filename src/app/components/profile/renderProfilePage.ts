@@ -1,7 +1,7 @@
 import { loadUser } from '../../utils/storage/storage.ts';
 import { fetchUser } from '../../api/user/fetchUser.ts';
 import { createUserProfile } from '../../utils/helpers/userProfile/userProfileBanner.ts';
-import { fetchUserListings } from '../../api/listings/fetch/fetchSingleUsersListings.ts';
+import { fetchUserListings } from '../../api/listings/fetch/fetchUserListings.ts';
 
 export async function renderProfilePage() {
   const user = loadUser();
@@ -17,7 +17,7 @@ export async function renderProfilePage() {
 
     const app = document.getElementById('app');
     if (app) {
-      app.appendChild(createUserProfile(userData));
+      app.appendChild(await createUserProfile(userData));
     }
   }
 }

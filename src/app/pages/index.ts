@@ -2,6 +2,7 @@ import { fetchAllListings } from '../api/listings/fetch/fetchAllListings.ts';
 import { createListingCard } from '../components/listings/card/createListingCard.ts';
 import { Data } from '../utils/helpers/card/type/card.ts';
 import { initNavbar } from '../components/navbar/initNavBar.ts';
+import { createListingRow } from '../utils/helpers/listings/createListingRow.ts';
 
 export function initPage(): void {
   const navbar = document.getElementById('navbar-links');
@@ -10,12 +11,6 @@ export function initPage(): void {
   }
 }
 document.addEventListener('DOMContentLoaded', initPage);
-
-function createListingRow(): HTMLDivElement {
-  const row: HTMLDivElement = document.createElement('div');
-  row.classList = 'row justify-content-center ms-5';
-  return row;
-}
 
 export async function renderAllListings(): Promise<HTMLElement | null> {
   const allListings: Array<Data> = await fetchAllListings();
