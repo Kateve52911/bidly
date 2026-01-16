@@ -8,8 +8,6 @@ export function initPage(): void {
     initNavbar();
   }
 
-  console.log('Hello World!');
-
   const form: HTMLDivElement = createRegisterUserForm();
 
   const app: HTMLElement | null = document.getElementById('app');

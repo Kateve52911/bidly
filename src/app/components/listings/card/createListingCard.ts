@@ -2,13 +2,17 @@ import { Data } from '../../../utils/helpers/card/type/card.ts';
 import { createBidButton } from '../../../utils/helpers/card/createBidButton.ts';
 
 export function createListingCard(data: Data) {
+  const column: HTMLDivElement = document.createElement('div');
+  column.className = 'col-12 col-md-6 col-lg-4 mb-4';
+
   const container: HTMLDivElement = document.createElement('div');
-  container.className = 'card col p-0 shadow';
+  container.className = 'card shadow h-100';
   container.id = 'card-container';
-  container.style.width = '18rem;';
+  container.style.maxWidth = '340px';
+  container.style.margin = '0 auto';
 
   const card: HTMLDivElement = document.createElement('div');
-  card.className = 'card-body d-flex flex-column px-2';
+  card.className = 'card-body d-flex flex-column p-2 ';
 
   const image: HTMLImageElement = document.createElement('img');
   image.className = 'card-img-top';
@@ -75,8 +79,9 @@ export function createListingCard(data: Data) {
   card.appendChild(bidEnds);
   card.appendChild(bidsContainer);
   card.appendChild(placeBidButton);
-
   container.appendChild(card);
 
-  return container;
+  column.appendChild(container);
+
+  return column;
 }

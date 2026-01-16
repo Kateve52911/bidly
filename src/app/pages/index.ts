@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', initPage);
 
 function createListingRow(): HTMLDivElement {
   const row: HTMLDivElement = document.createElement('div');
-  row.classList = 'row gap-4 m-4';
+  row.classList = 'row justify-content-center ms-5';
   return row;
 }
 
