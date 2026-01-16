@@ -1,8 +1,10 @@
 import { Profile } from '../../../api/user/types/profile.ts';
+import { renderAllListings } from '../../../pages';
+//import { createListingCard } from '../../../components/listings/card/createListingCard.ts';
 
 export function createUserProfile(user: Profile) {
   const container: HTMLDivElement = document.createElement('div');
-  container.classList = 'd-flex flex-column justify-content-center ';
+  container.classList = 'container d-flex flex-column justify-content-center ';
 
   const profileInfo = document.createElement('div');
   profileInfo.className = 'd-flex flex-column justify-content-center mx-2';
@@ -40,10 +42,24 @@ export function createUserProfile(user: Profile) {
   infoText.innerHTML = user.bio || 'No bio has been provided';
   infoContainer.appendChild(infoText);
 
+  const userPosts: HTMLDivElement = document.createElement('div');
+  userPosts.classList = 'user-posts';
+  userPosts.id = 'user-posts';
+  userPosts.innerHTML = 'No listings';
+  if (user.listings.length > 0) {
+    renderAllListings();
+  }
+
+  // userPosts.innerHTML = forEach(listing => {
+  //   return createListingCard(user.listings) || "No listings found";
+  // })
+  console.log(user.listings);
+
   bannerContainer.appendChild(banner);
   bannerContainer.appendChild(username);
   bannerContainer.appendChild(avatarContainer);
   bannerContainer.appendChild(infoContainer);
+  container.appendChild(userPosts);
   container.appendChild(bannerContainer);
 
   return container;

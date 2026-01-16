@@ -17,7 +17,7 @@ function createListingRow(): HTMLDivElement {
   return row;
 }
 
-async function renderAllListings(): Promise<HTMLElement | null> {
+export async function renderAllListings(): Promise<HTMLElement | null> {
   const allListings: Array<Data> = await fetchAllListings();
   const listingContainer: HTMLElement | null =
     document.getElementById('listings-Container');
