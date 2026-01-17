@@ -7,7 +7,7 @@ export function renderNavBarButton() {
 
   if (isAuthenticated()) {
     const li: HTMLLIElement = document.createElement('li');
-    li.className = 'nav-item me-2';
+    li.className = 'nav-item';
 
     const logoutButton: HTMLButtonElement = document.createElement('button');
     logoutButton.textContent = 'Logout';
@@ -20,7 +20,7 @@ export function renderNavBarButton() {
       document.createElement('button');
     createNewListingButton.textContent = 'Create New Listing';
     createNewListingButton.id = 'createNewListingButton';
-    createNewListingButton.className = 'btn border-primary mx-1';
+    createNewListingButton.className = 'btn border-primary mx-1 ';
     createNewListingButton.addEventListener('click', () => {
       window.location.href = '/new-listing.html';
     });

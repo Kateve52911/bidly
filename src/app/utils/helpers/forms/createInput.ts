@@ -1,6 +1,6 @@
 export function createUserInput(
   placeholder: string,
-  type: 'text' | 'email' | 'password',
+  type: 'text' | 'email' | 'password' | 'date' | 'datetime-local',
   name: string,
   id: string,
 ): HTMLInputElement {
