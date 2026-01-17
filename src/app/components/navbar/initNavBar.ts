@@ -1,7 +1,7 @@
 import { renderNavBarButton } from './renderNavBarButton.ts';
 import { renderCurrentUserToNavBar } from './renderCurrentUserToNavBar.ts';
 
-export function initNavbar() {
+export async function initNavbar() {
   renderNavBarButton();
-  renderCurrentUserToNavBar();
+  await renderCurrentUserToNavBar();
 }

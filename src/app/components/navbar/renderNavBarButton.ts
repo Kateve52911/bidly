@@ -16,6 +16,16 @@ export function renderNavBarButton() {
 
     logoutButton.addEventListener('click', logout);
 
+    const createNewListingButton: HTMLButtonElement =
+      document.createElement('button');
+    createNewListingButton.textContent = 'Create New Listing';
+    createNewListingButton.id = 'createNewListingButton';
+    createNewListingButton.className = 'btn border-primary mx-1';
+    createNewListingButton.addEventListener('click', () => {
+      window.location.href = '/new-listing.html';
+    });
+
+    li.appendChild(createNewListingButton);
     li.appendChild(logoutButton);
     navbarList?.appendChild(li);
   } else {

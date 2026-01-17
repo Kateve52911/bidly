@@ -44,7 +44,7 @@ export async function createUserProfile(user: Profile) {
   infoContainer.appendChild(infoText);
 
   const userListingsContainer: HTMLDivElement = document.createElement('div');
-  userListingsContainer.classList = 'user-posts';
+  userListingsContainer.classList = 'user-posts py-4';
   userListingsContainer.id = 'user-posts-container';
 
   const userListingsTitle: HTMLDivElement = document.createElement('h2');
@@ -53,7 +53,7 @@ export async function createUserProfile(user: Profile) {
   userListingsContainer.appendChild(userListingsTitle);
 
   const userListings: HTMLDivElement = document.createElement('div');
-  userListings.classList = 'user-posts';
+  userListings.classList = 'user-posts py-2';
   userListings.id = 'user-posts';
   if (user.listings.length > 0) {
     await renderUserListings(user.name);
