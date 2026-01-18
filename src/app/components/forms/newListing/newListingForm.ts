@@ -28,7 +28,7 @@ export function createNewListingForm() {
 
   const titleContainer: HTMLDivElement = document.createElement('div');
   titleContainer.className = 'mb-3 text-left p-2';
-  titleContainer.appendChild(createLabel('Title', 'name'));
+  titleContainer.appendChild(createLabel('Title', 'title'));
   titleContainer.appendChild(
     createUserInput('Title of your listing', 'text', 'title', 'title'),
   );
@@ -49,7 +49,7 @@ export function createNewListingForm() {
   imageURLContainer.className = 'mb-3 text-left p-2';
   imageURLContainer.appendChild(createLabel('Image', 'image'));
   imageURLContainer.appendChild(
-    createUserInput('Image URL (https://...)', 'text', 'imgageSrc', 'imageSrc'),
+    createUserInput('Image URL (https://...)', 'text', 'imageUrl', 'imageUrl'),
   );
 
   const imageAltContainer: HTMLDivElement = document.createElement('div');
@@ -65,7 +65,12 @@ export function createNewListingForm() {
     createLabel('Choose when your listing ends:', 'date'),
   );
   dateContainer.appendChild(
-    createUserInput('Choose end date', 'datetime-local', 'name', 'name'),
+    createUserInput(
+      'Choose end date',
+      'datetime-local',
+      'endingDate',
+      'endingDate',
+    ),
   );
 
   const submitButton: HTMLDivElement = document.createElement('div');
