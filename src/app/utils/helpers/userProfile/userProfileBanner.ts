@@ -69,7 +69,7 @@ export async function createUserProfile(user: Profile) {
   userListings.classList = 'user-posts py-2';
   userListings.id = 'user-posts';
   if (user.listings.length > 0) {
-    await renderUserListings(user.name);
+    await renderUserListings(user.name, userListings);
   } else
     userListings.innerHTML =
       "User has no listings. Click 'Create Listings' to create a listing ";

@@ -3,7 +3,7 @@ import { loadKey } from '../../utils/storage/storage.ts';
 
 export function headers(hasBody = false): Headers {
   const headers = new Headers();
-  const token = loadKey(API_KEY);
+  const token = loadKey('accessToken');
 
   if (token) {
     headers.append('Authorization', `Bearer ${token}`);

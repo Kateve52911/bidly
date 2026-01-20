@@ -59,6 +59,9 @@ export function createNewListingForm() {
     createUserInput('Image Alt text', 'text', 'imageAlt', 'imageAlt'),
   );
 
+  const currentDate = new Date().toISOString().slice(0, 16);
+  console.log(currentDate);
+
   const dateContainer: HTMLDivElement = document.createElement('div');
   dateContainer.className = 'mb-3 text-left p-2';
   dateContainer.appendChild(
@@ -70,11 +73,15 @@ export function createNewListingForm() {
       'datetime-local',
       'endingDate',
       'endingDate',
+      currentDate,
     ),
   );
 
+  const alertContainer: HTMLDivElement = document.createElement('div');
+  alertContainer.id = 'alert-placeholder-container';
+
   const submitButton: HTMLDivElement = document.createElement('div');
-  submitButton.className = 'd-grid mt-3';
+  submitButton.className = 'd-grid mt-3 liveAlertBtn';
   submitButton.id = 'submit-button-new-listing';
   submitButton.appendChild(createSubmitButton('Create Listing!'));
 
@@ -83,6 +90,7 @@ export function createNewListingForm() {
   form.appendChild(imageURLContainer);
   form.appendChild(imageAltContainer);
   form.appendChild(dateContainer);
+  form.appendChild(alertContainer);
   form.appendChild(submitButton);
 
   container.append(formContainer);

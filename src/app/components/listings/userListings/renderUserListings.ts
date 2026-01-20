@@ -5,19 +5,20 @@ import { createListingCard } from '../card/createListingCard.ts';
 
 export async function renderUserListings(
   username: string,
+  listingsContainer: HTMLElement,
 ): Promise<HTMLElement | null> {
   const userListings: Array<Data> = await fetchUserListings(username);
-  const listingsContainer: HTMLElement | null =
-    document.getElementById('user-posts');
+  console.log(listingsContainer);
   if (!listingsContainer) {
     console.error('No user listing container found');
+    return listingsContainer;
   } else {
     const numListings: number = userListings.length;
     const numRows: number = Math.ceil(numListings / 3);
     let itemCount: number = 0;
     for (let i: number = 0; i < numRows; i++) {
       const row: HTMLDivElement = createListingRow();
-      for (let j: number = 0; j < 3; j++) {
+      for (let j: number = 0; j < 3 && itemCount < numListings; j++) {
         const child: HTMLDivElement = createListingCard(
           userListings[itemCount],
         );

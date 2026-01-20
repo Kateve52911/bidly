@@ -38,7 +38,7 @@ export function createListingCard(data: Data) {
   currentBids.appendChild(currentBidTitle);
 
   const highestBidAmount: HTMLParagraphElement = document.createElement('p');
-  if (data.bids.length > 0) {
+  if (data._count.bids > 0) {
     const numBids: number = data.bids.length;
     console.log(data.bids);
     highestBidAmount.textContent = `${data.bids[numBids - 1].amount}`;

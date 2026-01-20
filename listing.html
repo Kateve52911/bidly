@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Bidly</title>
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="src/assets/favicon/favicon.ico"
+    />
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/app/pages/index.ts"></script>
+    <script type="module" src="/src/app/api/user/fetchUser.ts"></script>
+    <script
+      type="module"
+      src="/src/app/components/profile/renderProfilePage.ts"
+    ></script>
+    <!--    <script type="module" src="/src/app/pages/register.ts"></script>-->
+  </head>
+  <body class="d-flex flex-column h-100">
+    <header class="container-fluid">
+      <nav id="navbar" class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand me-4" href="index.html">
+            <img
+              src="./src/assets/images/logo-icon.png"
+              alt="Purple circle with a white mallet in inside."
+              class="logo-icon"
+          /></a>
+          <img
+            src="./src/assets/images/bidly.png"
+            alt="bidly logo"
+            class="logo m-0"
+          />
+
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarLinks"
+            aria-controls="navbarLinks"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            id="navbarToggler"
+          >
+            <i class="bi bi-list fs-1" id="togglerIcon"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarLinks">
+            <ul id="navbar-links" class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item me-2">
+                <a href="index.html" class="nav-link active">Listings</a>
+              </li>
+              <li class="nav-item me-2">
+                <a href="profile.html" class="nav-link">Profile</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main id="app" class="flex-grow-1">
+      <div>
+        <h1 class="text-center text-primary mb-5">Our Listings</h1>
+      </div>
+      <div id="listings-Container" class="container m-4"></div>
+    </main>
+    <footer class="footer mt-auto py-3 bg-footer">
+      <a href="index.html"
+        ><img
+          src="./src/assets/images/bidly-footer-v2.png"
+          alt="bidly logo in white text on dark grey background"
+          class="logo-footer mt-5 ms-5 px-2"
+      /></a>
+
+      <div class="container justify-content-center m-5 gap-3">
+        <div class="row">
+          <div class="col">
+            <h4 class="text-center text-light">My Bidly</h4>
+            <nav class="nav flex-column">
+              <a href="profile.html" class="nav-link text-light text-center"
+                >My profile</a
+              >
+              <a href="src/login.html" class="nav-link text-light text-center"
+                >Login</a
+              >
+              <a href="register.html" class="nav-link text-light text-center"
+                >Register</a
+              >
+            </nav>
+          </div>
+
+          <div class="col">
+            <h4 class="text-center text-light">About Us</h4>
+            <nav class="nav flex-column">
+              <a href="about.html" class="nav-link text-light text-center"
+                >About Us</a
+              >
+              <a href="about.html" class="nav-link text-light text-center"
+                >How it works</a
+              >
+              <a href="about.html" class="nav-link text-light text-center"
+                >Listings</a
+              >
+            </nav>
+          </div>
+
+          <div class="col">
+            <h4 class="text-center text-light">Contact Us</h4>
+            <nav class="nav flex-column">
+              <p class="text-light text-center">About Us</p>
+              <p class="text-light text-center">About Us</p>
+              <p class="text-light text-center">About Us</p>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-2 d-flex justify-content-center gap-3">
+        <p><i class="bi bi-facebook text-light"></i></p>
+        <p><i class="bi bi-instagram text-light"></i></p>
+        <p><i class="bi bi-twitter-x text-light"></i></p>
+        <p><i class="bi bi-linkedin text-light"></i></p>
+      </div>
+
+      <hr class="bg-white border-2 border-top border-white" />
+
+      <div class="container d-flex justify-content-center">
+        <p class="text-white">2025 @ Bidly. All rights reserved</p>
+      </div>
+    </footer>
+  </body>
+</html>
