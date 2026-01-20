@@ -1,7 +1,7 @@
-import { Data } from '../../../utils/helpers/card/type/card.ts';
+import { Listing } from '../../../utils/helpers/card/type/listing.ts';
 import { createBidButton } from '../../../utils/helpers/card/createBidButton.ts';
 
-export function createListingCard(data: Data) {
+export function createListingCard(data: Listing) {
   const column: HTMLDivElement = document.createElement('div');
   column.className = 'col-12 col-md-6 col-lg-4 mb-4';
 
@@ -40,7 +40,6 @@ export function createListingCard(data: Data) {
   const highestBidAmount: HTMLParagraphElement = document.createElement('p');
   if (data._count.bids > 0) {
     const numBids: number = data.bids.length;
-    console.log(data.bids);
     highestBidAmount.textContent = `${data.bids[numBids - 1].amount}`;
   } else {
     highestBidAmount.textContent = '0';
@@ -80,6 +79,10 @@ export function createListingCard(data: Data) {
   card.appendChild(bidsContainer);
   card.appendChild(placeBidButton);
   container.appendChild(card);
+
+  container.addEventListener('click', () => {
+    window.location.href = `listing.html?id=${data.id}`;
+  });
 
   column.appendChild(container);
 

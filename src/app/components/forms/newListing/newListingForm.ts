@@ -73,7 +73,7 @@ export function createNewListingForm() {
       'datetime-local',
       'endingDate',
       'endingDate',
-      currentDate,
+      //currentDate,
     ),
   );
 

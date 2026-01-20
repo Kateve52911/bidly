@@ -1,6 +1,6 @@
 import { fetchAllListings } from '../api/listings/fetch/fetchAllListings.ts';
 import { createListingCard } from '../components/listings/card/createListingCard.ts';
-import { Data } from '../utils/helpers/card/type/card.ts';
+import { Listing } from '../utils/helpers/card/type/listing.ts';
 import { initNavbar } from '../components/navbar/initNavBar.ts';
 import { createListingRow } from '../utils/helpers/listings/createListingRow.ts';
 
@@ -13,7 +13,7 @@ export function initPage(): void {
 document.addEventListener('DOMContentLoaded', initPage);
 
 export async function renderAllListings(): Promise<HTMLElement | null> {
-  const allListings: Array<Data> = await fetchAllListings();
+  const allListings: Array<Listing> = await fetchAllListings();
   const listingContainer: HTMLElement | null =
     document.getElementById('listings-Container');
   if (!listingContainer) {

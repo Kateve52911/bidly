@@ -1,7 +1,5 @@
 import { Profile } from '../../../api/user/types/profile.ts';
 import { renderUserListings } from '../../../components/listings/userListings/renderUserListings.ts';
-//import { renderAllListings } from '../../../pages';
-//import { createListingCard } from '../../../components/listings/card/createListingCard.ts';
 
 export async function createUserProfile(user: Profile) {
   const container: HTMLDivElement = document.createElement('div');
@@ -23,8 +21,8 @@ export async function createUserProfile(user: Profile) {
   banner.src = user.banner.url;
 
   const username: HTMLHeadingElement = document.createElement('h1');
-  /*username.innerHTML = `<span class="text-white position-absolute bottom-30 mb-5 start-30">${user.name}</span>`;
-  username.id = 'username';*/
+  //username.innerHTML = `<span class="text-white position-absolute bottom-30 mb-5 start-30">${user.name}</span>`;
+  username.id = 'username';
   username.className = 'text-white position-absolute';
   username.style.bottom = '60px';
   username.style.left = '30px';
@@ -36,7 +34,7 @@ export async function createUserProfile(user: Profile) {
   avatarContainer.style.left = '20px';
 
   const avatar: HTMLImageElement = document.createElement('img');
-  avatar.classList = 'avatar rounded-circle';
+  avatar.classList = 'avatar rounded-circle border border-3';
   avatar.style.width = '120px';
   avatar.style.height = '120px';
   avatar.style.objectFit = 'cover';

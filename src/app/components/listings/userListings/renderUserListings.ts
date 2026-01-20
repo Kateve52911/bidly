@@ -1,5 +1,5 @@
 import { fetchUserListings } from '../../../api/listings/fetch/fetchUserListings.ts';
-import { Data } from '../../../utils/helpers/card/type/card.ts';
+import { Listing } from '../../../utils/helpers/card/type/listing.ts';
 import { createListingRow } from '../../../utils/helpers/listings/createListingRow.ts';
 import { createListingCard } from '../card/createListingCard.ts';
 
@@ -7,7 +7,7 @@ export async function renderUserListings(
   username: string,
   listingsContainer: HTMLElement,
 ): Promise<HTMLElement | null> {
-  const userListings: Array<Data> = await fetchUserListings(username);
+  const userListings: Array<Listing> = await fetchUserListings(username);
   console.log(listingsContainer);
   if (!listingsContainer) {
     console.error('No user listing container found');
