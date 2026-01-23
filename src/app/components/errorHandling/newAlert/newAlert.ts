@@ -1,7 +1,7 @@
-export const alertPlaceholder = document.getElementById(
-  'alert-placeholder-container',
-);
 export const appendAlert = (message: string, type: string) => {
+  const alertPlaceholder = document.getElementById(
+    'alert-placeholder-container',
+  );
   const wrapper = document.createElement('div');
   wrapper.innerHTML = [
     `<div class="alert alert-${type} alert-dismissible" role="alert">`,
@@ -12,10 +12,3 @@ export const appendAlert = (message: string, type: string) => {
 
   alertPlaceholder?.append(wrapper);
 };
-
-export const alertTrigger = document.querySelector('.liveAlertBtn');
-if (alertTrigger) {
-  alertTrigger.addEventListener('click', () => {
-    appendAlert('Nice, you triggered this alert message!', 'success');
-  });
-}

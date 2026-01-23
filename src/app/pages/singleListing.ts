@@ -10,10 +10,10 @@ export function initPage(): void {
 document.addEventListener('DOMContentLoaded', initPage);
 
 const queryParams = new URLSearchParams(window.location.search);
-const listingId = queryParams.get('id');
+export const listingId: string | null = queryParams.get('id');
 console.log(listingId);
 
-const listing = await renderSingleListing(listingId);
+const listing: HTMLElement = await renderSingleListing(listingId);
 const app: HTMLElement | null = document.getElementById('app');
 
 if (app) {

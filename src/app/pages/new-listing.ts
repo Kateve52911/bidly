@@ -3,7 +3,7 @@ import { createNewListingForm } from '../components/forms/newListing/newListingF
 import { submitListing } from '../api/listings/post/sumbitNewListing.ts';
 import { fetchFormDataFromNewListingForm } from '../components/listings/newListing/newListingFormData.ts';
 import { isValidDate } from '../utils/validation/listingValidation.ts';
-import { appendAlert } from '../components/errorHandling/newListingAlert/newListingAlert.ts';
+import { appendAlert } from '../components/errorHandling/newAlert/newAlert.ts';
 
 const formContainer = createNewListingForm();
 const app: HTMLElement | null = document.getElementById('app');

@@ -1,3 +1,5 @@
+import { Profile } from '../../../../api/user/types/profile.ts';
+
 export interface Listing {
   id: string;
   title: string;
@@ -34,6 +36,6 @@ export interface Listing {
 export interface Bid {
   id: string;
   amount: number;
-  //bidder: Profile;
+  bidder: Profile;
   created: Date;
 }

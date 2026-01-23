@@ -1,6 +1,6 @@
 export function createUserInput(
   placeholder: string,
-  type: 'text' | 'email' | 'password' | 'date' | 'datetime-local',
+  type: 'text' | 'email' | 'password' | 'date' | 'datetime-local' | 'number',
   name: string,
   id: string,
   min?: string,

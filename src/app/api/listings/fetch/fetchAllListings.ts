@@ -9,7 +9,7 @@ export async function fetchAllListings() {
     );
     const json = await response.json();
     console.log(typeof json.data[0].id);
-
+    console.log(json.data);
     return json.data;
   } catch (error) {
     console.error(error);

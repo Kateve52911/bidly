@@ -4,7 +4,7 @@ import { authFetch } from '../../config/authFetch.ts';
 export async function fetchSingleListing(listingId: string) {
   try {
     const response: Response = await authFetch(
-      `${BASE_URL}${LISTINGS}/${listingId}?_seller=true&_bids=true&sort=created`,
+      `${BASE_URL}${LISTINGS}/${listingId}?_seller=true&_bids=true`,
       {},
     );
     const json = await response.json();

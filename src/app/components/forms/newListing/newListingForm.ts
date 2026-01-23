@@ -60,7 +60,6 @@ export function createNewListingForm() {
   );
 
   const currentDate = new Date().toISOString().slice(0, 16);
-  console.log(currentDate);
 
   const dateContainer: HTMLDivElement = document.createElement('div');
   dateContainer.className = 'mb-3 text-left p-2';
@@ -73,7 +72,7 @@ export function createNewListingForm() {
       'datetime-local',
       'endingDate',
       'endingDate',
-      //currentDate,
+      currentDate,
     ),
   );
 
