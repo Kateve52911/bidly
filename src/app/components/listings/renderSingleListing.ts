@@ -147,14 +147,18 @@ async function onSubmitBid(event: Event) {
   const currentBidNumber = Number(currentBidElement?.innerHTML);
   console.log(currentBidNumber);
 
+  if (!bid) {
+    throw new Error('Bid not found');
+  }
+
   if (currentBidNumber >= bid) {
     event.preventDefault();
     appendAlert('Bid needs to be higher than the current bid!', 'danger');
     return;
-  }
-
-  if (!bid) {
-    throw new Error('Bid not found');
+  } else {
+    appendAlert('Bid has been registered!', 'success');
+    const bidInput = document.getElementById('bid') as HTMLInputElement;
+    bidInput.value = '';
   }
 
   await submitBid(listingId, bid);
