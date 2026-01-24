@@ -159,6 +159,9 @@ async function onSubmitBid(event: Event) {
     appendAlert('Bid has been registered!', 'success');
     const bidInput = document.getElementById('bid') as HTMLInputElement;
     bidInput.value = '';
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
 
   await submitBid(listingId, bid);
