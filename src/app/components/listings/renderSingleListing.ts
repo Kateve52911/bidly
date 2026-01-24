@@ -8,6 +8,7 @@ import { appendAlert } from '../errorHandling/newAlert/newAlert.ts';
 import { isAuthenticated } from '../../utils/auth/auth.ts';
 import { fetchUser } from '../../api/user/fetchUser.ts';
 import { loadCurrentUser } from '../../utils/storage/storage.ts';
+import { Profile } from '../../api/user/types/profile.ts';
 
 export async function renderSingleListing(
   listingId: Listing,
@@ -15,26 +16,26 @@ export async function renderSingleListing(
   const listingData = await fetchSingleListing(listingId);
   console.log(listingData);
 
-  const container = document.createElement('div');
+  const container: HTMLDivElement = document.createElement('div');
   container.className =
     'container my-3 d-flex flex-column rounded justify-content-center w-75';
   container.id = 'listing-container';
 
-  const title = document.createElement('h1');
+  const title: HTMLHeadingElement = document.createElement('h1');
   title.innerHTML = listingData.title;
   title.className = 'text-left';
   title.id = 'title';
 
-  const infoDiv = document.createElement('div');
+  const infoDiv: HTMLDivElement = document.createElement('div');
   infoDiv.id = 'info-div';
   infoDiv.className =
     'info-div mx-4 d-flex flex-column shadow-lg p-3 justify-content-center align-items-center';
 
-  const imageContainer = document.createElement('div');
+  const imageContainer: HTMLDivElement = document.createElement('div');
   console.log(typeof listingData.media);
   if (listingData.media.length > 0) {
     listingData.media.forEach((media) => {
-      const img = document.createElement('img');
+      const img: HTMLImageElement = document.createElement('img');
       img.src = media.url;
       img.alt = media.alt;
       img.id = media.id;
@@ -43,7 +44,7 @@ export async function renderSingleListing(
     });
   }
 
-  const allBidsContainer = document.createElement('div');
+  const allBidsContainer: HTMLDivElement = document.createElement('div');
   /* allBidsContainer.id = 'all-bids';
  const allBids = listingData.bids;
  console.log(allBids);
@@ -62,7 +63,7 @@ export async function renderSingleListing(
       })
     }*/
 
-  const listingTagsDiv = document.createElement('div');
+  const listingTagsDiv: HTMLDivElement = document.createElement('div');
   listingTagsDiv.id = 'listing-tags-div text-success';
   if (listingData.tags.length > 0) {
     listingTagsDiv.innerHTML = listingData.tags.join(', ');
@@ -70,21 +71,22 @@ export async function renderSingleListing(
     listingTagsDiv.innerHTML = '';
   }
 
-  const listingDescription = document.createElement('p');
+  const listingDescription: HTMLParagraphElement = document.createElement('p');
   listingDescription.id = 'listing-description';
   listingDescription.innerHTML = listingData.description;
   listingDescription.className = 'text-left text-dark my-2';
 
-  const highestBidContainer = document.createElement('div');
+  const highestBidContainer: HTMLDivElement = document.createElement('div');
   highestBidContainer.id = 'highest-bid-container';
   highestBidContainer.innerHTML = 'Highest Bid';
   highestBidContainer.className = 'bg-primary bg-opacity-10 m-2 py-3 px-4';
 
-  const highestBidDiv = document.createElement('div');
+  const highestBidDiv: HTMLDivElement = document.createElement('div');
   highestBidDiv.id = 'highest-bid';
   const bids = listingData.bids;
+
   if (bids.length > 0) {
-    const highestBid = document.createElement('p');
+    const highestBid: HTMLParagraphElement = document.createElement('p');
     highestBid.innerHTML = `${listingData.bids[bids.length - 1].amount}`;
     highestBid.id = 'highest-bid-number';
     highestBid.className = 'text-center';
@@ -94,7 +96,7 @@ export async function renderSingleListing(
   }
   highestBidContainer.append(highestBidDiv);
 
-  const alertDiv = document.createElement('div');
+  const alertDiv: HTMLDivElement = document.createElement('div');
   alertDiv.id = 'alert-placeholder-container';
   alertDiv.className = 'mt-3';
 
@@ -113,14 +115,14 @@ export async function renderSingleListing(
     placeBidForm.className =
       ' form d-flex  justify-content-center gap-3 my-3 p-6';
 
-    const inputBidDiv = document.createElement('div');
+    const inputBidDiv: HTMLDivElement = document.createElement('div');
     inputBidDiv.id = 'input-bid-div';
     inputBidDiv.className = 'p-1';
     inputBidDiv.appendChild(
       createUserInput('Your bid amount', 'number', 'bid', 'bid'),
     );
 
-    const placeBidButton = document.createElement('div');
+    const placeBidButton: HTMLDivElement = document.createElement('div');
     placeBidButton.id = 'place-bid-button';
     placeBidButton.className = 'btn-primary p-1';
     placeBidButton.appendChild(createSubmitButton('Place bid'));
@@ -129,7 +131,7 @@ export async function renderSingleListing(
     placeBidForm.addEventListener('submit', onSubmitBid);
     infoDiv.append(placeBidForm);
   } else {
-    const loginDiv = document.createElement('div');
+    const loginDiv: HTMLDivElement = document.createElement('div');
     loginDiv.id = 'login-div';
     loginDiv.innerHTML = 'To place bid, please log in!';
     infoDiv.append(loginDiv);
@@ -144,14 +146,14 @@ async function onSubmitBid(event: Event) {
   const formData = new FormData(event.target as HTMLFormElement);
   const bidString: FormDataEntryValue | null = formData.get('bid');
   const userBid: number = Number(bidString);
-  const highestBidElement = document.getElementById('highest-bid-number');
-  const highestBid = Number(highestBidElement?.innerHTML);
+  const highestBidElement: HTMLElement | null =
+    document.getElementById('highest-bid-number');
+  const highestBid: number = Number(highestBidElement?.innerHTML);
 
-  const user = loadCurrentUser();
-  const username = user.name;
+  const user: Profile | null = loadCurrentUser();
+  const username: string = user.name;
   const bidder = await fetchUser(username);
-  const userCredits = bidder.credits;
-  console.log(userCredits);
+  const userCredits: number = bidder.credits;
 
   if (!userBid) {
     appendAlert('Bid not found', 'warning');
