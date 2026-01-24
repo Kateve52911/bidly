@@ -1,10 +1,10 @@
-import { loadUser } from '../../utils/storage/storage.ts';
+import { loadCurrentUser } from '../../utils/storage/storage.ts';
 import { fetchUser } from '../../api/user/fetchUser.ts';
 import { createUserProfile } from '../../utils/helpers/userProfile/userProfileBanner.ts';
 import { fetchUserListings } from '../../api/listings/fetch/fetchUserListings.ts';
 
 export async function renderProfilePage() {
-  const user = loadUser();
+  const user = loadCurrentUser();
 
   if (!user) {
     throw new Error('No user found');

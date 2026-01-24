@@ -16,7 +16,7 @@ export function storeUser(user: Profile): void {
   localStorage.setItem('currentUser', JSON.stringify(user));
 }
 
-export function loadUser(): Profile | null {
+export function loadCurrentUser(): Profile | null {
   const user = localStorage.getItem('currentUser');
   return user ? JSON.parse(user) : null;
 }

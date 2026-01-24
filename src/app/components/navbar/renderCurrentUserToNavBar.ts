@@ -1,9 +1,9 @@
-import { loadUser } from '../../utils/storage/storage.ts';
+import { loadCurrentUser } from '../../utils/storage/storage.ts';
 import { fetchUser } from '../../api/user/fetchUser.ts';
 import { Profile } from '../../api/user/types/profile.ts';
 
 export async function renderCurrentUserToNavBar(): Promise<void> {
-  const currentUser: Profile | null = loadUser();
+  const currentUser: Profile | null = loadCurrentUser();
   if (currentUser) {
     const user = await fetchUser(currentUser.name);
 

@@ -6,6 +6,8 @@ import { listingId } from '../../pages/singleListing.ts';
 import { submitBid } from '../../api/listings/post/submitBid.ts';
 import { appendAlert } from '../errorHandling/newAlert/newAlert.ts';
 import { isAuthenticated } from '../../utils/auth/auth.ts';
+import { fetchUser } from '../../api/user/fetchUser.ts';
+import { loadCurrentUser } from '../../utils/storage/storage.ts';
 
 export async function renderSingleListing(
   listingId: Listing,
@@ -76,21 +78,21 @@ export async function renderSingleListing(
   const highestBidContainer = document.createElement('div');
   highestBidContainer.id = 'highest-bid-container';
   highestBidContainer.innerHTML = 'Highest Bid';
-  highestBidContainer.className = 'bg-primary bg-opacity-10 p-3';
+  highestBidContainer.className = 'bg-primary bg-opacity-10 m-2 py-3 px-4';
 
-  const highestBid = document.createElement('div');
-  highestBid.id = 'highest-bid';
-  highestBid.className = ' p-2';
+  const highestBidDiv = document.createElement('div');
+  highestBidDiv.id = 'highest-bid';
   const bids = listingData.bids;
   if (bids.length > 0) {
-    const highestBidNumber = document.createElement('p');
-    highestBidNumber.innerHTML = `${listingData.bids[bids.length - 1].amount}`;
-    highestBidNumber.id = 'highest-bid-number';
-    highestBid.appendChild(highestBidNumber);
+    const highestBid = document.createElement('p');
+    highestBid.innerHTML = `${listingData.bids[bids.length - 1].amount}`;
+    highestBid.id = 'highest-bid-number';
+    highestBid.className = 'text-center';
+    highestBidDiv.appendChild(highestBid);
   } else {
-    highestBid.innerHTML = 'No bids found';
+    highestBidDiv.innerHTML = 'No bids found';
   }
-  highestBidContainer.append(highestBid);
+  highestBidContainer.append(highestBidDiv);
 
   const alertDiv = document.createElement('div');
   alertDiv.id = 'alert-placeholder-container';
@@ -141,19 +143,28 @@ async function onSubmitBid(event: Event) {
   event.preventDefault();
   const formData = new FormData(event.target as HTMLFormElement);
   const bidString: FormDataEntryValue | null = formData.get('bid');
-  const bid: number = Number(bidString);
+  const userBid: number = Number(bidString);
+  const highestBidElement = document.getElementById('highest-bid-number');
+  const highestBid = Number(highestBidElement?.innerHTML);
 
-  const currentBidElement = document.getElementById('highest-bid-number');
-  const currentBidNumber = Number(currentBidElement?.innerHTML);
-  console.log(currentBidNumber);
+  const user = loadCurrentUser();
+  const username = user.name;
+  const bidder = await fetchUser(username);
+  const userCredits = bidder.credits;
+  console.log(userCredits);
 
-  if (!bid) {
-    throw new Error('Bid not found');
+  if (!userBid) {
+    appendAlert('Bid not found', 'warning');
+    return;
   }
 
-  if (currentBidNumber >= bid) {
+  if (highestBid >= userBid) {
     event.preventDefault();
     appendAlert('Bid needs to be higher than the current bid!', 'danger');
+    return;
+  } else if (userBid > userCredits) {
+    event.preventDefault();
+    appendAlert('Insufficient funds!', 'danger');
     return;
   } else {
     appendAlert('Bid has been registered!', 'success');
@@ -164,7 +175,5 @@ async function onSubmitBid(event: Event) {
     }, 1000);
   }
 
-  await submitBid(listingId, bid);
-
-  console.log(bid);
+  await submitBid(listingId, userBid);
 }
