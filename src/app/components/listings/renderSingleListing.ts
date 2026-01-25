@@ -1,5 +1,5 @@
 import { fetchSingleListing } from '../../api/listings/fetch/fetchSingleListing.ts';
-import { Listing } from '../../utils/helpers/card/type/listing.ts';
+import { Bid } from '../../utils/helpers/card/type/listing.ts';
 import { createUserInput } from '../../utils/helpers/forms/createInput.ts';
 import { createSubmitButton } from '../../utils/helpers/forms/createButton.ts';
 import { listingId } from '../../pages/singleListing.ts';
@@ -10,9 +10,39 @@ import { fetchUser } from '../../api/user/fetchUser.ts';
 import { loadCurrentUser } from '../../utils/storage/storage.ts';
 import { Profile } from '../../api/user/types/profile.ts';
 
+function addAllBidsToContainer(listingData, allBidsContainer: HTMLDivElement) {
+  listingData.bids.forEach((bid: Bid) => {
+    const bidContainer: HTMLDivElement = document.createElement('div');
+    bidContainer.id = 'bid-container';
+    bidContainer.className =
+      'd-flex justify-content-evenly align-items-center m-2 gap-4';
+    const avatar = document.createElement('img');
+    avatar.id = 'avatar';
+    avatar.className = 'avatar rounded-circle avatar-Icon';
+    avatar.src = bid.bidder.avatar.url;
+
+    const bidder = document.createElement('p');
+    bidder.id = 'bidder';
+    bidder.className = 'bidder align-self-center';
+    bidder.innerHTML = bid.bidder.name;
+
+    const amount = document.createElement('p');
+    amount.id = 'bid';
+    amount.className = 'bid';
+    amount.innerHTML = String(bid.amount);
+
+    bidContainer.append(avatar, bidder, amount);
+    allBidsContainer.append(bidContainer);
+  });
+}
+
 export async function renderSingleListing(
-  listingId: Listing,
+  listingId: string | null = null,
 ): Promise<HTMLElement> {
+  if (!listingId) {
+    appendAlert('No listing id', 'warning');
+    return document.createElement('div');
+  }
   const listingData = await fetchSingleListing(listingId);
   console.log(listingData);
 
@@ -20,6 +50,10 @@ export async function renderSingleListing(
   container.className =
     'container my-3 d-flex flex-column rounded justify-content-center w-75';
   container.id = 'listing-container';
+
+  if (!listingData) {
+    return container;
+  }
 
   const title: HTMLHeadingElement = document.createElement('h1');
   title.innerHTML = listingData.title;
@@ -29,7 +63,7 @@ export async function renderSingleListing(
   const infoDiv: HTMLDivElement = document.createElement('div');
   infoDiv.id = 'info-div';
   infoDiv.className =
-    'info-div mx-4 d-flex flex-column shadow-lg p-3 justify-content-center align-items-center';
+    'info-div mx-4 d-flex flex-column shadow-lg p-3 justify-content-start';
 
   const imageContainer: HTMLDivElement = document.createElement('div');
   console.log(typeof listingData.media);
@@ -38,33 +72,14 @@ export async function renderSingleListing(
       const img: HTMLImageElement = document.createElement('img');
       img.src = media.url;
       img.alt = media.alt;
-      img.id = media.id;
       img.className = 'img-fluid w-25 rounded';
       imageContainer.append(img);
     });
   }
 
-  const allBidsContainer: HTMLDivElement = document.createElement('div');
-  /* allBidsContainer.id = 'all-bids';
- const allBids = listingData.bids;
- console.log(allBids);
- console.log(listingData.bids[0].bidder.name)
- for (let i  = 0; i < listingData.bids.length; i++) {
-
- }*/
-  /*  if(allBids.length > 0) {
-      allBids.forEach(bid => {
-        const bidderDiv = document.createElement('div');
-        bidderDiv.id = 'bidder-div';
-        bidderDiv.innerHTML = `$listingData.bids[bids.length].bidder.name}`;
-        allBidsContainer.append(bidderDiv);
-        console.log(bidderDiv)
-
-      })
-    }*/
-
   const listingTagsDiv: HTMLDivElement = document.createElement('div');
   listingTagsDiv.id = 'listing-tags-div text-success';
+  listingTagsDiv.className = 'text-left';
   if (listingData.tags.length > 0) {
     listingTagsDiv.innerHTML = listingData.tags.join(', ');
   } else {
@@ -76,25 +91,37 @@ export async function renderSingleListing(
   listingDescription.innerHTML = listingData.description;
   listingDescription.className = 'text-left text-dark my-2';
 
-  const highestBidContainer: HTMLDivElement = document.createElement('div');
-  highestBidContainer.id = 'highest-bid-container';
-  highestBidContainer.innerHTML = 'Highest Bid';
-  highestBidContainer.className = 'bg-primary bg-opacity-10 m-2 py-3 px-4';
+  const timeRemainingDiv: HTMLDivElement = document.createElement('div');
+  timeRemainingDiv.id = 'time-remaining-div';
+  timeRemainingDiv.className = 'text-left text-dark my-2';
+  const endsAt = new Date(listingData.endsAt).toLocaleDateString();
+  timeRemainingDiv.innerHTML = `Bid ends at: ${endsAt}`;
+
+  const allBidsContainer: HTMLDivElement = document.createElement('div');
+  allBidsContainer.id = 'all-bids';
+  allBidsContainer.className = ' m-2 py-3 px-4';
+
+  const highestBidText: HTMLParagraphElement = document.createElement('p');
+  highestBidText.id = 'highest-bid-container';
+  highestBidText.className = 'bg-primary bg-opacity-10 m-2 py-3 px-4 text-left';
+  highestBidText.innerHTML = 'CURRENT BID';
 
   const highestBidDiv: HTMLDivElement = document.createElement('div');
   highestBidDiv.id = 'highest-bid';
   const bids = listingData.bids;
-
   if (bids.length > 0) {
-    const highestBid: HTMLParagraphElement = document.createElement('p');
+    const highestBid: HTMLHeadingElement = document.createElement('h4');
     highestBid.innerHTML = `${listingData.bids[bids.length - 1].amount}`;
     highestBid.id = 'highest-bid-number';
-    highestBid.className = 'text-center';
+    highestBid.className = 'text-left text-';
     highestBidDiv.appendChild(highestBid);
   } else {
     highestBidDiv.innerHTML = 'No bids found';
   }
-  highestBidContainer.append(highestBidDiv);
+  highestBidText.append(highestBidDiv);
+
+  allBidsContainer.append(highestBidText);
+  addAllBidsToContainer(listingData, allBidsContainer);
 
   const alertDiv: HTMLDivElement = document.createElement('div');
   alertDiv.id = 'alert-placeholder-container';
@@ -104,7 +131,7 @@ export async function renderSingleListing(
     imageContainer,
     listingTagsDiv,
     listingDescription,
-    highestBidContainer,
+    timeRemainingDiv,
     allBidsContainer,
     alertDiv,
   );
@@ -151,8 +178,11 @@ async function onSubmitBid(event: Event) {
   const highestBid: number = Number(highestBidElement?.innerHTML);
 
   const user: Profile | null = loadCurrentUser();
-  const username: string = user.name;
-  const bidder = await fetchUser(username);
+  if (!user) {
+    return;
+  }
+
+  const bidder = await fetchUser(user.name);
   const userCredits: number = bidder.credits;
 
   if (!userBid) {
@@ -176,6 +206,7 @@ async function onSubmitBid(event: Event) {
       window.location.reload();
     }, 1000);
   }
-
-  await submitBid(listingId, userBid);
+  if (listingId) {
+    await submitBid(listingId, userBid);
+  }
 }
