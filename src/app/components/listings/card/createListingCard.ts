@@ -3,16 +3,15 @@ import { createBidButton } from '../../../utils/helpers/card/createBidButton.ts'
 
 export function createListingCard(data: Listing) {
   const column: HTMLDivElement = document.createElement('div');
-  column.className = 'col-12 col-md-6 col-lg-4 mb-4';
+  column.className = 'col-12 col-md-6 col-lg-4 mb-5 my-2';
 
   const container: HTMLDivElement = document.createElement('div');
   container.className = 'card shadow h-100';
   container.id = 'card-container';
-  container.style.maxWidth = '340px';
-  container.style.margin = '0 auto';
+  container.style.maxWidth = '380px';
 
   const card: HTMLDivElement = document.createElement('div');
-  card.className = 'card-body d-flex flex-column p-2 ';
+  card.className = 'card-body d-flex flex-column p-3 ';
 
   const image: HTMLImageElement = document.createElement('img');
   image.className = 'card-img-top';

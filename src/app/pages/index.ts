@@ -17,10 +17,16 @@ export async function renderAllListings(): Promise<HTMLElement | null> {
   const allListings: Array<Listing> = await fetchListings();
   const listingContainer: HTMLElement | null =
     document.getElementById('listings-Container');
+
   console.log('Before loop');
   if (!listingContainer) {
     console.error('Could not find listing container'); // TODO: Throw error
   } else {
+    const heading = document.createElement('h1');
+    heading.textContent = 'Listings';
+    heading.className = 'text-primary display-2 p-2 mx-5 my-5';
+    listingContainer.appendChild(heading);
+
     const numListings: number = allListings.length;
     const numRows: number = Math.ceil(numListings / 3);
     let itemCount: number = 0;
@@ -32,15 +38,10 @@ export async function renderAllListings(): Promise<HTMLElement | null> {
         itemCount++;
       }
       listingContainer.appendChild(row);
-      console.log('dingus');
     }
-    console.log('After loop'); // <-- LEGG TIL DENNE
-    console.log('About to create pagination');
-    console.log('About to create pagination');
+
     const paginationControls = createPaginationControls(1, 15);
-    console.log('Pagination controls:', paginationControls);
     listingContainer.appendChild(paginationControls);
-    console.log('Appended to container');
   }
 
   return listingContainer;
