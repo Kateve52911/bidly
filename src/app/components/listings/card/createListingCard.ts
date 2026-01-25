@@ -3,7 +3,7 @@ import { createBidButton } from '../../../utils/helpers/card/createBidButton.ts'
 
 export function createListingCard(data: Listing) {
   const column: HTMLDivElement = document.createElement('div');
-  column.className = 'col-12 col-md-6 col-lg-4 mb-5 my-2';
+  column.className = 'col-12 col-md-6 col-lg-4 mb-5 ';
 
   const container: HTMLDivElement = document.createElement('div');
   container.className = 'card shadow h-100';

@@ -4,6 +4,7 @@ import { Listing } from '../utils/helpers/card/type/listing.ts';
 import { initNavbar } from '../components/navbar/initNavBar.ts';
 import { createListingRow } from '../utils/helpers/listings/createListingRow.ts';
 import { createPaginationControls } from '../components/listings/pagination/createPaginationControls.ts';
+import { renderSearchBar } from '../components/listings/searchBar/renderSearchBar.ts';
 
 export function initPage(): void {
   const navbar = document.getElementById('navbar-links');
@@ -24,8 +25,11 @@ export async function renderAllListings(): Promise<HTMLElement | null> {
   } else {
     const heading = document.createElement('h1');
     heading.textContent = 'Listings';
-    heading.className = 'text-primary display-2 p-2 mx-5 my-5';
+    heading.className = 'text-primary display-2 p-2 m-3';
     listingContainer.appendChild(heading);
+
+    const searchBar = renderSearchBar();
+    listingContainer.appendChild(searchBar);
 
     const numListings: number = allListings.length;
     const numRows: number = Math.ceil(numListings / 3);
