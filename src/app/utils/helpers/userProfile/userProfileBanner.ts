@@ -1,82 +1,79 @@
 import { Profile } from '../../../api/user/types/profile.ts';
 import { renderUserListings } from '../../../components/listings/userListings/renderUserListings.ts';
 
-export async function createUserProfile(user: Profile) {
+export async function createUserProfile(
+  user: Profile,
+): Promise<HTMLDivElement> {
   const container: HTMLDivElement = document.createElement('div');
-  container.classList = 'container d-flex flex-column justify-content-center ';
+  container.className = 'container';
 
-  const profileInfo = document.createElement('div');
-  profileInfo.className = 'd-flex flex-column  justify-content-center mx-2';
-
-  const bannerContainer = document.createElement('div');
-  bannerContainer.classList =
-    'position-relative d-flex flex-column flex-lg-row';
+  const bannerContainer: HTMLDivElement = document.createElement('div');
+  bannerContainer.className = 'position-relative mb-4';
 
   const banner: HTMLImageElement = document.createElement('img');
-  banner.classList = 'banner w-100';
-  banner.style.minHeight = '200px';
-  banner.style.objectFit = 'cover';
+  banner.className = 'w-100 object-fit-cover';
+  banner.style.height = '300px';
   banner.id = 'banner';
   banner.alt = user.name;
   banner.src = user.banner.url;
 
-  const username: HTMLHeadingElement = document.createElement('h1');
-  //username.innerHTML = `<span class="text-white position-absolute bottom-30 mb-5 start-30">${user.name}</span>`;
-  username.id = 'username';
-  username.className = 'text-white position-absolute';
-  username.style.bottom = '60px';
-  username.style.left = '30px';
-  username.textContent = user.name;
+  const profileOverlay: HTMLDivElement = document.createElement('div');
+  profileOverlay.className =
+    'position-absolute bottom-0 start-0 w-100 p-3 p-md-4';
 
-  const avatarContainer: HTMLDivElement = document.createElement('div');
-  avatarContainer.classList = 'avatar position-absolute';
-  avatarContainer.style.top = '20px';
-  avatarContainer.style.left = '20px';
+  const profileContent: HTMLDivElement = document.createElement('div');
+  profileContent.className =
+    'd-flex flex-column flex-md-row align-items-center align-items-md-end gap-3';
 
   const avatar: HTMLImageElement = document.createElement('img');
-  avatar.classList = 'avatar rounded-circle border border-3';
+  avatar.className = 'rounded-circle border border-3 border-white shadow';
   avatar.style.width = '120px';
   avatar.style.height = '120px';
-  avatar.style.objectFit = 'cover';
   avatar.id = 'avatar';
   avatar.src = user.avatar.url;
   avatar.alt = user.name;
-  avatarContainer.appendChild(avatar);
 
-  const infoContainer: HTMLDivElement = document.createElement('div');
-  infoContainer.classList = 'info position-absolute';
-  infoContainer.style.bottom = '30px';
-  infoContainer.style.left = '30px';
+  const textContent: HTMLDivElement = document.createElement('div');
+  textContent.className = 'text-white text-center text-md-start';
 
-  const infoText: HTMLDivElement = document.createElement('div');
-  infoText.classList = 'info-text text-white';
-  infoText.id = 'info-text';
-  infoText.textContent = user.bio || 'No bio has been provided';
-  infoContainer.appendChild(infoText);
+  const username: HTMLHeadingElement = document.createElement('h1');
+  username.className = 'h2 mb-1 text-white';
+  username.textContent = user.name;
+
+  const bio: HTMLParagraphElement = document.createElement('p');
+  bio.className = 'mb-0 text-white-50';
+  bio.textContent = user.bio || 'No bio has been provided';
+
+  textContent.append(username, bio);
+
+  profileContent.appendChild(avatar);
+  profileContent.appendChild(textContent);
+  profileOverlay.appendChild(profileContent);
+
+  bannerContainer.append(banner, profileOverlay);
 
   const userListingsContainer: HTMLDivElement = document.createElement('div');
-  userListingsContainer.classList = 'user-posts py-4';
+  userListingsContainer.className = 'py-4 px-3 px-md-4';
   userListingsContainer.id = 'user-posts-container';
 
-  const userListingsTitle: HTMLDivElement = document.createElement('h2');
-  userListingsTitle.className = 'user-title text-dark';
-  userListingsTitle.innerHTML = `${user.name}'s listings:`;
-  userListingsContainer.appendChild(userListingsTitle);
+  const userListingsTitle: HTMLHeadingElement = document.createElement('h2');
+  userListingsTitle.className = 'h4 mb-3';
+  userListingsTitle.textContent = `${user.name}'s listings`;
 
   const userListings: HTMLDivElement = document.createElement('div');
-  userListings.classList = 'user-posts py-2';
   userListings.id = 'user-posts';
+
   if (user.listings.length > 0) {
     await renderUserListings(user.name, userListings);
-  } else
-    userListings.innerHTML =
-      "User has no listings. Click 'Create Listings' to create a listing ";
+  } else {
+    userListings.className = 'text-muted';
+    userListings.textContent =
+      "User has no listings. Click 'Create Listings' to create a listing.";
+  }
+
+  userListingsContainer.appendChild(userListingsTitle);
   userListingsContainer.appendChild(userListings);
 
-  bannerContainer.appendChild(banner);
-  bannerContainer.appendChild(username);
-  bannerContainer.appendChild(avatarContainer);
-  bannerContainer.appendChild(infoContainer);
   container.appendChild(bannerContainer);
   container.appendChild(userListingsContainer);
 
