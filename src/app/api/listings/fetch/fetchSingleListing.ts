@@ -11,8 +11,7 @@ export async function fetchSingleListing(
       {},
     );
     const json = await response.json();
-    console.log('HELLO DINGUS!!!');
-    console.log(typeof json.data);
+    console.log(json.data);
     return json.data;
   } catch (error) {
     console.error(error);

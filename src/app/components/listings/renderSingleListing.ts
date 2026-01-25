@@ -11,7 +11,8 @@ import { loadCurrentUser } from '../../utils/storage/storage.ts';
 import { Profile } from '../../api/user/types/profile.ts';
 
 function addAllBidsToContainer(listingData, allBidsContainer: HTMLDivElement) {
-  listingData.bids.forEach((bid: Bid) => {
+  const bidsReversed = listingData.bids.slice().reverse();
+  bidsReversed.forEach((bid: Bid) => {
     const bidContainer: HTMLDivElement = document.createElement('div');
     bidContainer.id = 'bid-container';
     bidContainer.className =
@@ -79,7 +80,7 @@ export async function renderSingleListing(
 
   const listingTagsDiv: HTMLDivElement = document.createElement('div');
   listingTagsDiv.id = 'listing-tags-div text-success';
-  listingTagsDiv.className = 'text-left';
+  listingTagsDiv.className = 'text-left fst-italic text-success';
   if (listingData.tags.length > 0) {
     listingTagsDiv.innerHTML = listingData.tags.join(', ');
   } else {
@@ -89,7 +90,7 @@ export async function renderSingleListing(
   const listingDescription: HTMLParagraphElement = document.createElement('p');
   listingDescription.id = 'listing-description';
   listingDescription.innerHTML = listingData.description;
-  listingDescription.className = 'text-left text-dark my-2';
+  listingDescription.className = 'text-left text-dark my-2 fw-bolder';
 
   const timeRemainingDiv: HTMLDivElement = document.createElement('div');
   timeRemainingDiv.id = 'time-remaining-div';
