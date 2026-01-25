@@ -3,7 +3,6 @@ import { createListingCard } from '../components/listings/card/createListingCard
 import { Listing } from '../utils/helpers/card/type/listing.ts';
 import { initNavbar } from '../components/navbar/initNavBar.ts';
 import { createListingRow } from '../utils/helpers/listings/createListingRow.ts';
-import { createPaginationControls } from '../components/listings/pagination/createPaginationControls.ts';
 import { renderSearchBar } from '../components/listings/searchBar/renderSearchBar.ts';
 
 export function initPage(): void {
@@ -19,7 +18,6 @@ export async function renderAllListings(): Promise<HTMLElement | null> {
   const listingContainer: HTMLElement | null =
     document.getElementById('listings-Container');
 
-  console.log('Before loop');
   if (!listingContainer) {
     console.error('Could not find listing container'); // TODO: Throw error
   } else {
@@ -30,6 +28,15 @@ export async function renderAllListings(): Promise<HTMLElement | null> {
 
     const searchBar = renderSearchBar();
     listingContainer.appendChild(searchBar);
+
+    /* const searchInput = fetchSearchBarInput();
+    console.log(searchInput);
+
+    if (searchInput) {
+      console.log(searchInput);
+    } else {
+
+      }*/
 
     const numListings: number = allListings.length;
     const numRows: number = Math.ceil(numListings / 3);
@@ -42,10 +49,10 @@ export async function renderAllListings(): Promise<HTMLElement | null> {
         itemCount++;
       }
       listingContainer.appendChild(row);
-    }
 
-    const paginationControls = createPaginationControls(1, 15);
-    listingContainer.appendChild(paginationControls);
+      //const paginationControls = createPaginationControls(1, 15);
+      //listingContainer.appendChild(paginationControls);
+    }
   }
 
   return listingContainer;

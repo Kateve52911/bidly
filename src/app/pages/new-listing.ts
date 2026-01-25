@@ -23,8 +23,10 @@ if (app) {
 
     try {
       await submitListing(fetchFormDataFromNewListingForm(formData));
-      //window.location.href = '/index';
-      console.log('Successfully created');
+      appendAlert('Successfully added', 'success');
+      setTimeout(() => {
+        window.location.href = '/index';
+      }, 1000);
     } catch (error) {
       console.error(error);
     }
