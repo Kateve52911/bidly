@@ -1,6 +1,6 @@
 import { initNavbar } from '../components/navbar/initNavBar.ts';
 import { createNewListingForm } from '../components/forms/newListing/newListingForm.ts';
-import { submitListing } from '../api/listings/post/sumbitNewListing.ts';
+import { submitListing } from '../api/listings/post/submitNewListing.ts';
 import { fetchFormDataFromNewListingForm } from '../components/listings/newListing/newListingFormData.ts';
 import { isValidDate } from '../utils/validation/listingValidation.ts';
 import { appendAlert } from '../components/errorHandling/newAlert/newAlert.ts';
