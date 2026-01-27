@@ -1,7 +1,7 @@
 import { fetchUserListings } from '../../../api/listings/fetch/fetchUserListings.ts';
 import { Listing } from '../../../utils/helpers/card/type/listing.ts';
 import { createListingRow } from '../../../utils/helpers/listings/createListingRow.ts';
-import { createListingCard } from '../card/createListingCard.ts';
+import { createDashboardListingCard } from '../card/createDashboardListingCard.ts';
 
 export async function renderUserListings(
   username: string,
@@ -22,7 +22,7 @@ export async function renderUserListings(
         // && itemCount < numListings
         console.log(`${i}-${j}`);
         console.log(userListings[itemCount]);
-        const child: HTMLDivElement = createListingCard(
+        const child: HTMLDivElement = createDashboardListingCard(
           userListings[itemCount],
         );
         row.appendChild(child);
