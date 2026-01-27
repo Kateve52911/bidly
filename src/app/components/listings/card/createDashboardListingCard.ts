@@ -6,7 +6,9 @@ import { appendAlertAndRedirect } from '../../errorHandling/newAlert/appendAlert
 import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
 
 export function createDashboardListingCard(data: Listing) {
-  const { column, card } = createBaseListingCard(data);
+  const { column, container, card } = createBaseListingCard(data);
+
+  container.style.maxWidth = '300px';
 
   const buttonDiv = document.createElement('div');
   buttonDiv.className =

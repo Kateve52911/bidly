@@ -13,23 +13,16 @@ export async function renderUserListings(
     console.error('No user listing container found');
     return listingsContainer;
   } else {
-    const numListings: number = userListings.length;
-    const numRows: number = Math.ceil(numListings / 3);
-    let itemCount: number = 0;
-    for (let i: number = 0; i < numRows; i++) {
-      const row: HTMLDivElement = createListingRow();
-      for (let j: number = 0; j < 3; j++) {
-        // && itemCount < numListings
-        console.log(`${i}-${j}`);
-        console.log(userListings[itemCount]);
-        const child: HTMLDivElement = createDashboardListingCard(
-          userListings[itemCount],
-        );
-        row.appendChild(child);
-        itemCount++;
+    let currentRow: HTMLDivElement | null = null;
+
+    userListings.forEach((listing, index) => {
+      if (index % 3 === 0) {
+        currentRow = createListingRow();
+        listingsContainer.appendChild(currentRow);
       }
-      listingsContainer.appendChild(row);
-    }
+      const child = createDashboardListingCard(listing);
+      currentRow?.appendChild(child);
+    });
   }
   return listingsContainer;
 }

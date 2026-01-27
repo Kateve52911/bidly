@@ -2,11 +2,13 @@ import { Listing } from './type/listing.ts';
 
 export function createBaseListingCard(data: Listing) {
   const column: HTMLDivElement = document.createElement('div');
-  column.className = 'col-12 col-md-6 col-lg-4 mb-5 ';
+  column.className =
+    'col-12 col-md-6 col-lg-3 mb-5 px-1 d-flex justify-content-center ';
 
   const container: HTMLDivElement = document.createElement('div');
   container.className = 'card shadow h-100';
-  container.style.maxWidth = '380px';
+  container.style.maxWidth = '100%';
+  container.style.width = '100%';
 
   const card: HTMLDivElement = document.createElement('div');
   card.className = 'card-body d-flex flex-column p-3 ';
