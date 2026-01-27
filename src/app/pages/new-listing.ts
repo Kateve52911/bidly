@@ -4,6 +4,7 @@ import { submitListing } from '../api/listings/post/submitNewListing.ts';
 import { fetchFormDataFromNewListingForm } from '../components/listings/newListing/newListingFormData.ts';
 import { isValidDate } from '../utils/validation/listingValidation.ts';
 import { appendAlert } from '../components/errorHandling/newAlert/newAlert.ts';
+import { appendAlertAndRedirect } from '../components/errorHandling/newAlert/appendAlertAndRedirect.ts';
 
 const formContainer = createNewListingForm();
 const app: HTMLElement | null = document.getElementById('app');
@@ -14,21 +15,27 @@ if (app) {
 
   form?.addEventListener('submit', async (event: Event) => {
     event.preventDefault();
+
+    const submitButton = form.querySelector(
+      'button[type="submit"]',
+    ) as HTMLButtonElement;
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
     const formData = new FormData(form);
     const endingDate = formData.get('endingDate') as string;
     if (!isValidDate(endingDate)) {
       appendAlert('Please enter a valid date', 'warning');
+      if (submitButton) submitButton.disabled = false;
       return;
     }
 
     try {
       await submitListing(fetchFormDataFromNewListingForm(formData));
-      appendAlert('Successfully added', 'success');
-      setTimeout(() => {
-        window.location.href = '/index';
-      }, 1000);
-    } catch (error) {
-      console.error(error);
+      await appendAlertAndRedirect('Successfully added', 'success', '/index');
+    } catch {
+      if (submitButton) submitButton.disabled = false;
+      appendAlert('Something went wrong. Please try again.', 'danger');
     }
   });
 } else {
