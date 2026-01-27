@@ -26,7 +26,7 @@ import { authFetch } from '../../config/authFetch.ts';
 
 export async function fetchUserListings(username: string) {
   try {
-    const url = `${BASE_URL}${USERS}/${username}/listings`;
+    const url = `${BASE_URL}${USERS}/${username}/listings?_seller=true&_bids=true`;
     const response = await authFetch(url, {
       method: 'GET',
     });

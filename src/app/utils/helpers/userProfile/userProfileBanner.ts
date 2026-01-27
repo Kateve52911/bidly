@@ -65,6 +65,8 @@ export async function createUserProfile(
 
   if (user.listings.length > 0) {
     await renderUserListings(user.name, userListings);
+    const userListingCard = document.getElementById('card-body');
+    console.log(userListingCard);
   } else {
     userListings.className = 'text-muted';
     userListings.textContent =

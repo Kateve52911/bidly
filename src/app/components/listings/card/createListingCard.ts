@@ -1,29 +1,8 @@
 import { Listing } from '../../../utils/helpers/card/type/listing.ts';
-import { createBidButton } from '../../../utils/helpers/card/createBidButton.ts';
+import { createBaseListingCard } from '../../../utils/helpers/card/createBaseListingCard.ts';
 
 export function createListingCard(data: Listing) {
-  const column: HTMLDivElement = document.createElement('div');
-  column.className = 'col-12 col-md-6 col-lg-4 mb-5 ';
-
-  const container: HTMLDivElement = document.createElement('div');
-  container.className = 'card shadow h-100';
-  container.id = 'card-container';
-  container.style.maxWidth = '380px';
-
-  const card: HTMLDivElement = document.createElement('div');
-  card.className = 'card-body d-flex flex-column p-3 ';
-
-  const image: HTMLImageElement = document.createElement('img');
-  image.className = 'card-img-top';
-  image.src = data.media.length > 0 ? data.media[0].url : '';
-
-  const title: HTMLHeadingElement = document.createElement('h5');
-  title.innerHTML = data.title || 'No title given';
-  title.className = 'card-title text-left text-success px-2';
-
-  const description: HTMLParagraphElement = document.createElement('p');
-  description.innerHTML = data.description;
-  description.className = 'card-description text-left text-primary px-2';
+  const { column, container, card } = createBaseListingCard(data);
 
   const bidsContainer: HTMLDivElement = document.createElement('div');
   bidsContainer.className = 'd-flex justify-content-between p-2';
@@ -37,6 +16,8 @@ export function createListingCard(data: Listing) {
   currentBids.appendChild(currentBidTitle);
 
   const highestBidAmount: HTMLParagraphElement = document.createElement('p');
+  console.log('Show me the data!');
+  console.log(data);
   if (data._count.bids > 0) {
     const numBids: number = data.bids.length;
     highestBidAmount.textContent = `${data.bids[numBids - 1].amount}`;
@@ -62,28 +43,11 @@ export function createListingCard(data: Listing) {
   bidsContainer.appendChild(currentBids);
   bidsContainer.appendChild(numberOfBids);
 
-  const bidEnds: HTMLDivElement = document.createElement('div');
-  const endingDate = new Date(data.endsAt).toLocaleDateString();
-  bidEnds.className = 'd-flex text-left text-dark p-2';
-  bidEnds.innerHTML = `Bid ends ${endingDate}`;
-
-  const placeBidButton: HTMLDivElement = document.createElement('div');
-  placeBidButton.appendChild(createBidButton('Place Bid!'));
-  placeBidButton.className = 'd-grid mt-auto';
-
-  container.appendChild(image);
-  card.appendChild(title);
-  card.appendChild(description);
-  card.appendChild(bidEnds);
-  card.appendChild(bidsContainer);
-  card.appendChild(placeBidButton);
-  container.appendChild(card);
+  card.append(bidsContainer);
 
   container.addEventListener('click', () => {
     window.location.href = `listing.html?id=${data.id}`;
   });
-
-  column.appendChild(container);
 
   return column;
 }

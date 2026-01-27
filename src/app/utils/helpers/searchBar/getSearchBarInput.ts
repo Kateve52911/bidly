@@ -6,4 +6,3 @@ export function fetchSearchBarInput(): string | null {
   console.log(searchInputValue);
   return searchInputValue;
 }
-fetchSearchBarInput();

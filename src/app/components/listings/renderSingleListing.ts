@@ -49,12 +49,16 @@ export async function renderSingleListing(
 
   const container: HTMLDivElement = document.createElement('div');
   container.className =
-    'container my-3 d-flex flex-column rounded justify-content-center w-75';
+    'container my-3 d-flex flex-column shadow-lg p-3 rounded w-75';
   container.id = 'listing-container';
 
   if (!listingData) {
     return container;
   }
+
+  const flexContainer: HTMLDivElement = document.createElement('div');
+  flexContainer.id = 'flexContainer';
+  flexContainer.className = 'd-flex flex-column flex-lg-row gap-3';
 
   const title: HTMLHeadingElement = document.createElement('h1');
   title.innerHTML = listingData.title;
@@ -64,16 +68,17 @@ export async function renderSingleListing(
   const infoDiv: HTMLDivElement = document.createElement('div');
   infoDiv.id = 'info-div';
   infoDiv.className =
-    'info-div mx-4 d-flex flex-column shadow-lg p-3 justify-content-start';
+    'info-div d-flex flex-column justify-content-start flex-grow-1 ps-lg-4';
 
   const imageContainer: HTMLDivElement = document.createElement('div');
+  imageContainer.className = 'flex-shrink-0';
   console.log(typeof listingData.media);
   if (listingData.media.length > 0) {
     listingData.media.forEach((media) => {
       const img: HTMLImageElement = document.createElement('img');
       img.src = media.url;
       img.alt = media.alt;
-      img.className = 'img-fluid w-25 rounded';
+      img.className = 'img-fluid rounded listing-image';
       imageContainer.append(img);
     });
   }
@@ -129,7 +134,6 @@ export async function renderSingleListing(
   alertDiv.className = 'mt-3';
 
   infoDiv.append(
-    imageContainer,
     listingTagsDiv,
     listingDescription,
     timeRemainingDiv,
@@ -164,7 +168,9 @@ export async function renderSingleListing(
     loginDiv.innerHTML = 'To place bid, please log in!';
     infoDiv.append(loginDiv);
   }
-  container.append(title, infoDiv);
+
+  flexContainer.append(imageContainer, infoDiv);
+  container.append(title, flexContainer);
 
   return container;
 }

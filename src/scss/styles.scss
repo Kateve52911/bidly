@@ -18,15 +18,14 @@
   height: auto;
 }
 
-.start-30 {
-  left: 30% !important;
-}
+.listing-image {
+  max-width: 150px;
 
-.top-15 {
-  top: 15% !important;
-}
+  @media (min-width: 768px) {
+    max-width: 200px;
+  }
 
-
-.bottom-30 {
-  bottom: 30% !important;
+  @media (min-width: 992px) {
+    max-width: 500px;
+  }
 }

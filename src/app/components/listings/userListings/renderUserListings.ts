@@ -18,7 +18,10 @@ export async function renderUserListings(
     let itemCount: number = 0;
     for (let i: number = 0; i < numRows; i++) {
       const row: HTMLDivElement = createListingRow();
-      for (let j: number = 0; j < 3 && itemCount < numListings; j++) {
+      for (let j: number = 0; j < 3; j++) {
+        // && itemCount < numListings
+        console.log(`${i}-${j}`);
+        console.log(userListings[itemCount]);
         const child: HTMLDivElement = createListingCard(
           userListings[itemCount],
         );
