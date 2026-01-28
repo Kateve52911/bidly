@@ -20,7 +20,7 @@ export function renderNavBarButton() {
       document.createElement('button');
     createNewListingButton.textContent = 'Create New Listing';
     createNewListingButton.id = 'createNewListingButton';
-    createNewListingButton.className = 'btn border-primary mx-1 ';
+    createNewListingButton.className = 'btn btn-outline-primary mx-1 ';
     createNewListingButton.addEventListener('click', () => {
       window.location.href = '/new-listing.html';
     });

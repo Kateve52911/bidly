@@ -11,10 +11,13 @@ export function createBaseListingCard(data: Listing) {
   container.style.width = '100%';
 
   const card: HTMLDivElement = document.createElement('div');
-  card.className = 'card-body d-flex flex-column p-3 ';
+  card.className = 'card-body d-flex flex-column  align-items-stretch p-3 ';
 
   const image: HTMLImageElement = document.createElement('img');
   image.className = 'card-img-top';
+  image.style.objectFit = 'cover';
+  image.style.height = '250px';
+  image.style.width = '100%';
   image.src = data.media.length > 0 ? data.media[0].url : '';
 
   const title: HTMLHeadingElement = document.createElement('h5');

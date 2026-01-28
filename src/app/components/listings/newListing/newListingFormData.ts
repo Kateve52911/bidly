@@ -33,15 +33,49 @@ export function fetchFormDataFromNewListingForm(formData: FormData) {
     throw new Error('End date is required');
   }
 
+  const media: Array<{ url: string; alt: string }> = [
+    {
+      url: url,
+      alt: alt,
+    },
+  ];
+
+  const additionalImages: Map<number, { url?: string; alt?: string }> =
+    new Map();
+
+  for (const [key, value] of formData.entries()) {
+    const urlMatch = key.match(/^imageUrl-(\d+)$/);
+    if (urlMatch && typeof value === 'string' && value.trim()) {
+      const index = parseInt(urlMatch[1]);
+      if (!additionalImages.has(index)) {
+        additionalImages.set(index, {});
+      }
+      additionalImages.get(index)!.url = value.trim();
+    }
+
+    const altMatch = key.match(/^imageAlt-(\d+)$/);
+    if (altMatch && typeof value === 'string' && value.trim()) {
+      const index = parseInt(altMatch[1]);
+      if (!additionalImages.has(index)) {
+        additionalImages.set(index, {});
+      }
+      additionalImages.get(index)!.alt = value.trim();
+    }
+  }
+
+  additionalImages.forEach((image) => {
+    if (image.url) {
+      media.push({
+        url: image.url,
+        alt: image.alt || '',
+      });
+    }
+  });
+
   const listingData = {
     title: title,
     description: description,
-    media: [
-      {
-        url: url,
-        alt: alt,
-      },
-    ],
+    media: media,
     endsAt: endsAt,
   };
 

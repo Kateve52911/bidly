@@ -1,6 +1,7 @@
 import { createLabel } from '../../../utils/helpers/forms/createLabel.ts';
 import { createUserInput } from '../../../utils/helpers/forms/createInput.ts';
 import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts';
+import { createImageInputGroup } from '../../../utils/helpers/forms/createImageInputGroup.ts';
 
 export function createNewListingForm() {
   const container: HTMLDivElement = document.createElement('div');
@@ -59,6 +60,21 @@ export function createNewListingForm() {
     createUserInput('Image Alt text', 'text', 'imageAlt', 'imageAlt'),
   );
 
+  const additionalImagesContainer: HTMLDivElement =
+    document.createElement('div');
+  additionalImagesContainer.id = 'additional-images-container';
+  additionalImagesContainer.className = 'mb-3';
+
+  const addImageButton: HTMLButtonElement = document.createElement('button');
+  addImageButton.type = 'button';
+  addImageButton.className = 'btn btn-outline-primary btn-sm';
+  addImageButton.textContent = '+ Add Another Image';
+  addImageButton.addEventListener('click', () => {
+    const imageIndex: number = additionalImagesContainer.children.length;
+    const newImageGroup: HTMLDivElement = createImageInputGroup(imageIndex);
+    additionalImagesContainer.appendChild(newImageGroup);
+  });
+
   const currentDate = new Date().toISOString().slice(0, 16);
 
   const dateContainer: HTMLDivElement = document.createElement('div');
@@ -88,6 +104,10 @@ export function createNewListingForm() {
   form.appendChild(descriptionContainer);
   form.appendChild(imageURLContainer);
   form.appendChild(imageAltContainer);
+  form.appendChild(imageURLContainer);
+  form.appendChild(imageAltContainer);
+  form.appendChild(additionalImagesContainer);
+  form.appendChild(addImageButton);
   form.appendChild(dateContainer);
   form.appendChild(alertContainer);
   form.appendChild(submitButton);
