@@ -1,5 +1,5 @@
 import { fetchSingleListing } from '../../api/listings/fetch/fetchSingleListing.ts';
-import { Bid } from '../../utils/helpers/card/type/listing.ts';
+import { Bid, Listing } from '../../utils/helpers/card/type/listing.ts';
 import { createUserInput } from '../../utils/helpers/forms/createInput.ts';
 import { createSubmitButton } from '../../utils/helpers/forms/createButton.ts';
 import { listingId } from '../../pages/singleListing.ts';
@@ -10,7 +10,10 @@ import { fetchUser } from '../../api/user/fetchUser.ts';
 import { loadCurrentUser } from '../../utils/storage/storage.ts';
 import { Profile } from '../../api/user/types/profile.ts';
 
-function addAllBidsToContainer(listingData, allBidsContainer: HTMLDivElement) {
+function addAllBidsToContainer(
+  listingData: Listing,
+  allBidsContainer: HTMLDivElement,
+) {
   const bidsReversed = listingData.bids.slice().reverse();
   bidsReversed.forEach((bid: Bid) => {
     const bidContainer: HTMLDivElement = document.createElement('div');

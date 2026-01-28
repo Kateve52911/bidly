@@ -25,12 +25,7 @@ export interface Listing {
     };
   };
   _bids: boolean;
-  bids: Array<{
-    id: string;
-    amount: number;
-    //bidder: Profile;
-    created: Date;
-  }>;
+  bids: Bid[];
 }
 
 export interface Bid {
