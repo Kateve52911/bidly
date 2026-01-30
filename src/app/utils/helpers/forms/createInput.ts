@@ -11,6 +11,7 @@ export function createUserInput(
   name: string,
   id: string,
   min?: string,
+  value?: string,
 ): HTMLInputElement {
   const input: HTMLInputElement = document.createElement('input');
   input.type = type;
@@ -21,6 +22,9 @@ export function createUserInput(
   input.id = id;
   if (min) {
     input.min = min;
+  }
+  if (value) {
+    input.value = value;
   }
   return input;
 }
