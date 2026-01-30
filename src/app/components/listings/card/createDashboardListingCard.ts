@@ -4,6 +4,7 @@ import { renderConfirmActionModal } from '../../../utils/helpers/modal/renderAle
 import { deleteListing } from '../../../api/listings/delete/deleteListing.ts';
 import { appendAlertAndRedirect } from '../../errorHandling/newAlert/appendAlertAndRedirect.ts';
 import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
+import { createEditListingCard } from '../../forms/editListing/createEditListingForm.ts';
 
 export function createDashboardListingCard(data: Listing) {
   const { column, container, card } = createBaseListingCard(data);
@@ -21,6 +22,17 @@ export function createDashboardListingCard(data: Listing) {
   editButton.className = 'btn btn-outline-primary';
   editButton.textContent = 'Edit';
   editButton.id = 'editButton';
+
+  editButton.addEventListener('click', () => {
+    const userPostContainer = document.getElementById('user-posts');
+    console.log(userPostContainer);
+    if (!userPostContainer) {
+      return;
+    }
+    userPostContainer.innerHTML = '';
+    const editForm = createEditListingCard(data);
+    userPostContainer.appendChild(editForm);
+  });
 
   const deleteButton: HTMLButtonElement = document.createElement('button');
   deleteButton.className = 'btn btn-danger';

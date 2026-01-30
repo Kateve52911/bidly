@@ -11,7 +11,7 @@ const app: HTMLElement | null = document.getElementById('app');
 
 if (app) {
   app.appendChild(formContainer);
-  const form = document.getElementById('new-listing-form');
+  const form = document.getElementById('new-listing-form') as HTMLFormElement;
 
   form?.addEventListener('submit', async (event: Event) => {
     event.preventDefault();

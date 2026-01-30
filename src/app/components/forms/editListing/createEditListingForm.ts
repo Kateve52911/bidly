@@ -52,23 +52,32 @@ export function createEditListingCard(data: Listing) {
   const alertContainer: HTMLDivElement = document.createElement('div');
   alertContainer.id = 'alert-placeholder-container';
 
-  const submitButton: HTMLDivElement = document.createElement('div');
-  submitButton.className = 'd-grid mt-3 btn-outline-success';
-  submitButton.id = 'submit-button-new-listing';
-  submitButton.appendChild(createSubmitButton('Save'));
+  const buttonContainer: HTMLDivElement = document.createElement('div');
+  buttonContainer.className = 'row';
 
-  const cancelButton: HTMLDivElement = document.createElement('div');
-  cancelButton.className = 'd-grid mt-3 btn-alert';
-  cancelButton.id = 'submit-button-new-listing';
-  cancelButton.appendChild(createSubmitButton('Cancel'));
+  const saveButton: HTMLDivElement = document.createElement('div');
+  saveButton.className = 'd-grid col-md-6 mt-3 btn-outline-success';
+  saveButton.id = 'submit-button-new-listing';
+  saveButton.appendChild(createSubmitButton('Save'));
+
+  const cancelButton: HTMLButtonElement = document.createElement('button');
+  cancelButton.className = 'd-grid col-md-6 mt-3 btn btn-danger';
+  cancelButton.id = 'cancel-button-new-listing';
+  cancelButton.innerHTML = 'Cancel';
+
+  cancelButton.addEventListener('click', () => {
+    window.location.href = '/profile';
+  });
+
+  buttonContainer.appendChild(saveButton);
+  buttonContainer.appendChild(cancelButton);
 
   form.appendChild(editTitleContainer);
   form.appendChild(editDescriptionContainer);
   form.appendChild(editImageURLContainer);
   form.appendChild(editAltImageAltContainer);
   form.appendChild(alertContainer);
-  form.appendChild(submitButton);
-  form.appendChild(cancelButton);
+  form.appendChild(buttonContainer);
 
   container.append(formContainer);
   formContainer.appendChild(form);
