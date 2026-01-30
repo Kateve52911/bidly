@@ -1,75 +1,76 @@
-//import { Listing } from '../../../utils/helpers/card/type/listing.ts';
-//import { createUserInput } from '../../../utils/helpers/forms/createInput.ts';
-//import { createLabel } from '../../../utils/helpers/forms/createLabel.ts';
-//import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts';
+import { Listing } from '../../../utils/helpers/card/type/listing.ts';
+import { createUserInput } from '../../../utils/helpers/forms/createInput.ts';
+import { createLabel } from '../../../utils/helpers/forms/createLabel.ts';
+import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts';
 
-/*
 export function createEditListingCard(data: Listing) {
+  const container: HTMLDivElement = document.createElement('div');
+  container.className = 'container my-lg-5 my-md-2';
 
-    const container: HTMLDivElement = document.createElement('div');
-    container.className = 'container my-lg-5 my-md-2';
+  const row: HTMLDivElement = document.createElement('div');
+  row.className = 'row';
 
-    const row: HTMLDivElement = document.createElement('div');
-    row.className = 'row';
+  const formContainer: HTMLDivElement = document.createElement('div');
+  formContainer.className = 'col-md-6 col-lg-8 mx-auto shadow-lg p-4';
 
-    const formContainer: HTMLDivElement = document.createElement('div');
-    formContainer.className = 'col-md-6 col-lg-8 mx-auto shadow-lg p-4';
+  const form: HTMLFormElement = document.createElement('form');
+  form.id = 'edit-listing-form';
 
-    const form: HTMLFormElement = document.createElement('form');
-    form.id = 'edit-listing-form';
-
-    const editTitleContainer: HTMLDivElement = document.createElement('div');
+  const editTitleContainer: HTMLDivElement = document.createElement('div');
   editTitleContainer.className = 'mb-3 text-left p-2';
   editTitleContainer.appendChild(createLabel('Title', 'title'));
   editTitleContainer.appendChild(
-      createUserInput('Title of your listing', 'text', 'title', 'title'),
-    );
+    createUserInput(data.title, 'text', 'title', 'title'),
+  );
 
-    const editDescriptionContainer: HTMLDivElement = document.createElement('div');
+  const editDescriptionContainer: HTMLDivElement =
+    document.createElement('div');
   editDescriptionContainer.className = 'mb-3 text-left p-2';
-  editDescriptionContainer.appendChild(createLabel('Description', 'description'));
   editDescriptionContainer.appendChild(
-      createUserInput(
-        'Description of you listing',
-        'text',
-        'description',
-        'description',
-      ),
-    );
+    createLabel('Description', 'description'),
+  );
+  editDescriptionContainer.appendChild(
+    createUserInput(data.description, 'text', 'description', 'description'),
+  );
 
-    const editImageURLContainer: HTMLDivElement = document.createElement('div');
+  const editImageURLContainer: HTMLDivElement = document.createElement('div');
   editImageURLContainer.className = 'mb-3 text-left p-2';
   editImageURLContainer.appendChild(createLabel('Image', 'image'));
   editImageURLContainer.appendChild(
-      createUserInput('Image URL (https://...)', 'text', 'imageUrl', 'imageUrl'),
-    );
+    createUserInput(data.media[0].url, 'text', 'imageUrl', 'imageUrl'),
+  );
 
-    const editAltImageAltContainer: HTMLDivElement = document.createElement('div');
+  const editAltImageAltContainer: HTMLDivElement =
+    document.createElement('div');
   editAltImageAltContainer.className = 'mb-3 text-left p-2';
   editAltImageAltContainer.appendChild(createLabel('Image Alt', 'image'));
   editAltImageAltContainer.appendChild(
-      createUserInput('Image Alt text', 'text', 'imageAlt', 'imageAlt'),
-    );
+    createUserInput(data.media[0].alt, 'text', 'imageAlt', 'imageAlt'),
+  );
 
+  const alertContainer: HTMLDivElement = document.createElement('div');
+  alertContainer.id = 'alert-placeholder-container';
 
-    const alertContainer: HTMLDivElement = document.createElement('div');
-    alertContainer.id = 'alert-placeholder-container';
+  const submitButton: HTMLDivElement = document.createElement('div');
+  submitButton.className = 'd-grid mt-3 btn-outline-success';
+  submitButton.id = 'submit-button-new-listing';
+  submitButton.appendChild(createSubmitButton('Save'));
 
-    const submitButton: HTMLDivElement = document.createElement('div');
-    submitButton.className = 'd-grid mt-3 liveAlertBtn';
-    submitButton.id = 'submit-button-new-listing';
-    submitButton.appendChild(createSubmitButton('Update Listing!'));
+  const cancelButton: HTMLDivElement = document.createElement('div');
+  cancelButton.className = 'd-grid mt-3 btn-alert';
+  cancelButton.id = 'submit-button-new-listing';
+  cancelButton.appendChild(createSubmitButton('Cancel'));
 
-    form.appendChild(editTitleContainer);
-    form.appendChild(editDescriptionContainer);
-    form.appendChild(editImageURLContainer);
-    form.appendChild(editAltImageAltContainer);
-    form.appendChild(alertContainer);
-    form.appendChild(submitButton);
+  form.appendChild(editTitleContainer);
+  form.appendChild(editDescriptionContainer);
+  form.appendChild(editImageURLContainer);
+  form.appendChild(editAltImageAltContainer);
+  form.appendChild(alertContainer);
+  form.appendChild(submitButton);
+  form.appendChild(cancelButton);
 
-    container.append(formContainer);
-    formContainer.appendChild(form);
+  container.append(formContainer);
+  formContainer.appendChild(form);
 
-    return container;
-
-}*/
+  return container;
+}
