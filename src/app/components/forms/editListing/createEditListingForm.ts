@@ -35,6 +35,7 @@ export function createEditListingCard(data: Listing) {
 
   const editImageURLContainer: HTMLDivElement = document.createElement('div');
   editImageURLContainer.className = 'mb-3 text-left p-2';
+  editImageURLContainer.id = 'image-url-div';
   editImageURLContainer.appendChild(createLabel('Image', 'image'));
   editImageURLContainer.appendChild(
     createUserInput(data.media[0].url, 'text', 'imageUrl', 'imageUrl'),

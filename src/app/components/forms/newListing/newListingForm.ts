@@ -2,6 +2,7 @@ import { createLabel } from '../../../utils/helpers/forms/createLabel.ts';
 import { createUserInput } from '../../../utils/helpers/forms/createInput.ts';
 import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts';
 import { createImageInputGroup } from '../../../utils/helpers/forms/createImageInputGroup.ts';
+import { showURLError } from '../../../utils/helpers/forms/formError.ts';
 
 export function createNewListingForm() {
   const container: HTMLDivElement = document.createElement('div');
@@ -48,10 +49,20 @@ export function createNewListingForm() {
 
   const imageURLContainer: HTMLDivElement = document.createElement('div');
   imageURLContainer.className = 'mb-3 text-left p-2';
+  imageURLContainer.id = 'image-url-div';
   imageURLContainer.appendChild(createLabel('Image', 'image'));
-  imageURLContainer.appendChild(
-    createUserInput('Image URL (https://...)', 'text', 'imageUrl', 'imageUrl'),
+
+  const imageURLInput = createUserInput(
+    'Image URL (https://...)',
+    'text',
+    'imageUrl',
+    'imageUrl',
   );
+
+  imageURLInput.addEventListener('blur', () => {
+    showURLError();
+  });
+  imageURLContainer.appendChild(imageURLInput);
 
   const imageAltContainer: HTMLDivElement = document.createElement('div');
   imageAltContainer.className = 'mb-3 text-left p-2';
