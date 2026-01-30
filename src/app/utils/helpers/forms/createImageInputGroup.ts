@@ -1,5 +1,6 @@
 import { createLabel } from './createLabel.ts';
 import { createUserInput } from './createInput.ts';
+import { showURLError } from './formError.ts';
 
 export function createImageInputGroup(index: number): HTMLDivElement {
   const group: HTMLDivElement = document.createElement('div');
@@ -7,17 +8,23 @@ export function createImageInputGroup(index: number): HTMLDivElement {
 
   const urlContainer: HTMLDivElement = document.createElement('div');
   urlContainer.className = 'mb-2';
+  urlContainer.id = `image-url-div-${index}`;
   urlContainer.appendChild(
     createLabel(`Image ${index + 2} URL`, `imageUrl-${index}`),
   );
-  urlContainer.appendChild(
-    createUserInput(
-      'Image URL (https://...)',
-      'text',
-      `imageUrl-${index}`,
-      `imageUrl-${index}`,
-    ),
+
+  const imageInput = createUserInput(
+    'Image URL (https://...)',
+    'text',
+    `imageUrl-${index}`,
+    `imageUrl-${index}`,
   );
+
+  imageInput.addEventListener('blur', () => {
+    showURLError(`imageUrl-${index}`, `image-url-div-${index}`);
+  });
+
+  urlContainer.appendChild(imageInput);
 
   const altContainer: HTMLDivElement = document.createElement('div');
   altContainer.className = 'mb-2';

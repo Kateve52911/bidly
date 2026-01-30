@@ -60,7 +60,7 @@ export function createNewListingForm() {
   );
 
   imageURLInput.addEventListener('blur', () => {
-    showURLError();
+    showURLError('imageUrl', 'image-url-div');
   });
   imageURLContainer.appendChild(imageURLInput);
 

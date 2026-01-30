@@ -1,9 +1,9 @@
 import { isURLValid } from '../../validation/urlValidation.ts';
 
-export function showURLError() {
-  const urlDiv = document.getElementById('image-url-div');
+export function showURLError(inputId: string, containerId: string) {
+  const urlDiv = document.getElementById(containerId);
   console.log(urlDiv);
-  const urlInput = document.getElementById('imageUrl') as HTMLInputElement;
+  const urlInput = document.getElementById(inputId) as HTMLInputElement;
   const messageDiv = document.createElement('div');
 
   if (!urlInput) {
