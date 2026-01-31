@@ -26,23 +26,15 @@ export async function renderAllListings(): Promise<HTMLElement | null> {
     heading.className = 'text-primary display-2 p-2 m-3';
     listingContainer.appendChild(heading);
 
-    const searchBar = renderSearchBar();
+    const searchBar = renderSearchBar(allListings);
     listingContainer.appendChild(searchBar);
-
-    /* const searchInput = fetchSearchBarInput();
-    console.log(searchInput);
-
-    if (searchInput) {
-      console.log(searchInput);
-    } else {
-
-      }*/
 
     const numListings: number = allListings.length;
     const numRows: number = Math.ceil(numListings / 3);
     let itemCount: number = 0;
     for (let i: number = 0; i < numRows; i++) {
       const row: HTMLDivElement = createListingRow();
+      row.classList.add('listing-row');
       for (let j: number = 0; j < 3 && itemCount < numListings; j++) {
         const child: HTMLDivElement = createListingCard(allListings[itemCount]);
         row.appendChild(child);

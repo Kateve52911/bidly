@@ -1,7 +1,8 @@
 import { createUserInput } from '../../../utils/helpers/forms/createInput.ts';
-import { fetchSearchBarInput } from '../../../utils/helpers/searchBar/getSearchBarInput.ts';
+import { filterSearchResults } from '../../serachAndFilter/filterSearchResults.ts';
+import { Listing } from '../../../utils/helpers/card/type/listing.ts';
 
-export function renderSearchBar() {
+export function renderSearchBar(listings: Array<Listing>) {
   const container: HTMLDivElement = document.createElement('div');
   container.id = 'search-bar-container';
   container.className = 'container ms-4';
@@ -17,12 +18,16 @@ export function renderSearchBar() {
   );
   searchInput.className = 'form-control form-control-lg';
 
+  searchInput.addEventListener('input', () => {
+    filterSearchResults(listings);
+  });
+
   const searchBarButton: HTMLButtonElement = document.createElement('button');
   searchBarButton.className = 'btn btn-success btn-sm';
   searchBarButton.id = 'search-bar-button';
   searchBarButton.innerHTML = '<i class="bi bi-search"></i>';
 
-  searchBarButton.addEventListener('click', fetchSearchBarInput);
+  // searchBarButton.addEventListener('click', filterSearchResults);
 
   const lineBreak: HTMLDivElement = document.createElement('hr');
   lineBreak.className = ' border-1 border-top border-dark pb-4';
