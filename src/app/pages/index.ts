@@ -1,9 +1,9 @@
 import { fetchListings } from '../api/listings/fetch/fetchListings.ts';
-import { createListingCard } from '../components/listings/card/createListingCard.ts';
 import { Listing } from '../utils/helpers/card/type/listing.ts';
 import { initNavbar } from '../components/navbar/initNavBar.ts';
-import { createListingRow } from '../utils/helpers/listings/createListingRow.ts';
 import { renderSearchBar } from '../components/listings/searchBar/renderSearchBar.ts';
+import { createPaginationControls } from '../components/listings/pagination/createPaginationControls.ts';
+import { displayListingsPage } from '../components/listings/allListings/renderAllListings.ts';
 
 export function initPage(): void {
   const navbar = document.getElementById('navbar-links');
@@ -13,8 +13,8 @@ export function initPage(): void {
 }
 document.addEventListener('DOMContentLoaded', initPage);
 
-export async function renderAllListings(): Promise<HTMLElement | null> {
-  const allListings: Array<Listing> = await fetchListings();
+export async function displayListings(): Promise<HTMLElement | null> {
+  const allListings: Array<Listing> = await fetchListings(21, 1);
   const listingContainer: HTMLElement | null =
     document.getElementById('listings-Container');
 
@@ -29,25 +29,16 @@ export async function renderAllListings(): Promise<HTMLElement | null> {
     const searchBar = renderSearchBar(allListings);
     listingContainer.appendChild(searchBar);
 
-    const numListings: number = allListings.length;
-    const numRows: number = Math.ceil(numListings / 3);
-    let itemCount: number = 0;
-    for (let i: number = 0; i < numRows; i++) {
-      const row: HTMLDivElement = createListingRow();
-      row.classList.add('listing-row');
-      for (let j: number = 0; j < 3 && itemCount < numListings; j++) {
-        const child: HTMLDivElement = createListingCard(allListings[itemCount]);
-        row.appendChild(child);
-        itemCount++;
-      }
-      listingContainer.appendChild(row);
+    const rowContainer: HTMLDivElement = document.createElement('div');
+    rowContainer.className = 'row-container';
+    listingContainer.appendChild(rowContainer);
 
-      //const paginationControls = createPaginationControls(1, 15);
-      //listingContainer.appendChild(paginationControls);
-    }
+    displayListingsPage(allListings, rowContainer);
+    const paginationControls = createPaginationControls();
+    listingContainer.appendChild(paginationControls);
   }
 
   return listingContainer;
 }
 
-await renderAllListings();
+await displayListings();
