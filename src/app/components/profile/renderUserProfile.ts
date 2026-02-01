@@ -1,5 +1,5 @@
-import { Profile } from '../../../api/user/types/profile.ts';
-import { renderUserListings } from '../../../components/listings/userListings/renderUserListings.ts';
+import { Profile } from '../../api/user/types/profile.ts';
+import { renderUserListings } from '../listings/userListings/renderUserListings.ts';
 
 export async function createUserProfile(
   user: Profile,
