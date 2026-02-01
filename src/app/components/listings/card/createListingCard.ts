@@ -4,6 +4,12 @@ import { createBaseListingCard } from '../../../utils/helpers/card/createBaseLis
 export function createListingCard(data: Listing) {
   const { column, container, card } = createBaseListingCard(data);
 
+  const listingStatus = document.createElement('span');
+  listingStatus.className = 'border rounded py-1 px-2 me-auto my-2 fs-6';
+  listingStatus.id = 'listing-item-status';
+
+  card.prepend(listingStatus);
+
   const bidsContainer: HTMLDivElement = document.createElement('div');
   bidsContainer.className = 'd-flex justify-content-between p-2';
 
