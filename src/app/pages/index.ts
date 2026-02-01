@@ -2,7 +2,7 @@ import { fetchListings } from '../api/listings/fetch/fetchListings.ts';
 import { Listing } from '../utils/helpers/card/type/listing.ts';
 import { initNavbar } from '../components/navbar/initNavBar.ts';
 import { renderSearchBar } from '../components/listings/searchBar/renderSearchBar.ts';
-import { createPaginationControls } from '../components/listings/pagination/createPaginationControls.ts';
+import { createInfiniteScrollButton } from '../components/listings/infiniteScroll/createInfiniteScrollButton.ts';
 import { displayListingsPage } from '../components/listings/allListings/renderAllListings.ts';
 
 export function initPage(): void {
@@ -34,7 +34,7 @@ export async function displayListings(): Promise<HTMLElement | null> {
     listingContainer.appendChild(rowContainer);
 
     displayListingsPage(allListings, rowContainer);
-    const paginationControls = createPaginationControls();
+    const paginationControls = createInfiniteScrollButton();
     listingContainer.appendChild(paginationControls);
   }
 
