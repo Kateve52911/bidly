@@ -10,6 +10,7 @@ export function createUserInput(
     | 'search',
   name: string,
   id: string,
+  required?: boolean,
   min?: string,
   value?: string,
 ): HTMLInputElement {
@@ -17,7 +18,7 @@ export function createUserInput(
   input.type = type;
   input.name = name;
   input.placeholder = placeholder;
-  input.required = true;
+  input.required = required ?? true;
   input.className = 'form-control p-6';
   input.id = id;
   if (min) {

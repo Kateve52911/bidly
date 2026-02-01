@@ -2,6 +2,11 @@ import { Listing } from '../../../utils/helpers/card/type/listing.ts';
 import { createUserInput } from '../../../utils/helpers/forms/createInput.ts';
 import { createLabel } from '../../../utils/helpers/forms/createLabel.ts';
 import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts';
+import { getEditFormData } from '../../listings/updateListing/editedFormData.ts';
+import { UpdatedListingData } from '../../../api/listings/put/types/updatedListingData.ts';
+import { updateListing } from '../../../api/listings/put/updateListing.ts';
+import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
+import { appendAlertAndRedirect } from '../../errorHandling/newAlert/appendAlertAndRedirect.ts';
 
 export function createEditListingCard(data: Listing) {
   const container: HTMLDivElement = document.createElement('div');
@@ -20,7 +25,7 @@ export function createEditListingCard(data: Listing) {
   editTitleContainer.className = 'mb-3 text-left p-2';
   editTitleContainer.appendChild(createLabel('Title', 'title'));
   editTitleContainer.appendChild(
-    createUserInput(data.title, 'text', 'title', 'title'),
+    createUserInput(data.title, 'text', 'title', 'title', false),
   );
 
   const editDescriptionContainer: HTMLDivElement =
@@ -30,7 +35,13 @@ export function createEditListingCard(data: Listing) {
     createLabel('Description', 'description'),
   );
   editDescriptionContainer.appendChild(
-    createUserInput(data.description, 'text', 'description', 'description'),
+    createUserInput(
+      data.description,
+      'text',
+      'description',
+      'description',
+      false,
+    ),
   );
 
   const editImageURLContainer: HTMLDivElement = document.createElement('div');
@@ -38,7 +49,7 @@ export function createEditListingCard(data: Listing) {
   editImageURLContainer.id = 'image-url-div';
   editImageURLContainer.appendChild(createLabel('Image', 'image'));
   editImageURLContainer.appendChild(
-    createUserInput(data.media[0].url, 'text', 'imageUrl', 'imageUrl'),
+    createUserInput(data.media[0].url, 'text', 'imageUrl', 'imageUrl', false),
   );
 
   const editAltImageAltContainer: HTMLDivElement =
@@ -46,7 +57,7 @@ export function createEditListingCard(data: Listing) {
   editAltImageAltContainer.className = 'mb-3 text-left p-2';
   editAltImageAltContainer.appendChild(createLabel('Image Alt', 'image'));
   editAltImageAltContainer.appendChild(
-    createUserInput(data.media[0].alt, 'text', 'imageAlt', 'imageAlt'),
+    createUserInput(data.media[0].alt, 'text', 'imageAlt', 'imageAlt', false),
   );
 
   const alertContainer: HTMLDivElement = document.createElement('div');
@@ -63,6 +74,7 @@ export function createEditListingCard(data: Listing) {
   const cancelButton: HTMLButtonElement = document.createElement('button');
   cancelButton.className = 'd-grid col-md-6 mt-3 btn btn-danger';
   cancelButton.id = 'cancel-button-new-listing';
+  cancelButton.type = 'button';
   cancelButton.innerHTML = 'Cancel';
 
   cancelButton.addEventListener('click', () => {
@@ -71,6 +83,24 @@ export function createEditListingCard(data: Listing) {
 
   buttonContainer.appendChild(saveButton);
   buttonContainer.appendChild(cancelButton);
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const listingId = data.id;
+    const formData = new FormData(form);
+    const updatedData: UpdatedListingData = getEditFormData(formData);
+    console.log('updated data', updatedData);
+    try {
+      await updateListing(listingId, updatedData);
+      await appendAlertAndRedirect(
+        'Successfully updated listing',
+        'success',
+        '/profile.html',
+      );
+    } catch (error) {
+      appendAlert(`Error: ${error.message}`, 'danger');
+    }
+  });
 
   form.appendChild(editTitleContainer);
   form.appendChild(editDescriptionContainer);

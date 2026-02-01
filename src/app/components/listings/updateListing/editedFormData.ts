@@ -1,9 +1,25 @@
-/*import { UpdatedListingData } from '../../../api/listings/put/types/updatedListingData.ts';
+import { UpdatedListingData } from '../../../api/listings/put/types/updatedListingData.ts';
 
 export function getEditFormData(formData: FormData): UpdatedListingData {
-  const title = formData.get('title');
-  const description = formData.get('description');
-  const url = formData.get('url');
-  const alt = formData.get('alt');
-  const tags = formData.get('tags');
-} */
+  const title = formData.get('title') as string;
+  const description = formData.get('description') as string;
+  const url = formData.get('imageUrl') as string;
+  const alt = formData.get('imageAlt') as string;
+  //const tags = formData.get('tags');
+
+  const updatedData: UpdatedListingData = {};
+
+  if (title) {
+    updatedData.title = title;
+  }
+
+  if (description) {
+    updatedData.description = description;
+  }
+
+  if (url && alt) {
+    updatedData.media = [{ url, alt }];
+  }
+
+  return updatedData;
+}
