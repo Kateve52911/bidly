@@ -4,6 +4,7 @@ import { initNavbar } from '../components/navbar/initNavBar.ts';
 import { renderSearchBar } from '../components/listings/searchBar/renderSearchBar.ts';
 import { createInfiniteScrollButton } from '../components/listings/infiniteScroll/createInfiniteScrollButton.ts';
 import { displayListingsPage } from '../components/listings/allListings/renderAllListings.ts';
+import { appendAlert } from '../components/errorHandling/newAlert/newAlert.ts';
 
 export function initPage(): void {
   const navbar = document.getElementById('navbar-links');
@@ -13,8 +14,10 @@ export function initPage(): void {
 }
 document.addEventListener('DOMContentLoaded', initPage);
 
+let pageNumber: number = 1;
+
 export async function displayListings(): Promise<HTMLElement | null> {
-  const allListings: Array<Listing> = await fetchListings(21, 1);
+  const listings: Array<Listing> = await fetchListings(21, pageNumber);
   const listingContainer: HTMLElement | null =
     document.getElementById('listings-Container');
 
@@ -26,16 +29,29 @@ export async function displayListings(): Promise<HTMLElement | null> {
     heading.className = 'text-primary display-2 p-2 m-3';
     listingContainer.appendChild(heading);
 
-    const searchBar = renderSearchBar(allListings);
+    const searchBar = renderSearchBar(listings);
     listingContainer.appendChild(searchBar);
 
     const rowContainer: HTMLDivElement = document.createElement('div');
     rowContainer.className = 'row-container';
     listingContainer.appendChild(rowContainer);
 
-    displayListingsPage(allListings, rowContainer);
-    const paginationControls = createInfiniteScrollButton();
-    listingContainer.appendChild(paginationControls);
+    displayListingsPage(listings, rowContainer);
+    const infiniteScrollButton = createInfiniteScrollButton();
+    listingContainer.appendChild(infiniteScrollButton);
+
+    infiniteScrollButton.addEventListener('click', async () => {
+      pageNumber++;
+      const moreListings = await fetchListings(21, pageNumber);
+      if (moreListings.length > 0) {
+        displayListingsPage(moreListings, rowContainer);
+      }
+
+      if (moreListings.length < 21) {
+        appendAlert('No more listings found.', 'warning');
+        infiniteScrollButton.classList.add('d-none');
+      }
+    });
   }
 
   return listingContainer;
