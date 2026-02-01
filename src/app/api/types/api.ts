@@ -1,4 +1,9 @@
-interface MediaItem {
+interface Avatar {
+  url: string;
+  alt: string;
+}
+
+interface Banner {
   url: string;
   alt: string;
 }
@@ -6,6 +11,7 @@ interface MediaItem {
 export interface UserData {
   name: string;
   email: string;
-  avatar: MediaItem;
-  banner: MediaItem;
+  bio: string;
+  avatar: Avatar;
+  banner: Banner;
 }

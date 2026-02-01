@@ -16,7 +16,7 @@ export function createBaseListingCard(data: Listing) {
   const image: HTMLImageElement = document.createElement('img');
   image.className = 'card-img-top';
   image.style.objectFit = 'cover';
-  image.style.height = '250px';
+  image.style.height = '200px';
   image.style.width = '100%';
   image.src = data.media.length > 0 ? data.media[0].url : '';
 
@@ -24,9 +24,9 @@ export function createBaseListingCard(data: Listing) {
   title.innerHTML = data.title || 'No title given';
   title.className = 'card-title text-left text-success px-2';
 
-  const description: HTMLParagraphElement = document.createElement('p');
+  /*  const description: HTMLParagraphElement = document.createElement('p');
   description.innerHTML = data.description;
-  description.className = 'card-description text-left text-primary px-2';
+  description.className = 'card-description text-left text-primary px-2';*/
 
   const bidEnds: HTMLDivElement = document.createElement('div');
   const endingDate = new Date(data.endsAt).toLocaleDateString();
@@ -35,7 +35,7 @@ export function createBaseListingCard(data: Listing) {
 
   container.appendChild(image);
   card.appendChild(title);
-  card.appendChild(description);
+  //card.appendChild(description);
   card.appendChild(bidEnds);
   container.appendChild(card);
   column.appendChild(container);

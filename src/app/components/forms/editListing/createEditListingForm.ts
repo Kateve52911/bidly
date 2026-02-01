@@ -7,6 +7,7 @@ import { UpdatedListingData } from '../../../api/listings/put/types/updatedListi
 import { updateListing } from '../../../api/listings/put/updateListing.ts';
 import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
 import { appendAlertAndRedirect } from '../../errorHandling/newAlert/appendAlertAndRedirect.ts';
+import { showURLError } from '../../../utils/helpers/forms/formError.ts';
 
 export function createEditListingCard(data: Listing) {
   const container: HTMLDivElement = document.createElement('div');
@@ -48,9 +49,20 @@ export function createEditListingCard(data: Listing) {
   editImageURLContainer.className = 'mb-3 text-left p-2';
   editImageURLContainer.id = 'image-url-div';
   editImageURLContainer.appendChild(createLabel('Image', 'image'));
-  editImageURLContainer.appendChild(
-    createUserInput(data.media[0].url, 'text', 'imageUrl', 'imageUrl', false),
+
+  const editImageURLInput = createUserInput(
+    data.media[0].url,
+    'text',
+    'imageUrl',
+    'imageUrl',
+    false,
   );
+
+  editImageURLInput.addEventListener('blur', () => {
+    showURLError('imageUrl', 'image-url-div');
+  });
+
+  editImageURLContainer.appendChild(editImageURLInput);
 
   const editAltImageAltContainer: HTMLDivElement =
     document.createElement('div');

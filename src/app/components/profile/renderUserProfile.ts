@@ -1,5 +1,6 @@
 import { Profile } from '../../api/user/types/profile.ts';
 import { renderUserListings } from '../listings/userListings/renderUserListings.ts';
+import { editProfileForm } from '../forms/editProfile/editProfileForm.ts';
 
 export async function createUserProfile(
   user: Profile,
@@ -34,7 +35,6 @@ export async function createUserProfile(
   avatar.alt = user.name;
 
   const textContent: HTMLDivElement = document.createElement('div');
-  textContent.className = 'text-white text-center text-md-start';
 
   const username: HTMLHeadingElement = document.createElement('h1');
   username.className = 'h2 mb-1 text-white';
@@ -44,7 +44,22 @@ export async function createUserProfile(
   bio.className = 'mb-0 text-white-50';
   bio.textContent = user.bio || 'No bio has been provided';
 
-  textContent.append(username, bio);
+  const editProfileButton = document.createElement('button');
+  editProfileButton.className = 'btn btn-dark btn-sm my-1';
+  editProfileButton.id = 'edit-profile';
+  editProfileButton.textContent = 'Edit Profile';
+
+  editProfileButton.addEventListener('click', () => {
+    const userPostContainer = document.getElementById('user-posts-container');
+    if (!userPostContainer) {
+      return;
+    }
+    userPostContainer.innerHTML = '';
+    const editForm = editProfileForm(user);
+    userPostContainer.appendChild(editForm);
+  });
+
+  textContent.append(username, bio, editProfileButton);
 
   profileContent.appendChild(avatar);
   profileContent.appendChild(textContent);

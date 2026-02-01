@@ -99,6 +99,7 @@ export function createNewListingForm() {
       'datetime-local',
       'endingDate',
       'endingDate',
+      true,
       currentDate,
     ),
   );
