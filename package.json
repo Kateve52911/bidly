@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "prepare": "husky install",
-    "build": "tsc && vite build && sass src/scss:dist/css",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest"
   },
