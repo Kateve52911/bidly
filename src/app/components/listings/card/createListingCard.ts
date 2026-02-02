@@ -6,7 +6,7 @@ export function createListingCard(data: Listing) {
 
   const listingStatus = document.createElement('span');
   listingStatus.className = 'border rounded py-1 px-2 me-auto my-2 fs-6';
-  listingStatus.id = 'listing-item-status';
+  listingStatus.id = 'status-badge';
 
   card.prepend(listingStatus);
 

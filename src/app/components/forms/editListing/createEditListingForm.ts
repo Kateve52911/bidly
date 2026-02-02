@@ -109,8 +109,8 @@ export function createEditListingCard(data: Listing) {
         'success',
         '/profile.html',
       );
-    } catch (error) {
-      appendAlert(`Error: ${error.message}`, 'danger');
+    } catch {
+      appendAlert(`Error`, 'danger');
     }
   });
 
