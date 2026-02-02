@@ -57,4 +57,6 @@ export async function displayListings(): Promise<HTMLElement | null> {
   return listingContainer;
 }
 
-await displayListings();
+(async () => {
+  await displayListings();
+})();
