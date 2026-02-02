@@ -43,7 +43,7 @@ export function renderNavBarButton() {
     });
 
     loginButton.appendChild(loginIcon);
-    loginButton.append(' Login');
+    loginButton.append('Login');
 
     li.appendChild(loginButton);
     navbarList?.appendChild(li);
