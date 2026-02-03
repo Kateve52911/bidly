@@ -6,7 +6,7 @@ export function createBaseListingCard(data: Listing) {
     'col-12 col-md-6 col-lg-3 mb-5 px-1 d-flex justify-content-center ';
 
   const container: HTMLDivElement = document.createElement('div');
-  container.className = 'card shadow h-100';
+  container.className = 'card shadow h-100 m-1';
   container.style.maxWidth = '100%';
   container.style.width = '100%';
 
@@ -28,15 +28,16 @@ export function createBaseListingCard(data: Listing) {
   description.innerHTML = data.description;
   description.className = 'card-description text-left text-primary px-2';*/
 
-  const bidEnds: HTMLDivElement = document.createElement('div');
+  const listingEnds: HTMLDivElement = document.createElement('div');
   const endingDate = new Date(data.endsAt).toLocaleDateString();
-  bidEnds.className = 'd-flex text-left text-dark p-1 small-text';
-  bidEnds.innerHTML = `Bid ends ${endingDate}`;
+  listingEnds.className = 'd-flex text-left text-dark p-1 small-text';
+  listingEnds.innerHTML = `Listing ends ${endingDate}`;
+  listingEnds.id = 'listing-ends-at';
 
   container.appendChild(image);
   card.appendChild(title);
   //card.appendChild(description);
-  card.appendChild(bidEnds);
+  card.appendChild(listingEnds);
   container.appendChild(card);
   column.appendChild(container);
 

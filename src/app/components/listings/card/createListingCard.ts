@@ -1,14 +1,18 @@
 import { Listing } from '../../../utils/helpers/card/type/listing.ts';
 import { createBaseListingCard } from '../../../utils/helpers/card/createBaseListingCard.ts';
+import { displayListingStatus } from '../../../utils/helpers/listings/listingStatus.ts';
 
 export function createListingCard(data: Listing) {
   const { column, container, card } = createBaseListingCard(data);
 
-  const listingStatus = document.createElement('span');
-  listingStatus.className = 'border rounded py-1 px-2 me-auto my-2 fs-6';
-  listingStatus.id = 'status-badge';
+  const listingStatus = displayListingStatus(data.endsAt);
+  const listingStatusSpan = document.createElement('span');
+  listingStatusSpan.className = 'rounded  px-1 me-auto my-1 small-text';
+  listingStatusSpan.id = 'status-badge';
+  listingStatusSpan.classList.add(listingStatus.className);
+  listingStatusSpan.innerHTML = listingStatus.status;
 
-  card.prepend(listingStatus);
+  card.prepend(listingStatusSpan);
 
   const bidsContainer: HTMLDivElement = document.createElement('div');
   bidsContainer.className = 'd-flex justify-content-between p-1';
