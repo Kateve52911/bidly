@@ -12,7 +12,7 @@ export function fetchEditProfileFormData(formData: FormData): UpdatedProfile {
   }
 
   if (url && alt) {
-    updatedProfileData.avatar = [{ url, alt }];
+    updatedProfileData.avatar = { url, alt };
   }
 
   return updatedProfileData;

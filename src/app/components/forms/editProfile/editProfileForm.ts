@@ -26,7 +26,7 @@ export function editProfileForm(userData: UserData) {
 
   const editAvatarURLContainer: HTMLDivElement = document.createElement('div');
   editAvatarURLContainer.className = 'mb-3 text-left p-2';
-  editAvatarURLContainer.id = 'image-url-div';
+  editAvatarURLContainer.id = 'avatar-url-div';
   editAvatarURLContainer.appendChild(createLabel('Avatar', 'image'));
 
   const editAvatarURLInput = createUserInput(
@@ -38,7 +38,7 @@ export function editProfileForm(userData: UserData) {
   );
 
   editAvatarURLInput.addEventListener('blur', () => {
-    showURLError('imageUrl', 'image-url-div');
+    showURLError('avatarUrl', 'avatar-url-div');
   });
 
   editAvatarURLContainer.appendChild(editAvatarURLInput);

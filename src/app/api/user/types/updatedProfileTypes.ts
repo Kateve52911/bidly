@@ -1,7 +1,7 @@
 export interface UpdatedProfile {
   bio?: string;
-  avatar?: Array<{
+  avatar?: {
     url: string;
     alt: string;
-  }>;
+  };
 }
