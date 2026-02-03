@@ -14,15 +14,20 @@ export function createListingCard(data: Listing) {
 
   card.prepend(listingStatusSpan);
 
+  const seller = document.createElement('div');
+  seller.id = 'seller';
+  seller.className = 'text-left text-dark p-1 small-text';
+  seller.innerHTML = `<strong>Sold by</strong> ${data.seller.name};`;
+
   const bidsContainer: HTMLDivElement = document.createElement('div');
-  bidsContainer.className = 'd-flex justify-content-between p-1';
+  bidsContainer.className = 'd-flex justify-content-between mx-2';
 
   const currentBids: HTMLDivElement = document.createElement('div');
   currentBids.className = 'd-flex flex-column';
 
   const currentBidTitle: HTMLHeadingElement = document.createElement('h6');
   currentBidTitle.innerHTML = 'Current Bid';
-  currentBidTitle.className = 'text-left text--dark px-1 small-text';
+  currentBidTitle.className = 'text-left text-dark p-1 small-text';
   currentBids.appendChild(currentBidTitle);
 
   const highestBidAmount: HTMLParagraphElement = document.createElement('p');
@@ -32,7 +37,7 @@ export function createListingCard(data: Listing) {
   } else {
     highestBidAmount.textContent = '0';
   }
-  highestBidAmount.className = 'text-center text--dark px-1 small-text';
+  highestBidAmount.className = 'text-center text-dark p-1 small-text';
   currentBids.appendChild(highestBidAmount);
 
   const numberOfBids: HTMLDivElement = document.createElement('div');
@@ -40,17 +45,18 @@ export function createListingCard(data: Listing) {
 
   const numberOfBidsTitle: HTMLHeadingElement = document.createElement('h6');
   numberOfBidsTitle.innerHTML = 'Bids:';
-  numberOfBidsTitle.className = 'text-left text--dark px-1 small-text';
+  numberOfBidsTitle.className = 'text-left text-dark p-1 small-text';
   numberOfBids.appendChild(numberOfBidsTitle);
 
   const currentNumberBids: HTMLDivElement = document.createElement('div');
   currentNumberBids.textContent = `${data._count.bids}`;
-  currentNumberBids.className = 'text-center text--dark px-1 small-text';
+  currentNumberBids.className = 'text-center text-dark p-1 small-text';
   numberOfBids.appendChild(currentNumberBids);
 
   bidsContainer.appendChild(currentBids);
   bidsContainer.appendChild(numberOfBids);
 
+  card.append(seller);
   card.append(bidsContainer);
 
   container.addEventListener('click', () => {

@@ -33,6 +33,10 @@ export async function renderProfilePage() {
       const profileContainer = document.getElementById('profile-container');
       if (profileContainer) {
         const bidHistory = await fetchUserBidHistory(userName);
+        const userBidsTitle: HTMLHeadingElement = document.createElement('h2');
+        userBidsTitle.className = 'h4 mb-3';
+        userBidsTitle.textContent = `${bidHistory[0].bidder.name}'s Bids`;
+        profileContainer.appendChild(userBidsTitle);
         profileContainer.appendChild(createBidHistoryTable(bidHistory));
       }
     }
