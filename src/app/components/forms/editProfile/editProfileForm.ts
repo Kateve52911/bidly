@@ -19,27 +19,21 @@ export function editProfileForm(userData: UserData) {
 
   const editBioContainer: HTMLDivElement = document.createElement('div');
   editBioContainer.className = 'mb-3 text-left p-2';
-  editBioContainer.appendChild(createLabel('Bio', 'description'));
+  editBioContainer.appendChild(createLabel('Bio', 'bio'));
   editBioContainer.appendChild(
-    createUserInput(
-      userData.bio || '',
-      'text',
-      'description',
-      'description',
-      false,
-    ),
+    createUserInput(userData.bio || '', 'text', 'bio', 'bio', false),
   );
 
   const editAvatarURLContainer: HTMLDivElement = document.createElement('div');
   editAvatarURLContainer.className = 'mb-3 text-left p-2';
   editAvatarURLContainer.id = 'image-url-div';
-  editAvatarURLContainer.appendChild(createLabel('Image', 'image'));
+  editAvatarURLContainer.appendChild(createLabel('Avatar', 'image'));
 
   const editAvatarURLInput = createUserInput(
     userData.avatar.url,
     'text',
-    'imageUrl',
-    'imageUrl',
+    'avatarUrl',
+    'avatarUrl',
     false,
   );
 
@@ -51,9 +45,15 @@ export function editProfileForm(userData: UserData) {
 
   const editAvatarAltContainer: HTMLDivElement = document.createElement('div');
   editAvatarAltContainer.className = 'mb-3 text-left p-2';
-  editAvatarAltContainer.appendChild(createLabel('Image Alt', 'image'));
+  editAvatarAltContainer.appendChild(createLabel('Avatar Alt', 'image'));
   editAvatarAltContainer.appendChild(
-    createUserInput(userData.avatar.alt, 'text', 'imageAlt', 'imageAlt', false),
+    createUserInput(
+      userData.avatar.alt,
+      'text',
+      'avatarAlt',
+      'avatarAlt',
+      false,
+    ),
   );
 
   const alertContainer: HTMLDivElement = document.createElement('div');
