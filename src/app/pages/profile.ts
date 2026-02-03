@@ -3,6 +3,8 @@ import { loadCurrentUser } from '../utils/storage/storage.ts';
 import { fetchUser } from '../api/user/fetchUser.ts';
 import { fetchUserListings } from '../api/listings/fetch/fetchUserListings.ts';
 import { createUserProfile } from '../components/profile/renderUserProfile.ts';
+import { fetchUserBidHistory } from '../api/user/get/fetchUserBidHistory.ts';
+import { createBidHistoryTable } from '../components/profile/renderUSersBidHistory.ts';
 
 export function initPage(): void {
   const navbar = document.getElementById('navbar-links');
@@ -27,6 +29,12 @@ export async function renderProfilePage() {
     const app = document.getElementById('app');
     if (app) {
       app.appendChild(await createUserProfile(userData));
+
+      const profileContainer = document.getElementById('profile-container');
+      if (profileContainer) {
+        const bidHistory = await fetchUserBidHistory(userName);
+        profileContainer.appendChild(createBidHistoryTable(bidHistory));
+      }
     }
   }
 }

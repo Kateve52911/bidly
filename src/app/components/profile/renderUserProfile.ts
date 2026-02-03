@@ -7,6 +7,7 @@ export async function createUserProfile(
 ): Promise<HTMLDivElement> {
   const container: HTMLDivElement = document.createElement('div');
   container.className = 'container';
+  container.id = 'profile-container';
 
   const bannerContainer: HTMLDivElement = document.createElement('div');
   bannerContainer.className = 'position-relative mb-4';
@@ -28,6 +29,7 @@ export async function createUserProfile(
 
   const avatar: HTMLImageElement = document.createElement('img');
   avatar.className = 'rounded-circle border border-3 border-white shadow';
+  avatar.style.objectFit = 'cover';
   avatar.style.width = '120px';
   avatar.style.height = '120px';
   avatar.id = 'avatar';

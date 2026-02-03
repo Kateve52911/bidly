@@ -11,14 +11,14 @@ export function createListingCard(data: Listing) {
   card.prepend(listingStatus);
 
   const bidsContainer: HTMLDivElement = document.createElement('div');
-  bidsContainer.className = 'd-flex justify-content-between p-2';
+  bidsContainer.className = 'd-flex justify-content-between p-1';
 
   const currentBids: HTMLDivElement = document.createElement('div');
   currentBids.className = 'd-flex flex-column';
 
   const currentBidTitle: HTMLHeadingElement = document.createElement('h6');
   currentBidTitle.innerHTML = 'Current Bid';
-  currentBidTitle.className = 'text-left text--dark px-2';
+  currentBidTitle.className = 'text-left text--dark px-1 small-text';
   currentBids.appendChild(currentBidTitle);
 
   const highestBidAmount: HTMLParagraphElement = document.createElement('p');
@@ -28,7 +28,7 @@ export function createListingCard(data: Listing) {
   } else {
     highestBidAmount.textContent = '0';
   }
-  highestBidAmount.className = 'text-center text--dark px-2';
+  highestBidAmount.className = 'text-center text--dark px-1 small-text';
   currentBids.appendChild(highestBidAmount);
 
   const numberOfBids: HTMLDivElement = document.createElement('div');
@@ -36,12 +36,12 @@ export function createListingCard(data: Listing) {
 
   const numberOfBidsTitle: HTMLHeadingElement = document.createElement('h6');
   numberOfBidsTitle.innerHTML = 'Bids:';
-  numberOfBidsTitle.className = 'text-left text--dark px-2';
+  numberOfBidsTitle.className = 'text-left text--dark px-1 small-text';
   numberOfBids.appendChild(numberOfBidsTitle);
 
   const currentNumberBids: HTMLDivElement = document.createElement('div');
   currentNumberBids.textContent = `${data._count.bids}`;
-  currentNumberBids.className = 'text-center text--dark px-2';
+  currentNumberBids.className = 'text-center text--dark px-1 small-text';
   numberOfBids.appendChild(currentNumberBids);
 
   bidsContainer.appendChild(currentBids);

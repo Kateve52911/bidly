@@ -13,7 +13,7 @@ export function createDashboardListingCard(data: Listing) {
 
   const buttonDiv = document.createElement('div');
   buttonDiv.className =
-    'd-flex flex-column flex-lg-row gap-3 justify-content-center p-3';
+    'd-flex flex-column flex-lg-row gap-3 justify-content-center p-2';
 
   const alertDiv = document.createElement('div');
   alertDiv.id = 'alert-placeholder-container';
