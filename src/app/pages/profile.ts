@@ -44,3 +44,9 @@ export async function renderProfilePage() {
 }
 
 await renderProfilePage();
+
+/*document.addEventListener('DOMContentLoaded', () => {
+  if (navbar) {
+    initNavbar();
+  }
+})*/

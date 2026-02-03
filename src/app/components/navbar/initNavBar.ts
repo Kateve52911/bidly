@@ -5,6 +5,7 @@ import { isAuthenticated } from '../../utils/auth/auth.ts';
 export async function initNavbar() {
   const listingsLink = document.querySelector('a[href="index.html"]');
   if (isAuthenticated()) {
+    console.log('User is authenticated, adding Profile link');
     const navbarLinks: HTMLElement | null =
       document.getElementById('navbar-links');
 
