@@ -3,6 +3,11 @@ import { createUserInput } from '../../../utils/helpers/forms/createInput.ts';
 import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts';
 import { UserData } from '../../../api/types/api.ts';
 import { showURLError } from '../../../utils/helpers/forms/formError.ts';
+import { fetchEditProfileFormData } from './editProfileFormData.ts';
+import { updateProfile } from '../../../api/user/put/updateProfile.ts';
+import { appendAlertAndRedirect } from '../../errorHandling/newAlert/appendAlertAndRedirect.ts';
+import { UpdatedProfile } from '../../../api/user/types/updatedProfileTypes.ts';
+import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
 
 export function editProfileForm(userData: UserData) {
   const container: HTMLDivElement = document.createElement('div');
@@ -79,6 +84,28 @@ export function editProfileForm(userData: UserData) {
 
   buttonContainer.appendChild(saveButton);
   buttonContainer.appendChild(cancelButton);
+
+  console.log(userData.name);
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const user = userData.name;
+    const formData = new FormData(form);
+    const updatedProfile: UpdatedProfile = fetchEditProfileFormData(formData);
+    try {
+      await updateProfile(user, updatedProfile);
+      await appendAlertAndRedirect(
+        'Successfully updated profile!',
+        'success',
+        '/profile.html',
+      );
+    } catch (error) {
+      appendAlert(
+        `Could not update profile ${(error as Error).message}`,
+        'danger',
+      );
+    }
+  });
 
   form.appendChild(editBioContainer);
   form.appendChild(editAvatarURLContainer);

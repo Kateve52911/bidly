@@ -109,8 +109,11 @@ export function createEditListingCard(data: Listing) {
         'success',
         '/profile.html',
       );
-    } catch {
-      appendAlert(`Error`, 'danger');
+    } catch (error) {
+      appendAlert(
+        `Could not update listing ${(error as Error).message}`,
+        'danger',
+      );
     }
   });
 
