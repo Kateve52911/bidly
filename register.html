@@ -14,6 +14,9 @@
       type="image/x-icon"
       href="src/assets/favicon/favicon.ico"
     />
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/app/pages/register.ts"></script>
+    <script type="module" src="/src/app/ui/auth/inputValidation.ts"></script>
   </head>
   <body class="d-flex flex-column h-100">
     <header class="container-fluid">
@@ -38,20 +41,21 @@
       </nav>
     </header>
     <main id="app" class="flex-grow-1"></main>
-    <footer class="footer mt-auto py-3 bg-footer">
-      <img
-        src="./src/assets/images/bidly-footer-v2.png"
-        alt="bidly logo in white text on dark grey background"
-        class="logo-footer mt-5 ms-5 px-2"
-      />" />
+    <footer class="footer mt-auto py-3 bg-footer w-100">
+      <a href="index.html"
+        ><img
+          src="./src/assets/images/bidly-footer-v2.png"
+          alt="bidly logo in white text on dark grey background"
+          class="logo-footer mt-5 ms-4 px-2"
+      /></a>
 
-      <div class="container justify-content-center m-5 gap-3">
+      <div class="container-fluid justify-content-center my-5 px-2 gap-3">
         <div class="row">
-          <div class="col">
+          <div class="col-12 col-md-4 mb-4 mb-md-0">
             <h4 class="text-center text-light">My Bidly</h4>
             <nav class="nav flex-column">
               <a href="profile.html" class="nav-link text-light text-center"
-                >My profile</a
+                >Dashboard</a
               >
               <a href="src/login.html" class="nav-link text-light text-center"
                 >Login</a
@@ -62,7 +66,7 @@
             </nav>
           </div>
 
-          <div class="col">
+          <div class="col-12 col-md-4 mb-4 mb-md-0">
             <h4 class="text-center text-light">About Us</h4>
             <nav class="nav flex-column">
               <a href="about.html" class="nav-link text-light text-center"
@@ -77,12 +81,14 @@
             </nav>
           </div>
 
-          <div class="col">
+          <div class="col-12 col-md-4 mb-4 mb-md-0">
             <h4 class="text-center text-light">Contact Us</h4>
             <nav class="nav flex-column">
-              <p class="text-light text-center">About Us</p>
-              <p class="text-light text-center">About Us</p>
-              <p class="text-light text-center">About Us</p>
+              <p class="text-light text-center">Bidly Street 234</p>
+              <p class="text-light text-center">0000 Auction</p>
+              <p class="text-light text-center">
+                <i class="bi bi-telephone-fill white"></i> 335 02 995
+              </p>
             </nav>
           </div>
         </div>
@@ -101,8 +107,5 @@
         <p class="text-white">2025 @ Bidly. All rights reserved</p>
       </div>
     </footer>
-    <script type="module" src="/src/main.ts"></script>
-    <script type="module" src="/src/app/pages/register.ts"></script>
-    <script type="module" src="/src/app/ui/auth/inputValidation.ts"></script>
   </body>
 </html>
