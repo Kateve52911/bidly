@@ -37,6 +37,7 @@ export function createLoginForm(): HTMLDivElement {
   const emailError: HTMLDivElement = document.createElement('div');
   emailError.className = 'mb-3';
   emailError.id = 'emailError';
+  emailGroup.appendChild(emailError);
 
   const passwordGroup: HTMLDivElement = document.createElement('div');
   passwordGroup.className = 'mb-3';
@@ -105,7 +106,7 @@ async function onLoginFormSubmit(event: Event) {
   const result = await login(credentials);
   if (result.success) {
     console.log('Login successful!', result);
-    //window.location.href = '/index';
+    window.location.href = '/profile.html';
   } else {
     console.error('Registration failed', result.error);
   }
