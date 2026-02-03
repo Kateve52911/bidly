@@ -14,30 +14,29 @@ export function createBidHistoryTable(
   head.className = 'head';
 
   const listingHeader = document.createElement('th');
-  listingHeader.className = 'header w-25';
+  listingHeader.className = 'header w-25 text-center ';
   listingHeader.scope = 'col';
   listingHeader.innerHTML = 'Listing';
 
   const titleHeader = document.createElement('th');
-  titleHeader.className = 'header w-25';
+  titleHeader.className = 'header w-25 text-center ';
   titleHeader.scope = 'col';
   titleHeader.innerHTML = 'Title';
 
   const amountHeader = document.createElement('th');
-  amountHeader.className = 'header w-25';
+  amountHeader.className = 'header w-25 text-center ';
   amountHeader.scope = 'col';
   amountHeader.innerHTML = 'Amount';
 
-  /*const linkHeader = document.createElement("th");
-  linkHeader.className = "header w-25";
-  linkHeader.scope = 'col';
-  linkHeader.innerHTML = "View Listing";
-*/
+  const endsAtHeader = document.createElement('th');
+  endsAtHeader.className = 'header w-25 text-center ';
+  endsAtHeader.scope = 'col';
+  endsAtHeader.innerHTML = 'Last Call';
 
   head.appendChild(listingHeader);
   head.appendChild(titleHeader);
-  //head.appendChild(linkHeader);
   head.appendChild(amountHeader);
+  head.appendChild(endsAtHeader);
 
   const tableBody = document.createElement('tbody');
   tableBody.className = 'body';
@@ -45,10 +44,11 @@ export function createBidHistoryTable(
 
   bidHistory.forEach((bid) => {
     const row = document.createElement('tr');
+    row.className = 'align-bottom';
     const listingCell = document.createElement('td');
-    listingCell.className = 'p-2';
+    listingCell.className = 'p-2 text-center';
     const listingImg = document.createElement('img');
-    listingImg.className = 'bid-table-icon rounded ';
+    listingImg.className = 'bid-table-icon rounded  ';
     listingImg.src = bid.listing.media[0].url;
     listingImg.alt = bid.listing.media[0].alt;
 
@@ -56,15 +56,21 @@ export function createBidHistoryTable(
 
     const titleCell = document.createElement('td');
     titleCell.innerHTML = bid.listing.title;
-    titleCell.className = 'text-left p-2';
+    titleCell.className = 'text-center  p-2';
 
     const amountCell = document.createElement('td');
     amountCell.innerHTML = bid.amount.toString();
-    amountCell.className = 'text-left p-2';
+    amountCell.className = 'text-center p-2';
+
+    const endsAtCell = document.createElement('td');
+    const endingDate = new Date(bid.listing.endsAt).toLocaleDateString();
+    endsAtCell.innerHTML = `${endingDate}`;
+    endsAtCell.className = 'text-center  p-2';
 
     row.appendChild(listingCell);
     row.appendChild(titleCell);
     row.appendChild(amountCell);
+    row.appendChild(endsAtCell);
 
     tableBody.appendChild(row);
   });
