@@ -50,7 +50,7 @@ export async function displayListings(): Promise<HTMLElement | null> {
     displayListingsPage(listings, rowContainer);
 
     let infiniteScrollButton: HTMLButtonElement | null =
-      document.getElementById('load-more-button');
+      document.getElementById('load-more-button') as HTMLButtonElement | null;
     if (!infiniteScrollButton) {
       infiniteScrollButton = createInfiniteScrollButton();
 

@@ -6,16 +6,16 @@ import { appendAlertAndRedirect } from '../../errorHandling/newAlert/appendAlert
 import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
 import { createEditListingCard } from '../../forms/editListing/createEditListingForm.ts';
 
-export function createDashboardListingCard(data: Listing) {
+export function createDashboardListingCard(data: Listing): HTMLDivElement {
   const { column, container, card } = createBaseListingCard(data);
 
   container.style.maxWidth = '300px';
 
-  const buttonDiv = document.createElement('div');
+  const buttonDiv: HTMLDivElement = document.createElement('div');
   buttonDiv.className =
     'd-flex flex-column flex-lg-row gap-3 justify-content-center p-2';
 
-  const alertDiv = document.createElement('div');
+  const alertDiv: HTMLDivElement = document.createElement('div');
   alertDiv.id = 'alert-placeholder-container';
 
   const editButton: HTMLButtonElement = document.createElement('button');
@@ -24,13 +24,14 @@ export function createDashboardListingCard(data: Listing) {
   editButton.id = 'editButton';
 
   editButton.addEventListener('click', () => {
-    const userPostContainer = document.getElementById('user-posts');
+    const userPostContainer: HTMLElement | null =
+      document.getElementById('user-posts');
     console.log(userPostContainer);
     if (!userPostContainer) {
       return;
     }
     userPostContainer.innerHTML = '';
-    const editForm = createEditListingCard(data);
+    const editForm: HTMLDivElement = createEditListingCard(data);
     userPostContainer.appendChild(editForm);
   });
 
@@ -39,7 +40,7 @@ export function createDashboardListingCard(data: Listing) {
   deleteButton.textContent = 'Delete';
   deleteButton.id = 'deleteButton';
 
-  deleteButton.addEventListener('click', async () => {
+  deleteButton.addEventListener('click', async (): Promise<void> => {
     try {
       await renderConfirmActionModal(
         'Are you sure you want to delete this listing?',

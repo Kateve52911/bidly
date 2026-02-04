@@ -7,12 +7,12 @@ export function initializeNavbar(): void {
 
   if (!toggler || !togglerIcon || !navbarCollapse) return;
 
-  navbarCollapse.addEventListener('show.bs.collapse', () => {
+  navbarCollapse.addEventListener('show.bs.collapse', (): void => {
     togglerIcon.classList.remove('bi-list');
     togglerIcon.classList.add('bi-x-lg');
   });
 
-  navbarCollapse.addEventListener('hide.bs.collapse', () => {
+  navbarCollapse.addEventListener('hide.bs.collapse', (): void => {
     togglerIcon.classList.remove('bi-x-lg');
     togglerIcon.classList.add('bi-list');
   });

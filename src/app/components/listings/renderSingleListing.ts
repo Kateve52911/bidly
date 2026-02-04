@@ -14,23 +14,23 @@ function addAllBidsToContainer(
   listingData: Listing,
   allBidsContainer: HTMLDivElement,
 ) {
-  const bidsReversed = listingData.bids.slice().reverse();
-  bidsReversed.forEach((bid: Bid) => {
+  const bidsReversed: Bid[] = listingData.bids.slice().reverse();
+  bidsReversed.forEach((bid: Bid): void => {
     const bidContainer: HTMLDivElement = document.createElement('div');
     bidContainer.id = 'bid-container';
     bidContainer.className =
       'd-flex justify-content-evenly align-items-center m-2 gap-4';
-    const avatar = document.createElement('img');
+    const avatar: HTMLImageElement = document.createElement('img');
     avatar.id = 'avatar';
     avatar.className = 'avatar rounded-circle avatar-Icon';
     avatar.src = bid.bidder.avatar.url;
 
-    const bidder = document.createElement('p');
+    const bidder: HTMLParagraphElement = document.createElement('p');
     bidder.id = 'bidder';
     bidder.className = 'bidder align-self-center';
     bidder.innerHTML = bid.bidder.name;
 
-    const amount = document.createElement('p');
+    const amount: HTMLParagraphElement = document.createElement('p');
     amount.id = 'bid';
     amount.className = 'bid';
     amount.innerHTML = String(bid.amount);
@@ -47,7 +47,7 @@ export async function renderSingleListing(
     appendAlert('No listing id', 'warning');
     return document.createElement('div');
   }
-  const listingData = await fetchSingleListing(listingId);
+  const listingData: Listing | undefined = await fetchSingleListing(listingId);
   console.log(listingData);
 
   const container: HTMLDivElement = document.createElement('div');

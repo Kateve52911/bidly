@@ -1,8 +1,8 @@
 export const appendAlert = (message: string, type: string) => {
-  const alertPlaceholder = document.getElementById(
+  const alertPlaceholder: HTMLElement | null = document.getElementById(
     'alert-placeholder-container',
   );
-  const wrapper = document.createElement('div');
+  const wrapper: HTMLDivElement = document.createElement('div');
   wrapper.innerHTML = [
     `<div class="alert alert-${type} alert-dismissible" role="alert">`,
     `   <div>${message}</div>`,

@@ -2,11 +2,12 @@ import { Listing } from '../../../utils/helpers/card/type/listing.ts';
 import { createBaseListingCard } from '../../../utils/helpers/card/createBaseListingCard.ts';
 import { displayListingStatus } from '../../../utils/helpers/listings/listingStatus.ts';
 
-export function createListingCard(data: Listing) {
+export function createListingCard(data: Listing): HTMLDivElement {
   const { column, container, card } = createBaseListingCard(data);
 
-  const listingStatus = displayListingStatus(data.endsAt);
-  const listingStatusSpan = document.createElement('span');
+  const listingStatus: { status: string; className: string } =
+    displayListingStatus(data.endsAt);
+  const listingStatusSpan: HTMLSpanElement = document.createElement('span');
   listingStatusSpan.className = 'rounded  px-1 me-auto my-1 small-text';
   listingStatusSpan.id = 'status-badge';
   listingStatusSpan.classList.add(listingStatus.className);
@@ -14,7 +15,7 @@ export function createListingCard(data: Listing) {
 
   card.prepend(listingStatusSpan);
 
-  const seller = document.createElement('div');
+  const seller: HTMLDivElement = document.createElement('div');
   seller.id = 'seller';
   seller.className = 'text-left text-dark p-1 small-text';
   seller.innerHTML = `<strong>Sold by</strong> ${data.seller.name}`;

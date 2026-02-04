@@ -44,18 +44,18 @@ export function fetchFormDataFromNewListingForm(formData: FormData) {
     new Map();
 
   for (const [key, value] of formData.entries()) {
-    const urlMatch = key.match(/^imageUrl-(\d+)$/);
+    const urlMatch: RegExpMatchArray | null = key.match(/^imageUrl-(\d+)$/);
     if (urlMatch && typeof value === 'string' && value.trim()) {
-      const index = parseInt(urlMatch[1]);
+      const index: number = parseInt(urlMatch[1]);
       if (!additionalImages.has(index)) {
         additionalImages.set(index, {});
       }
       additionalImages.get(index)!.url = value.trim();
     }
 
-    const altMatch = key.match(/^imageAlt-(\d+)$/);
+    const altMatch: RegExpMatchArray | null = key.match(/^imageAlt-(\d+)$/);
     if (altMatch && typeof value === 'string' && value.trim()) {
-      const index = parseInt(altMatch[1]);
+      const index: number = parseInt(altMatch[1]);
       if (!additionalImages.has(index)) {
         additionalImages.set(index, {});
       }
@@ -63,14 +63,16 @@ export function fetchFormDataFromNewListingForm(formData: FormData) {
     }
   }
 
-  additionalImages.forEach((image) => {
-    if (image.url) {
-      media.push({
-        url: image.url,
-        alt: image.alt || '',
-      });
-    }
-  });
+  additionalImages.forEach(
+    (image: { url?: string | undefined; alt?: string | undefined }) => {
+      if (image.url) {
+        media.push({
+          url: image.url,
+          alt: image.alt || '',
+        });
+      }
+    },
+  );
 
   const listingData = {
     title: title,
@@ -84,7 +86,7 @@ export function fetchFormDataFromNewListingForm(formData: FormData) {
 
 const form: HTMLElement | null = document.getElementById('new-listing-form');
 
-form?.addEventListener('submit', (event: Event) => {
+form?.addEventListener('submit', (event: Event): void => {
   event.preventDefault();
 
   console.log(typeof form);

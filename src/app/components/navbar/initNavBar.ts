@@ -2,17 +2,19 @@ import { renderNavBarButton } from './renderNavBarButton.ts';
 import { renderCurrentUserToNavBar } from './renderCurrentUserToNavBar.ts';
 import { isAuthenticated } from '../../utils/auth/auth.ts';
 
-export async function initNavbar() {
-  const listingsLink = document.querySelector('a[href="index.html"]');
+export async function initNavbar(): Promise<void> {
+  const listingsLink: Element | null = document.querySelector(
+    'a[href="index.html"]',
+  );
   if (isAuthenticated()) {
     console.log('User is authenticated, adding Profile link');
     const navbarLinks: HTMLElement | null =
       document.getElementById('navbar-links');
 
-    const dashboardLi = document.createElement('li');
+    const dashboardLi: HTMLLIElement = document.createElement('li');
     dashboardLi.className = 'nav-item me-2';
 
-    const dashboardHref = document.createElement('a');
+    const dashboardHref: HTMLAnchorElement = document.createElement('a');
     dashboardHref.href = '/profile.html';
     dashboardHref.className = 'nav-link';
     dashboardHref.textContent = 'Profile';

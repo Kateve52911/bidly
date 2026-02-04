@@ -9,7 +9,7 @@ import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
 import { appendAlertAndRedirect } from '../../errorHandling/newAlert/appendAlertAndRedirect.ts';
 import { showURLError } from '../../../utils/helpers/forms/formError.ts';
 
-export function createEditListingCard(data: Listing) {
+export function createEditListingCard(data: Listing): HTMLDivElement {
   const container: HTMLDivElement = document.createElement('div');
   container.className = 'container my-lg-5 my-md-2';
 
@@ -50,7 +50,7 @@ export function createEditListingCard(data: Listing) {
   editImageURLContainer.id = 'image-url-div';
   editImageURLContainer.appendChild(createLabel('Image', 'image'));
 
-  const editImageURLInput = createUserInput(
+  const editImageURLInput: HTMLInputElement = createUserInput(
     data.media[0].url,
     'text',
     'imageUrl',
@@ -58,7 +58,7 @@ export function createEditListingCard(data: Listing) {
     false,
   );
 
-  editImageURLInput.addEventListener('blur', () => {
+  editImageURLInput.addEventListener('blur', (): void => {
     showURLError('imageUrl', 'image-url-div');
   });
 

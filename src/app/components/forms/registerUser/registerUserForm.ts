@@ -103,7 +103,7 @@ async function onRegisterFormSubmit(event: Event): Promise<void> {
 
   if (result.success) {
     console.log('Registration successful!', result.data);
-    //window.location.href="/login";
+    window.location.href = '/login';
   } else {
     console.error('Registration failed', result.error);
   }

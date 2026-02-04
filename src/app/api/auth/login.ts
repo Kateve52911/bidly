@@ -2,6 +2,8 @@ import { AUTH, BASE_URL, LOGIN } from '../config/constants.ts';
 import { saveKey, storeUser } from '../../utils/storage/storage.ts';
 import type { UserData } from '../types/api.ts';
 import { authFetch } from '../config/authFetch.ts';
+//import { LoginResponse } from './types/loginResponse.ts';
+//import { Profile } from '../user/types/profile.ts';
 
 interface LoginSuccess {
   success: true;
@@ -38,12 +40,11 @@ export async function login(userData: LoginCredentials): Promise<LoginResult> {
       };
     }
 
-    const accessToken = json.data.accessToken;
+    const accessToken: string = json.data.accessToken;
     const userDetails = json.data;
 
     saveKey('accessToken', accessToken);
     storeUser(userDetails);
-    //saveKey('currentUser', JSON.stringify(userDetails));
 
     return {
       success: true,

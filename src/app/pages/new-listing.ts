@@ -7,14 +7,14 @@ import { appendAlert } from '../components/errorHandling/newAlert/newAlert.ts';
 import { appendAlertAndRedirect } from '../components/errorHandling/newAlert/appendAlertAndRedirect.ts';
 import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
 
-const formContainer = createNewListingForm();
+const formContainer: HTMLDivElement = createNewListingForm();
 const app: HTMLElement | null = document.getElementById('app');
 
 if (app) {
   app.appendChild(formContainer);
   const form = document.getElementById('new-listing-form') as HTMLFormElement;
 
-  form?.addEventListener('submit', async (event: Event) => {
+  form?.addEventListener('submit', async (event: Event): Promise<void> => {
     event.preventDefault();
 
     const submitButton = form.querySelector(
@@ -43,13 +43,13 @@ if (app) {
   console.error('App element nor found');
 }
 
-export async function initPage() {
-  const navbar = document.getElementById('navbar-links');
+export async function initPage(): Promise<void> {
+  const navbar: HTMLElement | null = document.getElementById('navbar-links');
   if (navbar) {
     await initNavbar();
   }
 }
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async (): Promise<void> => {
   initializeNavbar();
   initPage();
 });

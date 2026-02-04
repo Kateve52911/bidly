@@ -9,7 +9,7 @@ import { appendAlertAndRedirect } from '../../errorHandling/newAlert/appendAlert
 import { UpdatedProfile } from '../../../api/user/types/updatedProfileTypes.ts';
 import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
 
-export function editProfileForm(userData: UserData) {
+export function editProfileForm(userData: UserData): HTMLDivElement {
   const container: HTMLDivElement = document.createElement('div');
   container.className = 'container my-lg-5 my-md-2';
 
@@ -34,7 +34,7 @@ export function editProfileForm(userData: UserData) {
   editAvatarURLContainer.id = 'avatar-url-div';
   editAvatarURLContainer.appendChild(createLabel('Avatar', 'image'));
 
-  const editAvatarURLInput = createUserInput(
+  const editAvatarURLInput: HTMLInputElement = createUserInput(
     userData.avatar.url,
     'text',
     'avatarUrl',
@@ -42,7 +42,7 @@ export function editProfileForm(userData: UserData) {
     false,
   );
 
-  editAvatarURLInput.addEventListener('blur', () => {
+  editAvatarURLInput.addEventListener('blur', (): void => {
     showURLError('avatarUrl', 'avatar-url-div');
   });
 
@@ -87,9 +87,9 @@ export function editProfileForm(userData: UserData) {
 
   console.log(userData.name);
 
-  form.addEventListener('submit', async (event) => {
+  form.addEventListener('submit', async (event: SubmitEvent) => {
     event.preventDefault();
-    const user = userData.name;
+    const user: string = userData.name;
     const formData = new FormData(form);
     const updatedProfile: UpdatedProfile = fetchEditProfileFormData(formData);
     try {

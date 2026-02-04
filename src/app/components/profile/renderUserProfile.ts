@@ -46,18 +46,20 @@ export async function createUserProfile(
   bio.className = 'mb-0 text-white-50';
   bio.textContent = user.bio || 'No bio has been provided';
 
-  const editProfileButton = document.createElement('button');
+  const editProfileButton: HTMLButtonElement = document.createElement('button');
   editProfileButton.className = 'btn btn-dark btn-sm my-1';
   editProfileButton.id = 'edit-profile';
   editProfileButton.textContent = 'Edit Profile';
 
-  editProfileButton.addEventListener('click', () => {
-    const userPostContainer = document.getElementById('user-posts-container');
+  editProfileButton.addEventListener('click', (): void => {
+    const userPostContainer: HTMLElement | null = document.getElementById(
+      'user-posts-container',
+    );
     if (!userPostContainer) {
       return;
     }
     userPostContainer.innerHTML = '';
-    const editForm = editProfileForm(user);
+    const editForm: HTMLDivElement = editProfileForm(user);
     userPostContainer.appendChild(editForm);
   });
 
@@ -82,7 +84,8 @@ export async function createUserProfile(
 
   if (user.listings.length > 0) {
     await renderUserListings(user.name, userListings);
-    const userListingCard = document.getElementById('card-body');
+    const userListingCard: HTMLElement | null =
+      document.getElementById('card-body');
     console.log(userListingCard);
   } else {
     userListings.className = 'text-muted';

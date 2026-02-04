@@ -4,7 +4,7 @@ import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts
 import { createImageInputGroup } from '../../../utils/helpers/forms/createImageInputGroup.ts';
 import { showURLError } from '../../../utils/helpers/forms/formError.ts';
 
-export function createNewListingForm() {
+export function createNewListingForm(): HTMLDivElement {
   const container: HTMLDivElement = document.createElement('div');
   container.className = 'container my-lg-5 my-md-2';
 
