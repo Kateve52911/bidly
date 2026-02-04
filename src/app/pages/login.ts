@@ -12,12 +12,13 @@ if (app) {
 }
 
 export function initPage(): void {
-  const navbar = document.getElementById('navbar-links');
+  const navbar: HTMLElement | null = document.getElementById('navbar-links');
   if (navbar) {
     initNavbar();
   }
 }
-document.addEventListener('DOMContentLoaded', async () => {
-  initPage();
+
+document.addEventListener('DOMContentLoaded', async (): Promise<void> => {
   initializeNavbar();
+  initPage();
 });

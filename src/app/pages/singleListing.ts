@@ -9,8 +9,8 @@ export function initPage(): void {
   }
 }
 document.addEventListener('DOMContentLoaded', async () => {
-  initPage();
   initializeNavbar();
+  initPage();
 });
 
 const queryParams = new URLSearchParams(window.location.search);

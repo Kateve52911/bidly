@@ -50,6 +50,6 @@ export async function initPage() {
   }
 }
 document.addEventListener('DOMContentLoaded', async () => {
-  initPage();
   initializeNavbar();
+  initPage();
 });

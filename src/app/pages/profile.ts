@@ -14,8 +14,8 @@ export function initPage(): void {
   }
 }
 document.addEventListener('DOMContentLoaded', async () => {
-  initPage();
   initializeNavbar();
+  initPage();
 });
 
 export async function renderProfilePage() {

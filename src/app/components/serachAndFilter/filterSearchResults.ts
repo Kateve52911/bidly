@@ -1,24 +1,20 @@
-import { fetchSearchBarInput } from '../../utils/helpers/searchBar/getSearchBarInput.ts';
+import { appendAlert } from '../errorHandling/newAlert/newAlert.ts';
+import { createListingRow } from '../../utils/helpers/listings/createListingRow.ts';
 import { createListingCard } from '../listings/card/createListingCard.ts';
 import { Listing } from '../../utils/helpers/card/type/listing.ts';
-import { createListingRow } from '../../utils/helpers/listings/createListingRow.ts';
-import { appendAlert } from '../errorHandling/newAlert/newAlert.ts';
+import { fetchSearchBarInput } from '../../utils/helpers/searchBar/getSearchBarInput.ts';
 
 export function filterSearchResults(listings: Array<Listing>) {
   const searchInput: string | null = fetchSearchBarInput();
-  const listingContainer: HTMLElement | null =
-    document.getElementById('listings-Container');
-  if (!listingContainer) {
-    console.error('Could not find listing container'); // TODO: Throw error
+  const rowContainer: HTMLElement | null =
+    document.querySelector('.row-container');
+
+  if (!rowContainer) {
+    console.error('Could not find row container');
+    return;
   }
 
-  const listingsRowContainer: NodeListOf<Element> =
-    document.querySelectorAll('.listing-row');
-  if (listingsRowContainer) {
-    listingsRowContainer.forEach((el: Element): void => {
-      el.remove();
-    });
-  }
+  rowContainer.innerHTML = '';
 
   let currentRow: HTMLElement | null = null;
   let resultsToDisplay;
@@ -48,7 +44,7 @@ export function filterSearchResults(listings: Array<Listing>) {
     resultsToDisplay = listings;
   }
 
-  if (listingContainer && resultsToDisplay.length === 0) {
+  if (resultsToDisplay.length === 0) {
     appendAlert('No listing matches your search', 'light');
   }
 
@@ -56,7 +52,7 @@ export function filterSearchResults(listings: Array<Listing>) {
     if (index % 3 === 0) {
       currentRow = createListingRow();
       currentRow.classList.add('listing-row');
-      listingContainer?.appendChild(currentRow);
+      rowContainer.appendChild(currentRow); // Append to rowContainer, not listingContainer
     }
     const child: HTMLDivElement = createListingCard(listing);
     currentRow?.appendChild(child);

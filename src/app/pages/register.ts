@@ -10,8 +10,8 @@ export function initPage(): void {
   }
 
   document.addEventListener('DOMContentLoaded', async () => {
-    initPage();
     initializeNavbar();
+    initPage();
   });
 
   const form: HTMLDivElement = createRegisterUserForm();
