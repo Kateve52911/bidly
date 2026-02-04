@@ -17,7 +17,7 @@ export function createListingCard(data: Listing) {
   const seller = document.createElement('div');
   seller.id = 'seller';
   seller.className = 'text-left text-dark p-1 small-text';
-  seller.innerHTML = `<strong>Sold by</strong> ${data.seller.name};`;
+  seller.innerHTML = `<strong>Sold by</strong> ${data.seller.name}`;
 
   const bidsContainer: HTMLDivElement = document.createElement('div');
   bidsContainer.className = 'd-flex justify-content-between mx-2';

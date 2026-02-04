@@ -7,7 +7,7 @@ export function createBidHistoryTable(
   tableContainer.className = 'container table-responsive mx-auto  w-75';
 
   const table = document.createElement('table');
-  table.className = 'table w-100';
+  table.className = 'table w-100 table-striped';
   table.id = 'bid-history-table';
 
   const head = document.createElement('thead');

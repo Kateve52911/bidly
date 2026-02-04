@@ -5,6 +5,7 @@ import { fetchUserListings } from '../api/listings/fetch/fetchUserListings.ts';
 import { createUserProfile } from '../components/profile/renderUserProfile.ts';
 import { fetchUserBidHistory } from '../api/user/get/fetchUserBidHistory.ts';
 import { createBidHistoryTable } from '../components/profile/renderUSersBidHistory.ts';
+import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
 
 export function initPage(): void {
   const navbar = document.getElementById('navbar-links');
@@ -12,7 +13,10 @@ export function initPage(): void {
     initNavbar();
   }
 }
-document.addEventListener('DOMContentLoaded', initPage);
+document.addEventListener('DOMContentLoaded', async () => {
+  initPage();
+  initializeNavbar();
+});
 
 export async function renderProfilePage() {
   const user = loadCurrentUser();

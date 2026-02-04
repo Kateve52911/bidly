@@ -13,7 +13,7 @@ export async function initNavbar() {
     dashboardLi.className = 'nav-item me-2';
 
     const dashboardHref = document.createElement('a');
-    dashboardHref.href = 'profile.html';
+    dashboardHref.href = '/profile.html';
     dashboardHref.className = 'nav-link';
     dashboardHref.textContent = 'Profile';
 

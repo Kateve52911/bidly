@@ -5,6 +5,7 @@ import { renderSearchBar } from '../components/listings/searchBar/renderSearchBa
 import { createInfiniteScrollButton } from '../components/listings/infiniteScroll/createInfiniteScrollButton.ts';
 import { displayListingsPage } from '../components/listings/allListings/renderAllListings.ts';
 import { appendAlert } from '../components/errorHandling/newAlert/newAlert.ts';
+import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
 
 export function initPage(): void {
   const navbar = document.getElementById('navbar-links');
@@ -12,7 +13,10 @@ export function initPage(): void {
     initNavbar();
   }
 }
-document.addEventListener('DOMContentLoaded', initPage);
+document.addEventListener('DOMContentLoaded', async () => {
+  initPage();
+  initializeNavbar();
+});
 
 let pageNumber: number = 1;
 

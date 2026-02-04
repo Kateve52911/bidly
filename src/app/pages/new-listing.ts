@@ -5,6 +5,7 @@ import { fetchFormDataFromNewListingForm } from '../components/listings/newListi
 import { isValidDate } from '../utils/validation/listingValidation.ts';
 import { appendAlert } from '../components/errorHandling/newAlert/newAlert.ts';
 import { appendAlertAndRedirect } from '../components/errorHandling/newAlert/appendAlertAndRedirect.ts';
+import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
 
 const formContainer = createNewListingForm();
 const app: HTMLElement | null = document.getElementById('app');
@@ -48,4 +49,7 @@ export async function initPage() {
     await initNavbar();
   }
 }
-document.addEventListener('DOMContentLoaded', initPage);
+document.addEventListener('DOMContentLoaded', async () => {
+  initPage();
+  initializeNavbar();
+});

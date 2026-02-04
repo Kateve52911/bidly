@@ -1,5 +1,6 @@
 import { createLoginForm } from '../components/forms/login/loginForm.ts';
 import { initNavbar } from '../components/navbar/initNavBar.ts';
+import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
 
 const form: HTMLDivElement = createLoginForm();
 const app: HTMLElement | null = document.getElementById('app');
@@ -16,4 +17,7 @@ export function initPage(): void {
     initNavbar();
   }
 }
-document.addEventListener('DOMContentLoaded', initPage);
+document.addEventListener('DOMContentLoaded', async () => {
+  initPage();
+  initializeNavbar();
+});

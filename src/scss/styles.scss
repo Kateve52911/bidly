@@ -38,6 +38,10 @@ body {
   font-size: 14px;
 }
 
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: rgba(139, 69, 255, 0.05); /* light purple tint */
+}
+
 .listing-image {
   max-width: 150px;
 

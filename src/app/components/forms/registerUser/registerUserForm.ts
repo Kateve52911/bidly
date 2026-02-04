@@ -9,7 +9,7 @@ export function createRegisterUserForm(): HTMLDivElement {
   outerContainer.className = 'container my-5';
 
   const row: HTMLDivElement = document.createElement('div');
-  row.className = 'row';
+  row.className = 'mx-2 row';
 
   const formContainer: HTMLDivElement = document.createElement('div');
   formContainer.className = 'col-md-6 col-lg-4 mx-auto shadow-lg p-4';
