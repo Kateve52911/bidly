@@ -42,14 +42,17 @@ export async function handleBidSubmission(
     event.preventDefault();
     appendAlert('Insufficient funds!', 'danger');
     return;
-  } else {
-    appendAlert('Bid has been registered!', 'success');
-    const bidInput = document.getElementById('bid') as HTMLInputElement;
-    console.log(bidInput);
-    bidInput.value = '';
   }
 
   if (listingId) {
     await submitBid(listingId, userBid);
+
+    appendAlert('Bid has been registered!', 'success');
+    const bidInput = document.getElementById('bid') as HTMLInputElement;
+    if (bidInput) {
+      bidInput.value = '';
+    }
+
+    setTimeout(() => window.location.reload(), 1000);
   }
 }

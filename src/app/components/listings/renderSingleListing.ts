@@ -90,7 +90,6 @@ export async function renderSingleListing(
       handleBidSubmission(event, listingId),
     );
     infoDiv.append(placeBidForm);
-    setTimeout(() => window.location.reload(), 1000);
   } else {
     const loginDiv: HTMLDivElement = document.createElement('div');
     loginDiv.id = 'login-div';
