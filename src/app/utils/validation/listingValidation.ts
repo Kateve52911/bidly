@@ -1,6 +1,6 @@
 export function isValidDate(date: string): boolean {
   const bidEndingDate = new Date(date);
-  const getTodaysDate = new Date();
+  const currentDate = new Date();
 
-  return bidEndingDate.getTime() > getTodaysDate.getTime();
+  return bidEndingDate.getTime() > currentDate.getTime();
 }

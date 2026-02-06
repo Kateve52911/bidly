@@ -1,4 +1,4 @@
-export const appendAlert = (message: string, type: string) => {
+export const appendAlert = (message: string, type: string): void => {
   const alertPlaceholder: HTMLElement | null = document.getElementById(
     'alert-placeholder-container',
   );

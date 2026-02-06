@@ -8,41 +8,43 @@ import { createBidHistoryTable } from '../components/profile/renderUSersBidHisto
 import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
 import { fetchBidsWonByUser } from '../api/listings/fetch/fetchBidsWonByUser.ts';
 import { renderBidsWonByUser } from '../components/listings/userListings/renderBidsWonByUser.ts';
+import { Profile } from '../api/user/types/profile.ts';
 
 export function initPage(): void {
-  const navbar = document.getElementById('navbar-links');
+  const navbar: HTMLElement | null = document.getElementById('navbar-links');
   if (navbar) {
     initNavbar();
   }
 }
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async (): Promise<void> => {
   initializeNavbar();
   initPage();
 });
 
-export async function renderProfilePage() {
-  const user = loadCurrentUser();
+export async function renderProfilePage(): Promise<void> {
+  const user: Profile | null = loadCurrentUser();
 
   if (!user) {
     throw new Error('No user found');
   }
   if (user) {
-    const username = user.name;
+    const username: string = user.name;
     const userData = await fetchUser(username);
 
     await fetchUserListings(username);
 
     console.log(await fetchBidsWonByUser(username));
 
-    const app = document.getElementById('app');
+    const app: HTMLElement | null = document.getElementById('app');
     if (app) {
       app.appendChild(await createUserProfile(userData));
 
-      const profileContainer = document.getElementById('user-content');
+      const profileContainer: HTMLElement | null =
+        document.getElementById('user-content');
       if (profileContainer) {
         const bidsWonByUser = await fetchBidsWonByUser(username);
         console.log(bidsWonByUser);
-        const bidsWonTitle = document.createElement('h2');
+        const bidsWonTitle: HTMLHeadingElement = document.createElement('h2');
         bidsWonTitle.innerHTML = `Listings <i>${username}</i> has won:`;
         bidsWonTitle.className = 'h4 mb-3';
         profileContainer.appendChild(bidsWonTitle);
@@ -60,9 +62,3 @@ export async function renderProfilePage() {
 }
 
 await renderProfilePage();
-
-/*document.addEventListener('DOMContentLoaded', () => {
-  if (navbar) {
-    initNavbar();
-  }
-})*/

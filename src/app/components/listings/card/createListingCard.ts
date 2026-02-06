@@ -61,11 +61,11 @@ export function createListingCard(data: Listing): HTMLDivElement {
   bidsContainer.appendChild(currentBids);
   bidsContainer.appendChild(numberOfBids);
 
-  card.appendChild(description);
+  card.append(description);
   card.append(seller);
   card.append(bidsContainer);
 
-  container.addEventListener('click', () => {
+  container.addEventListener('click', (): void => {
     window.location.href = `listing.html?id=${data.id}`;
   });
 

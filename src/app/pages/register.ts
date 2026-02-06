@@ -4,12 +4,12 @@ import { validateInputFields } from '../ui/auth/inputValidation.ts';
 import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
 
 export function initPage(): void {
-  const navbar = document.getElementById('navbar-links');
+  const navbar: HTMLElement | null = document.getElementById('navbar-links');
   if (navbar) {
     initNavbar();
   }
 
-  document.addEventListener('DOMContentLoaded', async () => {
+  document.addEventListener('DOMContentLoaded', async (): Promise<void> => {
     initializeNavbar();
     initPage();
   });

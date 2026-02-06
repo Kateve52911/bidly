@@ -4,7 +4,7 @@ import { ListingData } from './types/listingDatatTypes.ts';
 
 export async function submitListing(listingData: ListingData): Promise<void> {
   const URL = `${BASE_URL}${LISTINGS}`;
-  const response = await authFetch(URL, {
+  const response: Response = await authFetch(URL, {
     method: 'POST',
     body: JSON.stringify(listingData),
   });

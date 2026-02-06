@@ -54,18 +54,21 @@ export async function displayListings(): Promise<HTMLElement | null> {
     if (!infiniteScrollButton) {
       infiniteScrollButton = createInfiniteScrollButton();
 
-      infiniteScrollButton.addEventListener('click', async () => {
-        pageNumber++;
-        const moreListings = await fetchListings(21, pageNumber);
-        if (moreListings.length > 0) {
-          displayListingsPage(moreListings, rowContainer!);
-        }
+      infiniteScrollButton.addEventListener(
+        'click',
+        async (): Promise<void> => {
+          pageNumber++;
+          const moreListings = await fetchListings(21, pageNumber);
+          if (moreListings.length > 0) {
+            displayListingsPage(moreListings, rowContainer!);
+          }
 
-        if (moreListings.length < 21) {
-          appendAlert('No more listings found.', 'warning');
-          infiniteScrollButton!.classList.add('d-none');
-        }
-      });
+          if (moreListings.length < 21) {
+            appendAlert('No more listings found.', 'warning');
+            infiniteScrollButton!.classList.add('d-none');
+          }
+        },
+      );
     }
     if (infiniteScrollButton) {
       listingContainer.appendChild(infiniteScrollButton);

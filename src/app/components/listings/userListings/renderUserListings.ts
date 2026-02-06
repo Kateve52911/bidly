@@ -15,7 +15,7 @@ export async function renderUserListings(
   } else {
     let currentRow: HTMLDivElement | null = null;
 
-    userListings.forEach((listing: Listing, index: number) => {
+    userListings.forEach((listing: Listing, index: number): void => {
       if (index % 3 === 0) {
         currentRow = createListingRow();
         currentRow.classList.remove('justify-content-center');

@@ -2,16 +2,15 @@ import { BASE_URL, USERS } from '../../config/constants.ts';
 import { authFetch } from '../../config/authFetch.ts';
 
 export async function fetchUserListings(username: string) {
-  try {
-    const url = `${BASE_URL}${USERS}/${username}/listings?_seller=true&_bids=true`;
-    const response = await authFetch(url, {
-      method: 'GET',
-    });
+  const url = `${BASE_URL}${USERS}/${username}/listings?_seller=true&_bids=true`;
+  const response: Response = await authFetch(url, {
+    method: 'GET',
+  });
 
-    const json = await response.json();
-    console.log(json.data);
-    return json.data;
-  } catch (error) {
-    console.error(error);
+  if (!response.ok) {
+    throw new Error(response.statusText);
   }
+
+  const json = await response.json();
+  return json.data;
 }

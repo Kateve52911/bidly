@@ -55,9 +55,13 @@ export function createBidHistoryTable(
     const listingCell: HTMLTableCellElement = document.createElement('td');
     listingCell.className = 'p-2 text-center';
     const listingImg: HTMLImageElement = document.createElement('img');
-    listingImg.className = 'bid-table-icon rounded  ';
-    listingImg.src = bid.listing.media[0].url;
-    listingImg.alt = bid.listing.media[0].alt;
+    if (bid.listing.media && bid.listing.media.length > 0) {
+      listingImg.src = bid.listing.media[0].url;
+      listingImg.alt = bid.listing.media[0].alt;
+    } else {
+      listingImg.src = 'src/assets/images/placeholder-image.png';
+      listingImg.alt = 'No image available';
+    }
 
     listingCell.appendChild(listingImg);
 

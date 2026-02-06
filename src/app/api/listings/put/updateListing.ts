@@ -7,7 +7,7 @@ export async function updateListing(
   updatedListingData: UpdatedListingData,
 ): Promise<void> {
   const URL = `${BASE_URL}${LISTINGS}/${listingId}`;
-  const response = await authFetch(URL, {
+  const response: Response = await authFetch(URL, {
     method: 'PUT',
     body: JSON.stringify(updatedListingData),
   });

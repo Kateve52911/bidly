@@ -56,32 +56,30 @@ export async function renderConfirmActionModal(
   dialogDiv.appendChild(contentDiv);
   outerDiv.appendChild(dialogDiv);
 
-  return new Promise<void>(
-    (resolve: (value: void | PromiseLike<void>) => void, reject): void => {
-      document.body.appendChild(outerDiv);
+  return new Promise<void>((resolve, reject): void => {
+    document.body.appendChild(outerDiv);
 
-      const modal = new bootstrap.Modal(outerDiv);
-      modal.show();
+    const modal = new bootstrap.Modal(outerDiv);
+    modal.show();
 
-      confirmButton.addEventListener('click', (): void => {
-        modal.hide();
-        outerDiv.addEventListener('hidden.bs.modal', (): void => {
-          outerDiv.remove();
-        });
-        resolve();
-      });
-
-      cancelButton.addEventListener('click', (): void => {
-        modal.hide();
+    confirmButton.addEventListener('click', (): void => {
+      modal.hide();
+      outerDiv.addEventListener('hidden.bs.modal', (): void => {
         outerDiv.remove();
-        reject();
       });
+      resolve();
+    });
 
-      closeButton.addEventListener('click', (): void => {
-        modal.hide();
-        outerDiv.remove();
-        reject();
-      });
-    },
-  );
+    cancelButton.addEventListener('click', (): void => {
+      modal.hide();
+      outerDiv.remove();
+      reject();
+    });
+
+    closeButton.addEventListener('click', (): void => {
+      modal.hide();
+      outerDiv.remove();
+      reject();
+    });
+  });
 }

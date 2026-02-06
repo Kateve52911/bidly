@@ -11,6 +11,7 @@ export async function updateProfile(
     method: 'PUT',
     body: JSON.stringify(updatedProfile),
   });
+
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText}`);
   }

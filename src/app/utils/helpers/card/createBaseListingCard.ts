@@ -36,7 +36,6 @@ export function createBaseListingCard(data: Listing): {
 
   container.appendChild(image);
   card.appendChild(title);
-  //card.appendChild(description);
   card.appendChild(listingEnds);
   container.appendChild(card);
   column.appendChild(container);
