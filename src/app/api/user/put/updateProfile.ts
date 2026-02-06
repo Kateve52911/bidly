@@ -7,7 +7,7 @@ export async function updateProfile(
   updatedProfile: UpdatedProfile,
 ): Promise<void> {
   const URL = `${BASE_URL}${USERS}/${username}`;
-  const response = await authFetch(URL, {
+  const response: Response = await authFetch(URL, {
     method: 'PUT',
     body: JSON.stringify(updatedProfile),
   });

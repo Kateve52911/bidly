@@ -24,34 +24,23 @@ type RegisterResult = RegisterSuccess | RegisterFailure;
 export async function register(
   userData: RegisterCredentials,
 ): Promise<RegisterResult> {
-  try {
-    const response: Response = await authFetch(
-      `${BASE_URL}${AUTH}${REGISTER}`,
-      {
-        method: 'POST',
-        body: JSON.stringify(userData),
-      },
-    );
+  const response: Response = await authFetch(`${BASE_URL}${AUTH}${REGISTER}`, {
+    method: 'POST',
+    body: JSON.stringify(userData),
+  });
 
-    const data = await response.json();
-    console.log(data);
+  const data = await response.json();
+  console.log(data);
 
-    if (!response.ok) {
-      return {
-        success: false,
-        error: data.errors?.[0]?.message || 'Registration failed',
-        statusCode: response.status,
-      };
-    }
-    return {
-      success: true,
-      data: data.data,
-    };
-  } catch (error) {
-    console.error('Could not register the account', error);
+  if (!response.ok) {
     return {
       success: false,
-      error: 'Network error - please check your connection',
+      error: data.errors?.[0]?.message || 'Registration failed',
+      statusCode: response.status,
     };
   }
+  return {
+    success: true,
+    data: data.data,
+  };
 }

@@ -2,8 +2,6 @@ import { AUTH, BASE_URL, LOGIN } from '../config/constants.ts';
 import { saveKey, storeUser } from '../../utils/storage/storage.ts';
 import type { UserData } from '../types/api.ts';
 import { authFetch } from '../config/authFetch.ts';
-//import { LoginResponse } from './types/loginResponse.ts';
-//import { Profile } from '../user/types/profile.ts';
 
 interface LoginSuccess {
   success: true;
@@ -24,37 +22,29 @@ interface LoginCredentials {
 type LoginResult = LoginSuccess | LoginFailure;
 
 export async function login(userData: LoginCredentials): Promise<LoginResult> {
-  try {
-    const response: Response = await authFetch(`${BASE_URL}${AUTH}${LOGIN}`, {
-      method: 'POST',
-      body: JSON.stringify(userData),
-    });
+  const response: Response = await authFetch(`${BASE_URL}${AUTH}${LOGIN}`, {
+    method: 'POST',
+    body: JSON.stringify(userData),
+  });
 
-    const json = await response.json();
+  const json = await response.json();
 
-    if (!response.ok) {
-      return {
-        success: false,
-        error: json.errors?.[0]?.message || 'Unable to login',
-        statusCode: response.status,
-      };
-    }
-
-    const accessToken: string = json.data.accessToken;
-    const userDetails = json.data;
-
-    saveKey('accessToken', accessToken);
-    storeUser(userDetails);
-
-    return {
-      success: true,
-      data: userDetails,
-    };
-  } catch (error) {
-    console.error('Login error:', error);
+  if (!response.ok) {
     return {
       success: false,
-      error: 'Network error - please check your connection',
+      error: json.errors?.[0]?.message || 'Unable to login',
+      statusCode: response.status,
     };
   }
+
+  const accessToken: string = json.data.accessToken;
+  const userDetails = json.data;
+
+  saveKey('accessToken', accessToken);
+  storeUser(userDetails);
+
+  return {
+    success: true,
+    data: userDetails,
+  };
 }

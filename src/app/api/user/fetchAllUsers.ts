@@ -12,7 +12,7 @@ export async function fetchAllUsers(): Promise<void> {
     },
   };
 
-  const response = await fetch(`${BASE_URL}${USERS}`, fetchOptions);
+  const response: Response = await fetch(`${BASE_URL}${USERS}`, fetchOptions);
 
   if (!response.ok) {
     throw new Error(response.statusText);

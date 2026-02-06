@@ -3,7 +3,7 @@ import { authFetch } from '../../config/authFetch.ts';
 
 export async function fetchBidsWonByUser(username: string) {
   const url = `${BASE_URL}${USERS}/${username}/wins?_seller=true&_bids=true`;
-  const response = await authFetch(url, {
+  const response: Response = await authFetch(url, {
     method: 'GET',
   });
 
@@ -12,6 +12,5 @@ export async function fetchBidsWonByUser(username: string) {
   }
 
   const json = await response.json();
-  console.log(json.data);
   return json.data;
 }

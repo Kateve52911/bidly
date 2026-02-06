@@ -6,7 +6,7 @@ export async function fetchUserBidHistory(
   username: string,
 ): Promise<BidHistory[]> {
   const URL = `${BASE_URL}${USERS}/${username}/bids?_listings=true`;
-  const response = await authFetch(URL, {});
+  const response: Response = await authFetch(URL, {});
 
   if (!response.ok) {
     throw new Error(response.statusText);

@@ -14,6 +14,5 @@ export async function fetchSingleListing(
     return undefined;
   }
   const json = await response.json();
-
   return json.data;
 }
