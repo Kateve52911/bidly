@@ -1,5 +1,5 @@
 import { initNavbar } from '../components/navbar/initNavBar.ts';
-import { renderSingleListing } from '../components/listings/renderSingleListing.ts';
+import { renderSingleListing } from '../components/listings/singleListing/renderSingleListing.ts';
 import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
 
 export function initPage(): void {

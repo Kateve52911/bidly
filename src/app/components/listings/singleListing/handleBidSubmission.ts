@@ -53,6 +53,6 @@ export async function handleBidSubmission(
       bidInput.value = '';
     }
 
-    setTimeout(() => window.location.reload(), 1000);
+    setTimeout((): void => window.location.reload(), 1000);
   }
 }

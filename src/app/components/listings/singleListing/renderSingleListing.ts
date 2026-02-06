@@ -1,10 +1,10 @@
-import { fetchSingleListing } from '../../api/listings/fetch/fetchSingleListing.ts';
-import { Listing } from '../../utils/helpers/card/type/listing.ts';
-import { appendAlert } from '../errorHandling/newAlert/newAlert.ts';
-import { isAuthenticated } from '../../utils/auth/auth.ts';
-import { handleBidSubmission } from './singleListing/handleBidSubmission.ts';
-import { createBidsList } from './singleListing/createBidList.ts';
-import { createBidForm } from '../forms/bidForm/createBidForm.ts';
+import { fetchSingleListing } from '../../../api/listings/fetch/fetchSingleListing.ts';
+import { Listing } from '../../../utils/helpers/card/type/listing.ts';
+import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
+import { isAuthenticated } from '../../../utils/auth/auth.ts';
+import { handleBidSubmission } from './handleBidSubmission.ts';
+import { createBidsList } from './createBidList.ts';
+import { createBidForm } from '../../forms/bidForm/createBidForm.ts';
 
 export async function renderSingleListing(
   listingId: string | null = null,
@@ -68,10 +68,10 @@ export async function renderSingleListing(
   const timeRemainingDiv: HTMLDivElement = document.createElement('div');
   timeRemainingDiv.id = 'time-remaining-div';
   timeRemainingDiv.className = 'text-left text-dark my-2';
-  const endsAt = new Date(listingData.endsAt).toLocaleDateString();
+  const endsAt: string = new Date(listingData.endsAt).toLocaleDateString();
   timeRemainingDiv.innerHTML = `Bid ends at: ${endsAt}`;
 
-  const allBidsContainer = createBidsList(listingData);
+  const allBidsContainer: HTMLDivElement = createBidsList(listingData);
 
   const alertDiv: HTMLDivElement = document.createElement('div');
   alertDiv.id = 'alert-placeholder-container';
@@ -86,8 +86,8 @@ export async function renderSingleListing(
   );
 
   if (isAuthenticated()) {
-    const placeBidForm = createBidForm((event) =>
-      handleBidSubmission(event, listingId),
+    const placeBidForm: HTMLFormElement = createBidForm(
+      (event: Event): Promise<void> => handleBidSubmission(event, listingId),
     );
     infoDiv.append(placeBidForm);
   } else {

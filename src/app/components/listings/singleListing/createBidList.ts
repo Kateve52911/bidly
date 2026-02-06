@@ -12,7 +12,7 @@ export function createBidsList(listingData: Listing): HTMLDivElement {
 
   const highestBidDiv: HTMLDivElement = document.createElement('div');
   highestBidDiv.id = 'highest-bid';
-  const bids = listingData.bids;
+  const bids: Bid[] = listingData.bids;
 
   if (bids.length > 0) {
     const highestBid: HTMLHeadingElement = document.createElement('h4');
