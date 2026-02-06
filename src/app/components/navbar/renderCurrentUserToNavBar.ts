@@ -9,15 +9,15 @@ export async function renderCurrentUserToNavBar(): Promise<void> {
 
     const userInfo: HTMLDivElement = document.createElement('div');
     userInfo.className =
-      'me-3 d-flex align-items-center gap-2 flex-md-row align-items-center';
+      'me-3 d-flex align-items-center gap-2 align-items-center';
 
     const userName: HTMLLIElement = document.createElement('li');
-    userName.innerHTML = `<span class="nav-link text-primary">${user.name}</span>`;
-    userName.className = 'me-3';
+    userName.innerHTML = `<span class="nav-link text-primary"><i class="bi bi-person-square text-primary"></i> ${user.name}</span>`;
+    userName.className = 'me-1';
 
     const userCredit: HTMLLIElement = document.createElement('li');
-    userCredit.className = ' me-3';
-    userCredit.innerHTML = `<span class="nav-link text-primary">Credits: ${user.credits}</span>`;
+    userCredit.className = ' me-1';
+    userCredit.innerHTML = `<span class="nav-link text-primary"><i class="bi bi-wallet-fill text-primary"></i> Credits: ${user.credits}</span>`;
 
     userInfo.appendChild(userName);
     userInfo.appendChild(userCredit);
@@ -28,8 +28,7 @@ export async function renderCurrentUserToNavBar(): Promise<void> {
     if (navbarLinks) {
       const firstLink: Element | null = navbarLinks.firstElementChild;
       if (firstLink) {
-        navbarLinks.insertBefore(userName, firstLink);
-        navbarLinks.insertBefore(userCredit, firstLink);
+        navbarLinks.insertBefore(userInfo, firstLink);
       }
     }
   }

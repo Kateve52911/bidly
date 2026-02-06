@@ -20,6 +20,10 @@ export function createListingCard(data: Listing): HTMLDivElement {
   seller.className = 'text-left text-dark p-1 small-text';
   seller.innerHTML = `<strong>Sold by</strong> ${data.seller.name}`;
 
+  const description: HTMLParagraphElement = document.createElement('p');
+  description.innerHTML = data.description;
+  description.className = 'card-description text-left text-dark p-1 fw-lighter';
+
   const bidsContainer: HTMLDivElement = document.createElement('div');
   bidsContainer.className = 'd-flex justify-content-between mx-2';
 
@@ -27,8 +31,8 @@ export function createListingCard(data: Listing): HTMLDivElement {
   currentBids.className = 'd-flex flex-column';
 
   const currentBidTitle: HTMLHeadingElement = document.createElement('h6');
-  currentBidTitle.innerHTML = 'Current Bid';
-  currentBidTitle.className = 'text-left text-dark p-1 small-text';
+  currentBidTitle.innerHTML = 'CURRENT BID';
+  currentBidTitle.className = 'text-left text-dark p-1 small-text fw-light';
   currentBids.appendChild(currentBidTitle);
 
   const highestBidAmount: HTMLParagraphElement = document.createElement('p');
@@ -45,8 +49,8 @@ export function createListingCard(data: Listing): HTMLDivElement {
   numberOfBids.className = 'd-flex flex-column';
 
   const numberOfBidsTitle: HTMLHeadingElement = document.createElement('h6');
-  numberOfBidsTitle.innerHTML = 'Bids:';
-  numberOfBidsTitle.className = 'text-left text-dark p-1 small-text';
+  numberOfBidsTitle.innerHTML = 'BIDS:';
+  numberOfBidsTitle.className = 'text-left text-dark p-1 small-text fw-light';
   numberOfBids.appendChild(numberOfBidsTitle);
 
   const currentNumberBids: HTMLDivElement = document.createElement('div');
@@ -57,6 +61,7 @@ export function createListingCard(data: Listing): HTMLDivElement {
   bidsContainer.appendChild(currentBids);
   bidsContainer.appendChild(numberOfBids);
 
+  card.appendChild(description);
   card.append(seller);
   card.append(bidsContainer);
 

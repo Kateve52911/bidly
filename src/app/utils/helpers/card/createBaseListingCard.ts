@@ -28,14 +28,10 @@ export function createBaseListingCard(data: Listing): {
   title.innerHTML = data.title || 'No title given';
   title.className = 'card-title text-left text-success px-1';
 
-  /*  const description: HTMLParagraphElement = document.createElement('p');
-  description.innerHTML = data.description;
-  description.className = 'card-description text-left text-primary px-2';*/
-
   const listingEnds: HTMLDivElement = document.createElement('div');
   const endingDate: string = new Date(data.endsAt).toLocaleDateString();
   listingEnds.className = 'd-flex text-left text-dark p-1 small-text';
-  listingEnds.innerHTML = `Listing ends ${endingDate}`;
+  listingEnds.innerHTML = `<strong>Listing ends: </strong> ${endingDate}`;
   listingEnds.id = 'listing-ends-at';
 
   container.appendChild(image);

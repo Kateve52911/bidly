@@ -43,7 +43,7 @@ export async function renderProfilePage() {
         const bidsWonByUser = await fetchBidsWonByUser(username);
         console.log(bidsWonByUser);
         const bidsWonTitle = document.createElement('h2');
-        bidsWonTitle.innerHTML = `${username}'s Wins`;
+        bidsWonTitle.innerHTML = `Listings <i>${username}</i> has won:`;
         bidsWonTitle.className = 'h4 mb-3';
         profileContainer.appendChild(bidsWonTitle);
         await renderBidsWonByUser(username, profileContainer);
@@ -51,7 +51,7 @@ export async function renderProfilePage() {
         const bidHistory = await fetchUserBidHistory(username);
         const userBidsTitle: HTMLHeadingElement = document.createElement('h2');
         userBidsTitle.className = 'h4 mb-3';
-        userBidsTitle.textContent = `${bidHistory[0].bidder.name}'s Bids`;
+        userBidsTitle.innerHTML = `<i><i>${username}</i>'s</i> bid history`;
         profileContainer.appendChild(userBidsTitle);
         profileContainer.appendChild(createBidHistoryTable(bidHistory));
       }

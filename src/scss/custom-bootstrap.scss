@@ -45,6 +45,12 @@ $btn-padding-x: 1rem;
 $btn-font-weight: 500;
 $btn-border-radius: $border-radius-sm;
 
+@media (max-width: 991px) {
+  .btn {
+
+  }
+}
+
 // Cards
 $card-border-radius: $border-radius;
 $card-border-width: 1px;

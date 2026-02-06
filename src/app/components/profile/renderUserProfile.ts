@@ -43,8 +43,12 @@ export async function createUserProfile(
   username.textContent = user.name;
 
   const bio: HTMLParagraphElement = document.createElement('p');
-  bio.className = 'mb-0 text-white-50';
+  bio.className = 'mb-0 text-white text-opacity-75';
   bio.textContent = user.bio || 'No bio has been provided';
+
+  const credits: HTMLParagraphElement = document.createElement('p');
+  credits.className = 'mb-0 text-white text-opacity-75';
+  credits.innerHTML = `<i class="bi bi-wallet-fill text-white text-opacity-75"></i> Credits: ${user.credits}`;
 
   const editProfileButton: HTMLButtonElement = document.createElement('button');
   editProfileButton.className = 'btn btn-dark btn-sm my-1';
@@ -62,7 +66,7 @@ export async function createUserProfile(
     userPostContainer.appendChild(editForm);
   });
 
-  textContent.append(username, bio, editProfileButton);
+  textContent.append(username, bio, credits, editProfileButton);
 
   profileContent.appendChild(avatar);
   profileContent.appendChild(textContent);
