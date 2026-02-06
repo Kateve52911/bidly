@@ -1,7 +1,7 @@
 import { isAuthenticated } from '../../utils/auth/auth.ts';
 import { logout } from '../../api/auth/logout.ts';
 
-export function renderNavBarButton(): void {
+export function renderNavBarButtons(): void {
   const navbarList: HTMLElement | null =
     document.getElementById('navbar-links');
 
@@ -20,7 +20,7 @@ export function renderNavBarButton(): void {
       document.createElement('button');
     createNewListingButton.textContent = 'Create New Listing';
     createNewListingButton.id = 'createNewListingButton';
-    createNewListingButton.className = 'btn btn-outline-primary mx-1 ';
+    createNewListingButton.className = 'btn btn-outline-primary me-1';
     createNewListingButton.addEventListener('click', (): void => {
       window.location.href = '/new-listing.html';
     });

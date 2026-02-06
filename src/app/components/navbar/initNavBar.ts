@@ -1,4 +1,4 @@
-import { renderNavBarButton } from './renderNavBarButton.ts';
+import { renderNavBarButtons } from './renderNavBarButtons.ts';
 import { renderCurrentUserToNavBar } from './renderCurrentUserToNavBar.ts';
 import { isAuthenticated } from '../../utils/auth/auth.ts';
 
@@ -35,6 +35,6 @@ export async function initNavbar(): Promise<void> {
     listingsLink?.classList.add('active');
   }
 
-  renderNavBarButton();
+  renderNavBarButtons();
   await renderCurrentUserToNavBar();
 }

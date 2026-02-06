@@ -1,0 +1,17 @@
+import { BASE_URL, USERS } from '../../config/constants.ts';
+import { authFetch } from '../../config/authFetch.ts';
+
+export async function fetchBidsWonByUser(username: string) {
+  const url = `${BASE_URL}${USERS}/${username}/wins?_seller=true&_bids=true`;
+  const response = await authFetch(url, {
+    method: 'GET',
+  });
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  const json = await response.json();
+  console.log(json.data);
+  return json.data;
+}
