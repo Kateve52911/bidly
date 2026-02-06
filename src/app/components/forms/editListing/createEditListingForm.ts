@@ -101,7 +101,6 @@ export function createEditListingCard(data: Listing): HTMLDivElement {
     const listingId = data.id;
     const formData = new FormData(form);
     const updatedData: UpdatedListingData = getEditFormData(formData);
-    console.log('updated data', updatedData);
     try {
       await updateListing(listingId, updatedData);
       await appendAlertAndRedirect(

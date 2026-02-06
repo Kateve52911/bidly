@@ -52,9 +52,8 @@ export async function createUserProfile(
   editProfileButton.textContent = 'Edit Profile';
 
   editProfileButton.addEventListener('click', (): void => {
-    const userPostContainer: HTMLElement | null = document.getElementById(
-      'user-posts-container',
-    );
+    const userPostContainer: HTMLElement | null =
+      document.getElementById('user-content');
     if (!userPostContainer) {
       return;
     }
@@ -70,6 +69,10 @@ export async function createUserProfile(
   profileOverlay.appendChild(profileContent);
 
   bannerContainer.append(banner, profileOverlay);
+
+  const userContent: HTMLDivElement = document.createElement('div');
+  userContent.className = 'mx-auto';
+  userContent.id = 'user-content';
 
   const userListingsContainer: HTMLDivElement = document.createElement('div');
   userListingsContainer.className = 'py-4 px-3 px-md-4';
@@ -96,8 +99,10 @@ export async function createUserProfile(
   userListingsContainer.appendChild(userListingsTitle);
   userListingsContainer.appendChild(userListings);
 
+  userContent.appendChild(userListingsContainer);
+
   container.appendChild(bannerContainer);
-  container.appendChild(userListingsContainer);
+  container.appendChild(userContent);
 
   return container;
 }

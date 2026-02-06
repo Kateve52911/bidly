@@ -1,15 +1,15 @@
 import { isURLValid } from '../../validation/urlValidation.ts';
 
 export function showURLError(inputId: string, containerId: string): void {
-  const urlDiv = document.getElementById(containerId);
+  const urlDiv: HTMLElement | null = document.getElementById(containerId);
   console.log(urlDiv);
   const urlInput = document.getElementById(inputId) as HTMLInputElement;
-  const messageDiv = document.createElement('div');
+  const messageDiv: HTMLDivElement = document.createElement('div');
 
   if (!urlInput) {
     return;
   }
-  const existingFeedback = urlDiv?.querySelector(
+  const existingFeedback: Element | null | undefined = urlDiv?.querySelector(
     '.valid-feedback, .invalid-feedback',
   );
   existingFeedback?.remove();

@@ -34,7 +34,7 @@ export async function renderProfilePage() {
     if (app) {
       app.appendChild(await createUserProfile(userData));
 
-      const profileContainer = document.getElementById('profile-container');
+      const profileContainer = document.getElementById('user-content');
       if (profileContainer) {
         const bidHistory = await fetchUserBidHistory(userName);
         const userBidsTitle: HTMLHeadingElement = document.createElement('h2');

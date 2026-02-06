@@ -1,6 +1,10 @@
 import { Listing } from './type/listing.ts';
 
-export function createBaseListingCard(data: Listing) {
+export function createBaseListingCard(data: Listing): {
+  column: HTMLDivElement;
+  container: HTMLDivElement;
+  card: HTMLDivElement;
+} {
   const column: HTMLDivElement = document.createElement('div');
   column.className =
     'col-12 col-md-6 col-lg-3 mb-5 px-1 d-flex justify-content-center ';
@@ -29,7 +33,7 @@ export function createBaseListingCard(data: Listing) {
   description.className = 'card-description text-left text-primary px-2';*/
 
   const listingEnds: HTMLDivElement = document.createElement('div');
-  const endingDate = new Date(data.endsAt).toLocaleDateString();
+  const endingDate: string = new Date(data.endsAt).toLocaleDateString();
   listingEnds.className = 'd-flex text-left text-dark p-1 small-text';
   listingEnds.innerHTML = `Listing ends ${endingDate}`;
   listingEnds.id = 'listing-ends-at';

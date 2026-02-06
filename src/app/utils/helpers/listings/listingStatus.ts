@@ -1,4 +1,7 @@
-export function displayListingStatus(endDate: string) {
+export function displayListingStatus(endDate: string): {
+  status: string;
+  className: string;
+} {
   const currentDate = new Date();
   const endsAtDate = new Date(endDate);
 
