@@ -15,12 +15,14 @@ export async function renderUserListings(
   } else {
     let currentRow: HTMLDivElement | null = null;
 
-    userListings.forEach((listing, index) => {
+    userListings.forEach((listing: Listing, index: number) => {
       if (index % 3 === 0) {
         currentRow = createListingRow();
+        currentRow.classList.remove('justify-content-center');
+        currentRow.classList.add('justify-content-start');
         listingsContainer.appendChild(currentRow);
       }
-      const child = createDashboardListingCard(listing);
+      const child: HTMLDivElement = createDashboardListingCard(listing);
       currentRow?.appendChild(child);
     });
   }

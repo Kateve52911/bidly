@@ -71,11 +71,10 @@ export async function createUserProfile(
   bannerContainer.append(banner, profileOverlay);
 
   const userContent: HTMLDivElement = document.createElement('div');
-  userContent.className = 'mx-auto';
+  userContent.className = 'mx-auto py-4 px-3 px-md-4';
   userContent.id = 'user-content';
 
   const userListingsContainer: HTMLDivElement = document.createElement('div');
-  userListingsContainer.className = 'py-4 px-3 px-md-4';
   userListingsContainer.id = 'user-posts-container';
 
   const userListingsTitle: HTMLHeadingElement = document.createElement('h2');

@@ -14,12 +14,14 @@ export async function renderBidsWonByUser(
   } else {
     let currentRow: HTMLDivElement | null = null;
 
-    bidsWon.forEach((win, index) => {
+    bidsWon.forEach((win: Listing, index: number): void => {
       if (index % 3 === 0) {
         currentRow = createListingRow();
+        currentRow.classList.remove('justify-content-center');
+        currentRow.classList.add('justify-content-start');
         listingsContainer.appendChild(currentRow);
       }
-      const child = createBidsWonByUserCard(win);
+      const child: HTMLDivElement = createBidsWonByUserCard(win);
       currentRow?.appendChild(child);
     });
   }
