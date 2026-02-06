@@ -13,14 +13,14 @@ export function createImageInputGroup(index: number): HTMLDivElement {
     createLabel(`Image ${index + 2} URL`, `imageUrl-${index}`),
   );
 
-  const imageInput = createUserInput(
+  const imageInput: HTMLInputElement = createUserInput(
     'Image URL (https://...)',
     'text',
     `imageUrl-${index}`,
     `imageUrl-${index}`,
   );
 
-  imageInput.addEventListener('blur', () => {
+  imageInput.addEventListener('blur', (): void => {
     showURLError(`imageUrl-${index}`, `image-url-div-${index}`);
   });
 
@@ -44,7 +44,7 @@ export function createImageInputGroup(index: number): HTMLDivElement {
   removeBtn.type = 'button';
   removeBtn.className = 'btn btn-sm btn-outline-danger';
   removeBtn.textContent = 'Remove';
-  removeBtn.addEventListener('click', () => group.remove());
+  removeBtn.addEventListener('click', (): void => group.remove());
 
   group.appendChild(urlContainer);
   group.appendChild(altContainer);

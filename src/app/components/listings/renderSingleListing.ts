@@ -195,6 +195,11 @@ async function onSubmitBid(event: Event) {
   const bidder = await fetchUser(user.name);
   const userCredits: number = bidder.credits;
 
+  if (!bidString || isNaN(userBid) || userBid <= 0) {
+    appendAlert('Please enter a valid bid amount', 'warning');
+    return;
+  }
+
   if (!userBid) {
     appendAlert('Bid not found', 'warning');
     return;
@@ -211,10 +216,8 @@ async function onSubmitBid(event: Event) {
   } else {
     appendAlert('Bid has been registered!', 'success');
     const bidInput = document.getElementById('bid') as HTMLInputElement;
+    console.log(bidInput);
     bidInput.value = '';
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
   }
   if (listingId) {
     await submitBid(listingId, userBid);

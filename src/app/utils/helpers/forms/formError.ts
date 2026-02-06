@@ -1,6 +1,6 @@
 import { isURLValid } from '../../validation/urlValidation.ts';
 
-export function showURLError(inputId: string, containerId: string) {
+export function showURLError(inputId: string, containerId: string): void {
   const urlDiv = document.getElementById(containerId);
   console.log(urlDiv);
   const urlInput = document.getElementById(inputId) as HTMLInputElement;
