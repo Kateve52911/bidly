@@ -1,3 +1,5 @@
+import * as bootstrap from 'bootstrap';
+
 import { fetchSingleListing } from '../../../api/listings/fetch/fetchSingleListing.ts';
 import { Listing } from '../../../utils/helpers/card/type/listing.ts';
 import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
@@ -5,6 +7,7 @@ import { isAuthenticated } from '../../../utils/auth/auth.ts';
 import { handleBidSubmission } from './handleBidSubmission.ts';
 import { createBidsList } from './createBidList.ts';
 import { createBidForm } from '../../forms/bidForm/createBidForm.ts';
+import { createImageCarousel } from '../../../utils/helpers/listings/createImageCarousel.ts';
 
 export async function renderSingleListing(
   listingId: string | null = null,
@@ -40,15 +43,20 @@ export async function renderSingleListing(
     'info-div d-flex flex-column justify-content-start flex-grow-1 ps-lg-4';
 
   const imageContainer: HTMLDivElement = document.createElement('div');
-  imageContainer.className = 'flex-shrink-0';
+  imageContainer.className = 'image-fluid';
+  imageContainer.style.maxWidth = '600px';
+  imageContainer.style.width = '100%';
   if (listingData.media.length > 0) {
-    listingData.media.forEach((media) => {
-      const img: HTMLImageElement = document.createElement('img');
-      img.src = media.url;
-      img.alt = media.alt;
-      img.className = 'img-fluid rounded listing-image';
-      imageContainer.append(img);
-    });
+    const carousel: HTMLDivElement = createImageCarousel(listingData);
+    imageContainer.appendChild(carousel);
+
+    // Initialize after adding to DOM
+    setTimeout(() => {
+      const carouselElement = document.getElementById('listing-carousel');
+      if (carouselElement) {
+        new bootstrap.Carousel(carouselElement);
+      }
+    }, 100);
   }
 
   const listingTagsDiv: HTMLDivElement = document.createElement('div');
@@ -97,7 +105,8 @@ export async function renderSingleListing(
     infoDiv.append(loginDiv);
   }
 
-  flexContainer.append(imageContainer, infoDiv);
+  flexContainer.appendChild(imageContainer);
+  flexContainer.appendChild(infoDiv);
   container.append(title, flexContainer);
 
   return container;
