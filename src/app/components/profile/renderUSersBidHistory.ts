@@ -5,7 +5,7 @@ export function createBidHistoryTable(
   bidHistory: BidHistory[],
 ): HTMLDivElement {
   const tableContainer: HTMLDivElement = document.createElement('div');
-  tableContainer.className = 'container table-responsive   w-100';
+  tableContainer.className = 'container table-responsive w-100';
 
   const table: HTMLTableElement = document.createElement('table');
   table.className = 'table w-100 table-striped';
@@ -51,7 +51,7 @@ export function createBidHistoryTable(
 
   bidHistory.forEach((bid: BidHistory): void => {
     const row: HTMLTableRowElement = document.createElement('tr');
-    row.className = 'align-center';
+    row.className = 'align-center p-2';
     const listingCell: HTMLTableCellElement = document.createElement('td');
     listingCell.className = 'p-2 text-center';
     const listingImg: HTMLImageElement = document.createElement('img');
@@ -78,7 +78,7 @@ export function createBidHistoryTable(
     listingStatusSpan.id = 'status-badge';
     listingStatus.className
       .split(' ')
-      .forEach((cls) => listingStatusSpan.classList.add(cls));
+      .forEach((cls: string): void => listingStatusSpan.classList.add(cls));
     listingStatusSpan.innerHTML = listingStatus.status;
 
     const statusCell: HTMLTableCellElement = document.createElement('td');
