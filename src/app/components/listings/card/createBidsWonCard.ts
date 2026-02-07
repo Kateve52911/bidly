@@ -13,7 +13,9 @@ export function createBidsWonByUserCard(listing: Listing): HTMLDivElement {
   const listingStatusSpan: HTMLSpanElement = document.createElement('span');
   listingStatusSpan.className = 'rounded  px-1 me-auto my-1 small-text';
   listingStatusSpan.id = 'status-badge';
-  listingStatusSpan.classList.add(listingStatus.className);
+  listingStatus.className
+    .split(' ')
+    .forEach((cls: string): void => listingStatusSpan.classList.add(cls));
   listingStatusSpan.innerHTML = listingStatus.status;
 
   card.prepend(listingStatusSpan);
