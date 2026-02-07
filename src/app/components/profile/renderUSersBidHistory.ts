@@ -55,6 +55,7 @@ export function createBidHistoryTable(
     const listingCell: HTMLTableCellElement = document.createElement('td');
     listingCell.className = 'p-2 text-center';
     const listingImg: HTMLImageElement = document.createElement('img');
+    listingImg.className = 'bid-table-icon rounded  ';
     if (bid.listing.media && bid.listing.media.length > 0) {
       listingImg.src = bid.listing.media[0].url;
       listingImg.alt = bid.listing.media[0].alt;
@@ -75,7 +76,9 @@ export function createBidHistoryTable(
     const listingStatusSpan: HTMLSpanElement = document.createElement('span');
     listingStatusSpan.className = 'rounded  px-1 me-auto my-1 small-text';
     listingStatusSpan.id = 'status-badge';
-    listingStatusSpan.classList.add(listingStatus.className);
+    listingStatus.className
+      .split(' ')
+      .forEach((cls) => listingStatusSpan.classList.add(cls));
     listingStatusSpan.innerHTML = listingStatus.status;
 
     const statusCell: HTMLTableCellElement = document.createElement('td');

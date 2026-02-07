@@ -6,8 +6,8 @@ export function displayListingStatus(endDate: string): {
   const endsAtDate = new Date(endDate);
 
   if (endsAtDate > currentDate) {
-    return { status: 'active', className: 'bg-success-subtle' };
+    return { status: 'active', className: 'bg-success-subtle text-success' };
   } else {
-    return { status: 'ended', className: 'bg-danger-subtle' };
+    return { status: 'ended', className: 'bg-danger-subtle text-danger' };
   }
 }

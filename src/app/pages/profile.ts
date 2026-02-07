@@ -48,7 +48,14 @@ export async function renderProfilePage(): Promise<void> {
         bidsWonTitle.innerHTML = `Listings <i>${username}</i> has won:`;
         bidsWonTitle.className = 'h4 mb-3';
         profileContainer.appendChild(bidsWonTitle);
-        await renderBidsWonByUser(username, profileContainer);
+        if (bidsWonByUser.length > 0) {
+          await renderBidsWonByUser(username, profileContainer);
+        } else {
+          const bidsWonContainer: HTMLElement = document.createElement('div');
+          bidsWonContainer.className = 'text-left text-dark m-5';
+          bidsWonContainer.innerHTML = 'User has not won any bids yet! ';
+          profileContainer.appendChild(bidsWonContainer);
+        }
 
         const bidHistory = await fetchUserBidHistory(username);
         const userBidsTitle: HTMLHeadingElement = document.createElement('h2');
