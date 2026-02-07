@@ -41,7 +41,7 @@ function addAllBidsToContainer(
     const bidContainer: HTMLDivElement = document.createElement('div');
     bidContainer.id = 'bid-container';
     bidContainer.className =
-      'd-flex justify-content-evenly align-items-center m-2 gap-4';
+      'd-flex justify-content-evenly align-items-center m-2 gap-4 w-100';
     const avatar: HTMLImageElement = document.createElement('img');
     avatar.id = 'avatar';
     avatar.className = 'avatar rounded-circle avatar-Icon';
@@ -49,12 +49,12 @@ function addAllBidsToContainer(
 
     const bidder: HTMLParagraphElement = document.createElement('p');
     bidder.id = 'bidder';
-    bidder.className = 'bidder align-self-center';
+    bidder.className = 'bidder align-self-center w-25';
     bidder.innerHTML = bid.bidder.name;
 
     const amount: HTMLParagraphElement = document.createElement('p');
     amount.id = 'bid';
-    amount.className = 'bid';
+    amount.className = 'bid w-25';
     amount.innerHTML = String(bid.amount);
 
     bidContainer.append(avatar, bidder, amount);

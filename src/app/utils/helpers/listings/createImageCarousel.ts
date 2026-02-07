@@ -34,7 +34,7 @@ export function createImageCarousel(listingData: Listing): HTMLDivElement {
   prevBtn.dataset.bsSlide = 'prev';
 
   const prevBtnIcon: HTMLSpanElement = document.createElement('span');
-  prevBtnIcon.className = 'carousel-control-prev-icon';
+  prevBtnIcon.className = 'carousel-control-prev-icon text-grey';
   prevBtnIcon.ariaHidden = 'true';
 
   const visuallyHiddenPrev: HTMLSpanElement = document.createElement('span');
@@ -51,7 +51,7 @@ export function createImageCarousel(listingData: Listing): HTMLDivElement {
   nextBtn.dataset.bsSlide = 'next';
 
   const nextBtnIcon: HTMLSpanElement = document.createElement('span');
-  nextBtnIcon.className = 'carousel-control-next-icon';
+  nextBtnIcon.className = 'carousel-control-next-icon text-grey';
   nextBtnIcon.ariaHidden = 'true';
 
   const visuallyHiddenNext: HTMLSpanElement = document.createElement('span');

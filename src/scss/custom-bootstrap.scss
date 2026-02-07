@@ -45,12 +45,6 @@ $btn-padding-x: 1rem;
 $btn-font-weight: 500;
 $btn-border-radius: $border-radius-sm;
 
-@media (max-width: 991px) {
-  .btn {
-
-  }
-}
-
 // Cards
 $card-border-radius: $border-radius;
 $card-border-width: 1px;
@@ -141,10 +135,10 @@ $navbar-brand-font-size: 1.25rem;
 @import "bootstrap/scss/utilities/api";
 
 // ============================================
-// Step 5: Custom Utility Classes (Optional)
+// Step 5: Custom Utility Classes
 // ============================================
 
-// Gradient backgrounds using your brand colors
+// Gradient backgrounds using brand colors
 .bg-gradient-primary {
   background: linear-gradient(135deg, #4C1D95 0%, #6D28D9 100%);
 }
@@ -171,7 +165,7 @@ $navbar-brand-font-size: 1.25rem;
 }
 
 .bg-footer {
-  background-color: #111827;  // Your BitBly dark gray
+  background-color: #111827;
 }
 
 .card-img-top {
@@ -190,4 +184,16 @@ $navbar-brand-font-size: 1.25rem;
   border: 2px solid #047857;
   transform: translateY(-3px);
   box-shadow: 0 0.5rem 1.5rem rgba(76, 29, 149, 0.2);
+}
+
+// Carousel
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
 }
