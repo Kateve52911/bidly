@@ -101,12 +101,13 @@ Open your browser and navigate to the local host address shown in the terminal.
 
 ## Images and Project structure:
 
-Here starts the main content of your README. This is why you did it for in the first place.
-To describe to future users of this project (including yourself) everything they need to know
-to be able to use it and understand it.
+### Images
 
-Use visuals to help the reader understand better. An image, diagram, chart or code example says
-more than thousand words
+The index page:
+
+Here you can see what a single listing looks like when the user is logged in:
+
+![Single-listing.png](src/assets/images/Single-listing.png)
 
 ### Project structure:
 

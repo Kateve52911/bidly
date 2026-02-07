@@ -6,6 +6,7 @@ import { createInfiniteScrollButton } from '../components/listings/infiniteScrol
 import { displayListingsPage } from '../components/listings/allListings/renderAllListings.ts';
 import { appendAlert } from '../components/errorHandling/newAlert/newAlert.ts';
 import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
+import { renderHeroSection } from '../utils/helpers/HeroSection/renderHeroSection.ts';
 
 export function initPage(): void {
   const navbar: HTMLElement | null = document.getElementById('navbar-links');
@@ -29,14 +30,15 @@ export async function displayListings(): Promise<HTMLElement | null> {
   if (!listingContainer) {
     appendAlert('Could not find listing container', 'danger');
   } else {
-    if (!listingContainer.querySelector('h1')) {
-      const heading: HTMLHeadingElement = document.createElement('h1');
+    if (!listingContainer.querySelector('h2')) {
+      const heading: HTMLHeadingElement = document.createElement('h2');
       heading.textContent = 'Listings';
-      heading.className = 'text-primary display-2 p-2 m-3';
+      heading.className = 'text-primary p-2 m-3';
       listingContainer.appendChild(heading);
 
       const searchBar: HTMLDivElement = renderSearchBar(listings);
       listingContainer.appendChild(searchBar);
+      listingContainer.prepend(renderHeroSection());
     }
 
     let rowContainer: HTMLDivElement | null =

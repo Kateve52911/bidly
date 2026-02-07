@@ -3,6 +3,8 @@ import { createLabel } from '../../../utils/helpers/forms/createLabel.ts';
 import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts';
 import { register } from '../../../api/auth/register.ts';
 import { validateInputFields } from '../../../ui/auth/inputValidation.ts';
+import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
+import { appendAlertAndRedirect } from '../../errorHandling/newAlert/appendAlertAndRedirect.ts';
 
 export function createRegisterUserForm(): HTMLDivElement {
   const outerContainer: HTMLDivElement = document.createElement('div');
@@ -102,9 +104,12 @@ async function onRegisterFormSubmit(event: Event): Promise<void> {
   const result = await register(credentials);
 
   if (result.success) {
-    console.log('Registration successful!', result.data);
-    window.location.href = '/login';
+    await appendAlertAndRedirect(
+      'Registration successful',
+      'success',
+      '/login',
+    );
   } else {
-    console.error('Registration failed', result.error);
+    appendAlert('Could not register an account, try again.', 'danger');
   }
 }

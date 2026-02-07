@@ -24,11 +24,49 @@ $light: #F9FAFB;        // Very light gray for backgrounds
 $dark: #111827;         // Very dark gray for text
 
 // Typography
+// ===== TYPOGRAPHY =====
+// Font Families
 $font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 $headings-font-family: 'Playfair Display', Georgia, serif;
-$headings-font-weight: 700;
+
+// Base Settings
 $font-size-base: 1rem;
-$line-height-base: 1.5;
+$line-height-base: 1.6;
+
+// Heading Font Weights
+$headings-font-weight: 700;
+$h1-font-weight: 800;
+$h2-font-weight: 700;
+$h3-font-weight: 700;
+
+// Heading Font Sizes
+$h1-font-size: 3.5rem;
+$h2-font-size: 2.5rem;
+$h3-font-size: 1.8rem;
+$h4-font-size: 1.5rem;
+$h5-font-size: 1.25rem;
+$h6-font-size: 1rem;
+
+// Heading Line Heights
+$headings-line-height: 1.2;
+$h3-line-height: 1.3;
+
+// Letter Spacing
+$h1-letter-spacing: -2px;
+$h2-letter-spacing: -1px;
+$h3-letter-spacing: 0;
+
+// Small Text / Labels
+$small-font-size: 0.875rem;
+$small-font-weight: 500;
+$small-line-height: 1.5;
+
+// Body Text Weights (NEW SECTION)
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
 
 // Spacing
 $spacer: 1rem;
@@ -140,11 +178,15 @@ $navbar-brand-font-size: 1.25rem;
 
 // Gradient backgrounds using brand colors
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #4C1D95 0%, #6D28D9 100%);
+  background: linear-gradient(135deg, #4C1D95 0%, #7C3AED 100%);
 }
 
 .bg-gradient-success {
   background: linear-gradient(135deg, #047857 0%, #059669 100%);
+}
+
+.bg-purple-to-lavender {
+  background: linear-gradient(135deg, #4C1D95 0%, #DCD5FF 100%);
 }
 
 // Custom hover effects for links
