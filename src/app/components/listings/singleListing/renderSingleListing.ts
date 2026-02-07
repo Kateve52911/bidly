@@ -50,9 +50,9 @@ export async function renderSingleListing(
     const carousel: HTMLDivElement = createImageCarousel(listingData);
     imageContainer.appendChild(carousel);
 
-    // Initialize after adding to DOM
-    setTimeout(() => {
-      const carouselElement = document.getElementById('listing-carousel');
+    setTimeout((): void => {
+      const carouselElement: HTMLElement | null =
+        document.getElementById('listing-carousel');
       if (carouselElement) {
         new bootstrap.Carousel(carouselElement);
       }
