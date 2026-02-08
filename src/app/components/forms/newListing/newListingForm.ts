@@ -80,13 +80,13 @@ export function createNewListingForm(): HTMLDivElement {
   addImageButton.type = 'button';
   addImageButton.className = 'btn btn-outline-primary btn-sm';
   addImageButton.textContent = '+ Add Another Image';
-  addImageButton.addEventListener('click', () => {
+  addImageButton.addEventListener('click', (): void => {
     const imageIndex: number = additionalImagesContainer.children.length;
     const newImageGroup: HTMLDivElement = createImageInputGroup(imageIndex);
     additionalImagesContainer.appendChild(newImageGroup);
   });
 
-  const currentDate = new Date().toISOString().slice(0, 16);
+  const currentDate: string = new Date().toISOString().slice(0, 16);
 
   const dateContainer: HTMLDivElement = document.createElement('div');
   dateContainer.className = 'mb-3 text-left p-2';

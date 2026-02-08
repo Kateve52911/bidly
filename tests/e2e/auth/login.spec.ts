@@ -1,7 +1,9 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Login', (): void => {
-  test('user can login with valid credentials', async ({ page }) => {
+  test('user can login with valid credentials', async ({
+    page,
+  }): Promise<void> => {
     await page.goto('/login.html');
 
     await page
@@ -20,7 +22,7 @@ test.describe('Login', (): void => {
 
   test('an error message is shown with invalid credentials', async ({
     page,
-  }) => {
+  }): Promise<void> => {
     await page.goto('/login.html');
 
     await page

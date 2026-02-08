@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test.describe('Create Listing', () => {
+test.describe('Create Listing', (): void => {
   test('user can create a new listing', async ({ page }) => {
     await page.goto('/login.html');
     await page
@@ -28,7 +28,7 @@ test.describe('Create Listing', () => {
 
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    const endDate = tomorrow.toISOString().slice(0, 16);
+    const endDate: string = tomorrow.toISOString().slice(0, 16);
     await page.locator('input[name="endingDate"]').fill(endDate);
 
     await page.locator('form#new-listing-form button[type="submit"]').click();
