@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+playwright-report/
+test-results/
+playwright/.cache/
+
 .eslintcache
 .env
 
