@@ -28,4 +28,14 @@ export function showURLError(inputId: string, containerId: string): void {
   urlDiv?.appendChild(messageDiv);
 }
 
-export function clearURLError() {}
+export function clearURLError(inputId: string, containerId: string) {
+  const urlDiv: HTMLElement | null = document.getElementById(containerId);
+  const urlInput = document.getElementById(inputId) as HTMLInputElement;
+
+  urlInput.classList.remove('is-invalid', 'is-valid');
+
+  const existingFeedback = urlDiv?.querySelector(
+    '.valid-feedback, .invalid-feedback',
+  );
+  existingFeedback?.remove();
+}

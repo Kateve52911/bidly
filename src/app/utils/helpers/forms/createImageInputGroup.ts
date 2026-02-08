@@ -1,6 +1,6 @@
 import { createLabel } from './createLabel.ts';
 import { createUserInput } from './createInput.ts';
-import { showURLError } from './formError.ts';
+import { clearURLError, showURLError } from './formError.ts';
 
 export function createImageInputGroup(index: number): HTMLDivElement {
   const group: HTMLDivElement = document.createElement('div');
@@ -22,6 +22,9 @@ export function createImageInputGroup(index: number): HTMLDivElement {
 
   imageInput.addEventListener('blur', (): void => {
     showURLError(`imageUrl-${index}`, `image-url-div-${index}`);
+  });
+  imageInput.addEventListener('input', (): void => {
+    clearURLError('imageUrl', 'image-url-div');
   });
 
   urlContainer.appendChild(imageInput);

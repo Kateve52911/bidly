@@ -7,7 +7,10 @@ import { UpdatedListingData } from '../../../api/listings/put/types/updatedListi
 import { updateListing } from '../../../api/listings/put/updateListing.ts';
 import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
 import { appendAlertAndRedirect } from '../../errorHandling/newAlert/appendAlertAndRedirect.ts';
-import { showURLError } from '../../../utils/helpers/forms/formError.ts';
+import {
+  clearURLError,
+  showURLError,
+} from '../../../utils/helpers/forms/formError.ts';
 
 export function createEditListingCard(data: Listing): HTMLDivElement {
   const container: HTMLDivElement = document.createElement('div');
@@ -60,6 +63,10 @@ export function createEditListingCard(data: Listing): HTMLDivElement {
 
   editImageURLInput.addEventListener('blur', (): void => {
     showURLError('imageUrl', 'image-url-div');
+  });
+
+  editImageURLInput.addEventListener('input', (): void => {
+    clearURLError('imageUrl', 'image-url-div');
   });
 
   editImageURLContainer.appendChild(editImageURLInput);

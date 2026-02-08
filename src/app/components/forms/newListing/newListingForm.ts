@@ -2,7 +2,10 @@ import { createLabel } from '../../../utils/helpers/forms/createLabel.ts';
 import { createUserInput } from '../../../utils/helpers/forms/createInput.ts';
 import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts';
 import { createImageInputGroup } from '../../../utils/helpers/forms/createImageInputGroup.ts';
-import { showURLError } from '../../../utils/helpers/forms/formError.ts';
+import {
+  clearURLError,
+  showURLError,
+} from '../../../utils/helpers/forms/formError.ts';
 
 export function createNewListingForm(): HTMLDivElement {
   const container: HTMLDivElement = document.createElement('div');
@@ -61,6 +64,10 @@ export function createNewListingForm(): HTMLDivElement {
 
   imageURLInput.addEventListener('blur', () => {
     showURLError('imageUrl', 'image-url-div');
+  });
+
+  imageURLInput.addEventListener('input', (): void => {
+    clearURLError('imageUrl', 'image-url-div');
   });
   imageURLContainer.appendChild(imageURLInput);
 
