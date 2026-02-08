@@ -46,7 +46,7 @@ export async function renderConfirmActionModal(
   footerDiv.appendChild(cancelButton);
 
   const confirmButton: HTMLButtonElement = document.createElement('button');
-  confirmButton.className = 'btn btn-warning';
+  confirmButton.className = 'btn btn-danger';
   confirmButton.textContent = confirmLabel;
   footerDiv.appendChild(confirmButton);
 

@@ -2,12 +2,16 @@
 // BitBly Custom Bootstrap Theme
 // ============================================
 
-// Step 1: Import Bootstrap functions first (required to use Bootstrap's functions)
+
 @import "bootstrap/scss/functions";
 
 // ============================================
 // Step 2: Override Bootstrap Variables
 // ============================================
+
+// ===== BASE COLORS=====
+$white: #FFFFFF;
+$black: #000000;
 
 // Primary Brand Colors
 $primary: #4C1D95;
@@ -15,15 +19,14 @@ $success: #047857;
 $mint: #D1FAE5;
 $pale-purple: #F5F3FF;
 
-// Supporting Colors (you can adjust these as needed)
-$secondary: #6B7280;    // Gray
-$danger: #DC2626;       // Red for errors/warnings
-$warning: #F59E0B;      // Amber for alerts
-$info: #3B82F6;         // Blue for information
-$light: #F9FAFB;        // Very light gray for backgrounds
-$dark: #111827;         // Very dark gray for text
+// Supporting Colors
+$secondary: #6B7280;
+$danger: #DC2626;
+$warning: #F59E0B;
+$info: #3B82F6;
+$light: #F9FAFB;
+$dark: #111827;
 
-// Typography
 // ===== TYPOGRAPHY =====
 // Font Families
 $font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -61,7 +64,7 @@ $small-font-size: 0.875rem;
 $small-font-weight: 500;
 $small-line-height: 1.5;
 
-// Body Text Weights (NEW SECTION)
+// Body Text Weights
 $font-weight-normal: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
@@ -81,7 +84,7 @@ $border-radius-xl: 1rem;
 $btn-padding-y: 0.425rem;
 $btn-padding-x: 1rem;
 $btn-font-weight: 500;
-$btn-border-radius: $border-radius-sm;
+$btn-border-radius: $border-radius;
 
 // Cards
 $card-border-radius: $border-radius;
@@ -89,30 +92,42 @@ $card-border-width: 1px;
 $card-border-color: rgba(0, 0, 0, 0.125);
 $card-box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 
-// Forms
-$input-padding-y: 0.625rem;
-$input-padding-x: 0.875rem;
-$input-border-radius: $border-radius-sm;
+// ===== FORMS =====
+
+// Default State
+$input-bg: $white;
+$input-border-color: #E5E7EB;
+$input-border-width: 2px;
+$input-border-radius: $border-radius;
+$input-padding-y: 0.875rem;
+$input-padding-x: 1rem;
+
+// Focus State
 $input-focus-border-color: $primary;
-$input-focus-box-shadow: 0 0 0 0.2rem rgba(76, 29, 149, 0.25);
+$input-focus-box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.1);
+
+// Success State
+$form-feedback-valid-color: #047857;
+$input-success-border-color: #047857;
+$input-success-box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.1);
+
+// Warning State
+$form-feedback-warning-color: #F59E0B;
+$input-warning-border-color: #F59E0B;
+$input-warning-box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+
+// Error State
+$form-feedback-invalid-color: #DC2626;
+$input-error-border-color: #DC2626;
+$input-error-box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+
+// Disabled State
+$input-disabled-bg: #F3F4F6;
+$input-disabled-border-color: #E5E7EB;
 
 // Navigation
 $nav-link-padding-y: 0.5rem;
 $nav-link-padding-x: 1rem;
-
-.nav-link.active {
-  color: #4C1D95 !important;
-  font-weight: 600;
-  border-bottom: 2px solid #4C1D95;
-}
-
-@media (max-width: 991px) {
-  .navbar-nav .nav-link.active {
-    background-color: #4C1D95;
-    color: #fff !important;
-    border-radius: 5px;
-  }
-}
 
 // Navbar
 $navbar-padding-y: 1rem;
@@ -182,14 +197,31 @@ $navbar-brand-font-size: 1.25rem;
 }
 
 .bg-gradient-success {
-  background: linear-gradient(135deg, #047857 0%, #059669 100%);
+  background: linear-gradient(135deg, #047857 0%, #065F46 100%);
 }
 
 .bg-purple-to-lavender {
   background: linear-gradient(135deg, #4C1D95 0%, #DCD5FF 100%);
 }
 
-// Custom hover effects for links
+
+
+// Custom hover - links
+
+.nav-link.active {
+  color: #4C1D95 !important;
+  font-weight: 600;
+  border-bottom: 2px solid #4C1D95;
+}
+
+@media (max-width: 991px) {
+  .navbar-nav .nav-link.active {
+    background-color: #4C1D95;
+    color: #fff !important;
+    border-radius: 5px;
+  }
+}
+
 .link-purple {
   color: #4C1D95;
 
@@ -202,7 +234,7 @@ $navbar-brand-font-size: 1.25rem;
   color: #047857;
 
   &:hover {
-    color: #036146;
+    color: #065F46;
   }
 }
 
@@ -238,4 +270,68 @@ $navbar-brand-font-size: 1.25rem;
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
+}
+
+// FORMS
+
+// Success State
+.form-control.is-valid,
+.form-control.success {
+  border-color: #047857;
+  box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.1);
+
+  &:focus {
+    border-color: #047857;
+    box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.1);
+  }
+}
+
+.valid-feedback,
+.success-feedback {
+  color: #047857;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+// Warning State
+.form-control.warning {
+  border-color: #F59E0B;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+
+  &:focus {
+    border-color: #F59E0B;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+  }
+}
+
+.warning-feedback {
+  color: #F59E0B;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+// Error State
+.form-control.is-invalid,
+.form-control.error {
+  border-color: #DC2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+
+  &:focus {
+    border-color: #DC2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  }
+}
+
+.invalid-feedback,
+.error-feedback {
+  color: #DC2626;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+// Disabled State
+.form-control:disabled {
+  background-color: #F3F4F6;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
