@@ -160,6 +160,8 @@ bidly/
 │   ├── favicon/
 │   └── images/
 ├── tests/                          # Unit tests
+│   └── e2e/
+│   │   └── auth/
 │   └── unit/
 │       └── app/
 │           ├── ui/
@@ -172,8 +174,15 @@ bidly/
 ├── new-listing.html                # Create listing page
 ├── main.ts                         # Application entry point
 ├── vite.config.ts                  # Vite configuration
+├── vitest.config.ts
 ├── tsconfig.json                   # TypeScript configuration
 └── package.json
+└── package-lock.json
+└── env.examples
+└── eslint.config.mjs
+└── playwright.config.ts
+├── prettierrc
+├── .gitignore
 ```
 
 ## Contributing
