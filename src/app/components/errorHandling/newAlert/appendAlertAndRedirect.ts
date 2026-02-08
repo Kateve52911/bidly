@@ -15,9 +15,7 @@ export const appendAlertAndRedirect = async (
     '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
     '</div>',
   ].join('');
-
+  alertPlaceholder?.append(wrapper);
   await delay(1000);
   window.location.href = url;
-
-  alertPlaceholder?.append(wrapper);
 };
