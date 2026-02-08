@@ -16,7 +16,7 @@ export function initPage(): void {
 
   const form: HTMLDivElement = createRegisterUserForm();
 
-  const app: HTMLElement | null = document.getElementById('app');
+  const app: HTMLElement | null = document.getElementById('app-register');
 
   if (app) {
     app.appendChild(form);

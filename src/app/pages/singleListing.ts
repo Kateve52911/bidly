@@ -19,7 +19,7 @@ const queryParams = new URLSearchParams(window.location.search);
 export const listingId: string | null = queryParams.get('id');
 
 const listing: HTMLElement = await renderSingleListing(listingId);
-const app: HTMLElement | null = document.getElementById('app');
+const app: HTMLElement | null = document.getElementById('app-listing');
 
 if (app) {
   app.appendChild(listing);

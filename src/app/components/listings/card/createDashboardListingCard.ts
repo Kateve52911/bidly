@@ -67,5 +67,9 @@ export function createDashboardListingCard(data: Listing): HTMLDivElement {
 
   card.appendChild(buttonDiv);
 
+  container.addEventListener('click', (): void => {
+    window.location.href = `listing.html?id=${data.id}`;
+  });
+
   return column;
 }

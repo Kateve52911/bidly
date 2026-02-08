@@ -8,7 +8,7 @@ import { appendAlertAndRedirect } from '../components/errorHandling/newAlert/app
 import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
 
 const formContainer: HTMLDivElement = createNewListingForm();
-const app: HTMLElement | null = document.getElementById('app');
+const app: HTMLElement | null = document.getElementById('app-new-listing');
 
 if (app) {
   app.appendChild(formContainer);

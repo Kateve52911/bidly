@@ -4,7 +4,7 @@ import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseH
 import { appendAlert } from '../components/errorHandling/newAlert/newAlert.ts';
 
 const form: HTMLDivElement = createLoginForm();
-const app: HTMLElement | null = document.getElementById('app');
+const app: HTMLElement | null = document.getElementById('app-login');
 
 if (app) {
   app.appendChild(form);

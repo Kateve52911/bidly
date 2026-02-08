@@ -33,7 +33,7 @@ export async function renderProfilePage(): Promise<void> {
 
     await fetchUserListings(username);
 
-    const app: HTMLElement | null = document.getElementById('app');
+    const app: HTMLElement | null = document.getElementById('app-profile');
     if (app) {
       app.appendChild(await createUserProfile(userData));
 

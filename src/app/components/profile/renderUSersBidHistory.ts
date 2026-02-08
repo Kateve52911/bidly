@@ -102,6 +102,10 @@ export function createBidHistoryTable(
     row.appendChild(amountCell);
     row.appendChild(endsAtCell);
 
+    row.addEventListener('click', (): void => {
+      window.location.href = `listing.html?id=${bid.listing.id}`;
+    });
+
     tableBody.appendChild(row);
   });
 
