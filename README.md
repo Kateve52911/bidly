@@ -10,6 +10,13 @@ Bidly is a website where users can either browse auction listings as an unregist
 
 Bidly Auction Site is my semester project 2 as part of my studies to become a front-end developer.
 
+#### Live Demo:
+
+[Bidly Auction Site][bidly-auction-site]
+
+[//]: # 'Source definitions'
+[bidly-auction-site]: https://bidly-auction-site.netlify.app"
+
 ## Feature overview
 
 - [x] User registration and authentication (1000 credits on signup)
@@ -30,9 +37,6 @@ Bidly Auction Site is my semester project 2 as part of my studies to become a fr
 - [Don't forget anything](#dont-forget-anything)
   - [Used Technologies](#used-technologies)
   - [Testing](#testing)
-- [Contribute](#contribute)
-- [License](#license)
-- [Sources](#sources)
 
 ## Getting Started
 
@@ -187,30 +191,16 @@ using this approach or why did you pick this solution instead?
 
 ### Testing
 
-No tests no success. You SHOULD have tests for every project, but do new users know how to run them?
+In this project, there are two kinds of tests: unit tests and end-to-end (e2e) tests. To run each of these respectively, run the following commands:
 
-## Contribute
+```
+npm test
+npx playwright test --headed
+```
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+There are actually many ways to run the playwright (e2e) tests. For example:
 
-Please make sure to update tests as appropriate.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-## Sources
-
-[react-markdown][react-markdown] - Project which served as an inspiration for this README
-
-[Blog post templates][blog-post-templates] - Used to structure this template as an easy to read blog post
-
-[About markdown][about-markdown] - Why should you use markdown?
-
-[Markdown Cheat Sheet][markdown-cheatsheet] - Get a fast overview of the syntax
-
-[//]: # 'Source definitions'
-[react-markdown]: https://github.com/remarkjs/react-markdown 'React-markdown project'
-[blog-post-templates]: https://backlinko.com/hub/content/blog-post-templates 'Backlinko blog post templates'
-[about-markdown]: https://www.markdownguide.org/getting-started/ 'Introduction to markdown'
-[markdown-cheatsheet]: https://www.markdownguide.org/cheat-sheet/ 'Markdown Cheat Sheet'
+```
+npx playwright test tests/e2e/auth/login.spec.ts --headed  # run a single test
+npx playwright test --last-failed  # run last failed tests
+```

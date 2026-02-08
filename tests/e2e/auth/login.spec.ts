@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test.describe('Login', () => {
+test.describe('Login', (): void => {
   test('user can login with valid credentials', async ({ page }) => {
     await page.goto('/login.html');
 
