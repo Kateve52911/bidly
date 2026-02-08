@@ -91,7 +91,7 @@ export async function createUserProfile(
   if (user.listings.length > 0) {
     await renderUserListings(user.name, userListings);
   } else {
-    userListings.className = 'text-muted';
+    userListings.className = 'text-muted p-5';
     userListings.textContent =
       "User has no listings. Click 'Create Listings' to create a listing.";
   }
