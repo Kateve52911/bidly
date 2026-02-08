@@ -10,7 +10,6 @@ export function createImageCarousel(listingData: Listing): HTMLDivElement {
   const innerCarousel: HTMLDivElement = document.createElement('div');
   innerCarousel.className = 'carousel-inner';
   if (listingData.media.length > 0) {
-    console.log(listingData.media.length);
     listingData.media.forEach(
       (media: { url: string; alt: string }, index: number) => {
         const carouselItem: HTMLDivElement = document.createElement('div');
@@ -46,7 +45,6 @@ export function createImageCarousel(listingData: Listing): HTMLDivElement {
 
   const nextBtn: HTMLButtonElement = document.createElement('button');
   nextBtn.className = 'carousel-control-next';
-  console.log(nextBtn);
   nextBtn.dataset.bsTarget = '#listing-carousel';
   nextBtn.dataset.bsSlide = 'next';
 

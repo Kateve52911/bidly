@@ -10,7 +10,7 @@ export function filterSearchResults(listings: Array<Listing>): void {
     document.querySelector('.row-container');
 
   if (!rowContainer) {
-    console.error('Could not find row container');
+    appendAlert('Could not find row container', 'danger');
     return;
   }
 

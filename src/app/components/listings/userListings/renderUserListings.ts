@@ -2,15 +2,15 @@ import { fetchUserListings } from '../../../api/listings/fetch/fetchUserListings
 import { Listing } from '../../../utils/helpers/card/type/listing.ts';
 import { createListingRow } from '../../../utils/helpers/listings/createListingRow.ts';
 import { createDashboardListingCard } from '../card/createDashboardListingCard.ts';
+import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
 
 export async function renderUserListings(
   username: string,
   listingsContainer: HTMLElement,
 ): Promise<HTMLElement | null> {
   const userListings: Array<Listing> = await fetchUserListings(username);
-  console.log(listingsContainer);
   if (!listingsContainer) {
-    console.error('No user listing container found');
+    appendAlert('No user listing container found', 'danger');
     return listingsContainer;
   } else {
     let currentRow: HTMLDivElement | null = null;

@@ -1,6 +1,7 @@
 import { createLoginForm } from '../components/forms/login/loginForm.ts';
 import { initNavbar } from '../components/navbar/initNavBar.ts';
 import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
+import { appendAlert } from '../components/errorHandling/newAlert/newAlert.ts';
 
 const form: HTMLDivElement = createLoginForm();
 const app: HTMLElement | null = document.getElementById('app');
@@ -8,7 +9,7 @@ const app: HTMLElement | null = document.getElementById('app');
 if (app) {
   app.appendChild(form);
 } else {
-  console.error('App element nor found');
+  appendAlert('App element nor found', 'danger');
 }
 
 export function initPage(): void {

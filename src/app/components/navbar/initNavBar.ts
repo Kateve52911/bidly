@@ -7,7 +7,6 @@ export async function initNavbar(): Promise<void> {
     'a[href="index.html"]',
   );
   if (isAuthenticated()) {
-    console.log('User is authenticated, adding Profile link');
     const navbarLinks: HTMLElement | null =
       document.getElementById('navbar-links');
 

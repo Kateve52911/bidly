@@ -85,8 +85,6 @@ export function editProfileForm(userData: UserData): HTMLDivElement {
   buttonContainer.appendChild(saveButton);
   buttonContainer.appendChild(cancelButton);
 
-  console.log(userData.name);
-
   form.addEventListener('submit', async (event: SubmitEvent) => {
     event.preventDefault();
     const user: string = userData.name;

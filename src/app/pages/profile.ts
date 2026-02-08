@@ -33,8 +33,6 @@ export async function renderProfilePage(): Promise<void> {
 
     await fetchUserListings(username);
 
-    console.log(await fetchBidsWonByUser(username));
-
     const app: HTMLElement | null = document.getElementById('app');
     if (app) {
       app.appendChild(await createUserProfile(userData));
@@ -43,7 +41,6 @@ export async function renderProfilePage(): Promise<void> {
         document.getElementById('user-content');
       if (profileContainer) {
         const bidsWonByUser = await fetchBidsWonByUser(username);
-        console.log(bidsWonByUser);
         const bidsWonTitle: HTMLHeadingElement = document.createElement('h2');
         bidsWonTitle.innerHTML = `Listings <i>${username}</i> has won:`;
         bidsWonTitle.className = 'h4 mb-3';

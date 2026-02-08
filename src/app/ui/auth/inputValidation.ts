@@ -17,7 +17,6 @@ export function validateInputFields() {
     const passwordValue: string = passwordInput.value;
     const emailInput = document.getElementById('email') as HTMLInputElement;
     const emailValue: string = emailInput.value;
-    console.log(emailValue);
 
     if (!isValidEmail(emailValue)) {
       const emailErrorMessage: HTMLElement | null = document.getElementById(
@@ -31,7 +30,6 @@ export function validateInputFields() {
       const errorMessage: HTMLElement | null = document.getElementById(
         'passwordError',
       ) as HTMLElement;
-      // errorMessage.innerHTML = 'Password must be at least 8 characters';
       errorMessage.style.display = 'block';
       passwordInput.classList.add('is-invalid');
     }

@@ -26,7 +26,6 @@ export function createDashboardListingCard(data: Listing): HTMLDivElement {
   editButton.addEventListener('click', (): void => {
     const userPostContainer: HTMLElement | null =
       document.getElementById('user-content');
-    console.log(userPostContainer);
     if (!userPostContainer) {
       return;
     }

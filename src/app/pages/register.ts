@@ -2,6 +2,7 @@ import { initNavbar } from '../components/navbar/initNavBar.ts';
 import { createRegisterUserForm } from '../components/forms/registerUser/registerUserForm.ts';
 import { validateInputFields } from '../ui/auth/inputValidation.ts';
 import { initializeNavbar } from '../components/navbar/hamburgerMenu/initialiseHamburger.ts';
+import { appendAlert } from '../components/errorHandling/newAlert/newAlert.ts';
 
 export function initPage(): void {
   const navbar: HTMLElement | null = document.getElementById('navbar-links');
@@ -22,7 +23,7 @@ export function initPage(): void {
     app.appendChild(form);
     validateInputFields();
   } else {
-    console.error('App element not found');
+    appendAlert('App element not found', 'danger');
   }
 }
 

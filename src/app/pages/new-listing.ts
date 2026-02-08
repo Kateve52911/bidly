@@ -40,7 +40,7 @@ if (app) {
     }
   });
 } else {
-  console.error('App element nor found');
+  appendAlert('An error occurred', 'warning');
 }
 
 export async function initPage(): Promise<void> {

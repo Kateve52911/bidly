@@ -83,16 +83,3 @@ export function fetchFormDataFromNewListingForm(formData: FormData) {
 
   return listingData;
 }
-
-const form: HTMLElement | null = document.getElementById('new-listing-form');
-
-form?.addEventListener('submit', (event: Event): void => {
-  event.preventDefault();
-
-  console.log(typeof form);
-
-  if (form) {
-    const formData = new FormData(form as HTMLFormElement);
-    console.log(fetchFormDataFromNewListingForm(formData));
-  }
-});

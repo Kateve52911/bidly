@@ -1,16 +1,10 @@
-### How to run
-
-```bash
-npm run dev
-```
-
 # Bidly Auction Site
 
-Template for a feature rich and easy to read README
+![Index-not-authenticated.png](src/assets/images/Index-not-authenticated.png)
 
 ## Intro
 
-Bidly Auction site is a website where users can either browse auction listings as an unregistered user or they can create a user. If they choose to create a user, they will experience a website where they can auction of items, experiences or anything else they fancy! A user that is logged in will see how many credits they have \* and place bids on other peoples listings. A user can see their bid history on their profile page. On the profile page they can also see their own listings, and if they have won any auctions, it will be displayed here.
+Bidly is a website where users can either browse auction listings as an unregistered user or they can create a user. If they choose to create a user, they will experience a website where they can auction of items, experiences or anything else they fancy! A user that is logged in will see how many credits they have \* and place bids on other peoples listings. A user can see their bid history on their profile page. On the profile page they can also see their own listings, and if they have won any auctions, it will be displayed here.
 
 \*All new users get 1000 credits when they register a user account.
 
@@ -39,7 +33,6 @@ Bidly Auction Site is my semester project 2 as part of my studies to become a fr
 - [Contribute](#contribute)
 - [License](#license)
 - [Sources](#sources)
-- [Conclusion](#conclusion)
 
 ## Getting Started
 
@@ -103,11 +96,17 @@ Open your browser and navigate to the local host address shown in the terminal.
 
 ### Images
 
-The index page:
+The index page when user is logged in:
+
+![Index-authenticated.png](src/assets/images/Index-authenticated.png)
 
 Here you can see what a single listing looks like when the user is logged in:
 
 ![Single-listing.png](src/assets/images/Single-listing.png)
+
+Here you see the profile page for the user:
+
+![Profile-image-1.png](src/assets/images/Profile-image-1.png)
 
 ### Project structure:
 
@@ -143,6 +142,7 @@ bidly/
 │           │   ├── card/
 │           │   ├── delay/
 │           │   ├── forms/
+│           │   ├── heroSection/
 │           │   ├── listings/
 │           │   └── modal/
 │           ├── storage/            # Local storage management
@@ -214,10 +214,3 @@ Please make sure to update tests as appropriate.
 [blog-post-templates]: https://backlinko.com/hub/content/blog-post-templates 'Backlinko blog post templates'
 [about-markdown]: https://www.markdownguide.org/getting-started/ 'Introduction to markdown'
 [markdown-cheatsheet]: https://www.markdownguide.org/cheat-sheet/ 'Markdown Cheat Sheet'
-
-## Conclusion
-
-To summarize.
-
-We have an exhaustive README template with many features. The README is easy to read and navigate like an article.
-In our future projects we can use this template to get a great head start in creating a custom README.

@@ -2,6 +2,7 @@ import { Listing } from '../../../utils/helpers/card/type/listing.ts';
 import { createListingRow } from '../../../utils/helpers/listings/createListingRow.ts';
 import { fetchBidsWonByUser } from '../../../api/listings/fetch/fetchBidsWonByUser.ts';
 import { createBidsWonByUserCard } from '../card/createBidsWonCard.ts';
+import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
 
 export async function renderBidsWonByUser(
   username: string,
@@ -9,7 +10,7 @@ export async function renderBidsWonByUser(
 ): Promise<HTMLElement | null> {
   const bidsWon: Array<Listing> = await fetchBidsWonByUser(username);
   if (!listingsContainer) {
-    console.error('No user listing container found');
+    appendAlert('No user listing container found', 'danger');
     return listingsContainer;
   } else {
     let currentRow: HTMLDivElement | null = null;

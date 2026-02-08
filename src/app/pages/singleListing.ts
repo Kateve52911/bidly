@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', async (): Promise<void> => {
 
 const queryParams = new URLSearchParams(window.location.search);
 export const listingId: string | null = queryParams.get('id');
-console.log(listingId);
 
 const listing: HTMLElement = await renderSingleListing(listingId);
 const app: HTMLElement | null = document.getElementById('app');

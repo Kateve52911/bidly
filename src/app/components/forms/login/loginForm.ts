@@ -2,6 +2,8 @@ import { createLabel } from '../../../utils/helpers/forms/createLabel.ts';
 import { createUserInput } from '../../../utils/helpers/forms/createInput.ts';
 import { createSubmitButton } from '../../../utils/helpers/forms/createButton.ts';
 import { login } from '../../../api/auth/login.ts';
+import { appendAlertAndRedirect } from '../../errorHandling/newAlert/appendAlertAndRedirect.ts';
+import { appendAlert } from '../../errorHandling/newAlert/newAlert.ts';
 
 export function createLoginForm(): HTMLDivElement {
   const outerContainer: HTMLDivElement = document.createElement('div');
@@ -105,9 +107,12 @@ async function onLoginFormSubmit(event: Event) {
 
   const result = await login(credentials);
   if (result.success) {
-    console.log('Login successful!', result);
-    window.location.href = '/profile.html';
+    await appendAlertAndRedirect(
+      'Login Successful',
+      'success',
+      '/profile.html',
+    );
   } else {
-    console.error('Registration failed', result.error);
+    appendAlert('Login failed', 'danger');
   }
 }

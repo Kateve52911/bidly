@@ -2,7 +2,6 @@ import { isURLValid } from '../../validation/urlValidation.ts';
 
 export function showURLError(inputId: string, containerId: string): void {
   const urlDiv: HTMLElement | null = document.getElementById(containerId);
-  console.log(urlDiv);
   const urlInput = document.getElementById(inputId) as HTMLInputElement;
   const messageDiv: HTMLDivElement = document.createElement('div');
 
@@ -14,7 +13,6 @@ export function showURLError(inputId: string, containerId: string): void {
   );
   existingFeedback?.remove();
 
-  console.log(urlInput);
   if (isURLValid(urlInput.value)) {
     urlInput.classList.add('is-valid');
     urlInput.classList.remove('is-invalid');
