@@ -4,9 +4,9 @@
 
 ## Intro
 
-Bidly is a website where users can either browse auction listings as an unregistered user or they can create a user. If they choose to create a user, they will experience a website where they can auction of items, experiences or anything else they fancy! A user that is logged in will see how many credits they have \* and place bids on other peoples listings. A user can see their bid history on their profile page. On the profile page they can also see their own listings, and if they have won any auctions, it will be displayed here.
+Bidly is a website where users can either browse auction listings as an unregistered user or they can create a user. If they choose to create a user, they will experience a website where they can auction off items, experiences or anything else they fancy! A user that is logged in will see how many credits they have[^1] and place bids on other peoples listings. A user can see their bid history on their profile page. On the profile page they can also see their own listings, and if they have won any auctions, it will be displayed here.
 
-\*All new users get 1000 credits when they register a user account.
+[^1]: All new users get 1000 credits when they register a user account.
 
 Bidly Auction Site is my semester project 2 as part of my studies to become a front-end developer.
 
@@ -34,7 +34,7 @@ Bidly Auction Site is my semester project 2 as part of my studies to become a fr
   - [Usage](#usage)
 - [Images and Project Structure](#images-and-project-structure)
   - [Project Structure](#project-structure)
-- [Don't forget anything](#dont-forget-anything)
+- [Contributing](#contributing)
   - [Used Technologies](#used-technologies)
   - [Testing](#testing)
 
@@ -55,13 +55,15 @@ Make sure that you have the following installed on your computer:
 
 #### 1. Clone the repository:
 
-Use git to clone this repository into your computer.
+Use git to clone this repository into your computer. Assuming using https, then run the following in your CLI:
 
 ```
-https://github.com/Kateve52911/bidly.git
+git clone https://github.com/Kateve52911/bidly.git
 ```
 
 #### 2. Install dependencies:
+
+Navigate to the root directory of the repo and run the following to install all dependencies.
 
 ```
 npm install
@@ -90,8 +92,8 @@ Open your browser and navigate to the local host address shown in the terminal.
 
 **As a user you can:**
 
-- Register for an account (receive 1000 credits)
-- Browse and search auction listings
+- Register for an account (receiving 1000 credits in the process)
+- Browse and search for auction listings
 - Create your own listings
 - Bid on items
 - View your profile and bid history
@@ -174,12 +176,13 @@ bidly/
 └── package.json
 ```
 
-## Don't forget anything
+## Contributing
 
-Think hard about anything that is clear to you but might not be clear for others. Why are you
-using this approach or why did you pick this solution instead?
+To contribute to the project, simply install as detailed above, and then after finishing your changes, create a PR on GitHub.
 
 ### Used technologies
+
+The tech stack for this project includes:
 
 - Typescript
 - Bootstrap
