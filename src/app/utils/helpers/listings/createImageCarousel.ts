@@ -11,7 +11,7 @@ export function createImageCarousel(listingData: Listing): HTMLDivElement {
   innerCarousel.className = 'carousel-inner';
   if (listingData.media.length > 0) {
     listingData.media.forEach(
-      (media: { url: string; alt: string }, index: number) => {
+      (media: { url: string; alt: string }, index: number): void => {
         const carouselItem: HTMLDivElement = document.createElement('div');
         carouselItem.className =
           index === 0 ? 'carousel-item active' : 'carousel-item';

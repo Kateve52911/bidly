@@ -90,7 +90,24 @@ export function createLoginForm(): HTMLDivElement {
   return outerContainer;
 }
 
-async function onLoginFormSubmit(event: Event) {
+/**
+ * Handles the login form submission event.
+ *
+ * Prevents default form submission, extracts email and password from the form data,
+ * validates that both fields are present, and attempts to authenticate the user.
+ * On successful login, displays a success alert and redirects to the profile page.
+ * On failure, displays an error alert.
+ *
+ * @async
+ * @param {Event} event - The form submission event
+ * @returns {Promise<void>} A promise that resolves when the login process completes
+ * @throws {Error} Throws an error if email or password fields are missing or empty
+ *
+ * @example
+ * const loginForm = document.getElementById('login-form');
+ * loginForm.addEventListener('submit', onLoginFormSubmit);
+ */
+async function onLoginFormSubmit(event: Event): Promise<void> {
   event.preventDefault();
   const formData = new FormData(event.target as HTMLFormElement);
   const email: FormDataEntryValue | null = formData.get('email');

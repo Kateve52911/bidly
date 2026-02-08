@@ -29,7 +29,7 @@ export function renderHeroSection() {
     button.type = 'button';
     button.className = 'btn btn-success d-block mx-auto ';
     button.textContent = 'Join Now!';
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (): void => {
       window.location.href = '/login';
     });
     heroDiv.appendChild(button);

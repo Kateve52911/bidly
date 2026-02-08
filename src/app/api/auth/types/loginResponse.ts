@@ -18,5 +18,5 @@ export interface UserData {
 
 export interface LoginResponse {
   data: UserData;
-  meta: Record<string, unknown>; // or {} if meta is always empty
+  meta: Record<string, unknown>;
 }

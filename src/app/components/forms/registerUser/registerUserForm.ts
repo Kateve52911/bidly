@@ -259,6 +259,32 @@ function setupRealTimeValidation(
   });
 }
 
+/**
+ * Handles the registration form submission event.
+ *
+ * Prevents default form submission, extracts and validates name, email, and password
+ * from the form data. Validates that the email is a valid @stud.noroff.no address
+ * and that the password meets minimum length requirements. On successful registration,
+ * displays a success alert and redirects to the login page. On validation or registration
+ * failure, displays appropriate error alerts.
+ *
+ * @async
+ * @param {Event} event - The form submission event
+ * @returns {Promise<void>} A promise that resolves when the registration process completes
+ *
+ * @requires isValidEmail - Function to validate email format
+ * @requires isValidPassword - Function to validate password requirements
+ * @requires register - Function to handle API registration request
+ * @requires appendAlert - Function to display alert messages
+ * @requires appendAlertAndRedirect - Function to display alert and redirect
+ *
+ * @example
+ * const registerForm = document.getElementById('register-form');
+ * registerForm.addEventListener('submit', onRegisterFormSubmit);
+ *
+ * @throws Catches and handles registration errors by displaying error alerts
+ */
+
 async function onRegisterFormSubmit(event: Event): Promise<void> {
   event.preventDefault();
   const formData = new FormData(event.target as HTMLFormElement);

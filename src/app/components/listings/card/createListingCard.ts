@@ -12,7 +12,7 @@ export function createListingCard(data: Listing): HTMLDivElement {
   listingStatusSpan.id = 'status-badge';
   listingStatus.className
     .split(' ')
-    .forEach((cls) => listingStatusSpan.classList.add(cls));
+    .forEach((cls: string): void => listingStatusSpan.classList.add(cls));
   listingStatusSpan.innerHTML = listingStatus.status;
 
   card.prepend(listingStatusSpan);

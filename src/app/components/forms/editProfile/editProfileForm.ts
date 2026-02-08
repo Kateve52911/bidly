@@ -78,14 +78,14 @@ export function editProfileForm(userData: UserData): HTMLDivElement {
   cancelButton.type = 'button';
   cancelButton.innerHTML = 'Cancel';
 
-  cancelButton.addEventListener('click', () => {
+  cancelButton.addEventListener('click', (): void => {
     window.location.href = '/profile';
   });
 
   buttonContainer.appendChild(saveButton);
   buttonContainer.appendChild(cancelButton);
 
-  form.addEventListener('submit', async (event: SubmitEvent) => {
+  form.addEventListener('submit', async (event: SubmitEvent): Promise<void> => {
     event.preventDefault();
     const user: string = userData.name;
     const formData = new FormData(form);

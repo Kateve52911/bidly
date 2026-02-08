@@ -5,7 +5,6 @@ export function getEditFormData(formData: FormData): UpdatedListingData {
   const description = formData.get('description') as string;
   const url = formData.get('imageUrl') as string;
   const alt = formData.get('imageAlt') as string;
-  //const tags = formData.get('tags');
 
   const updatedData: UpdatedListingData = {};
 

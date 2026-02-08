@@ -1,6 +1,6 @@
 import { removeKey } from '../../utils/storage/storage.ts';
 
-export function logout() {
+export function logout(): void {
   removeKey('accessToken');
   removeKey('currentUser');
 
