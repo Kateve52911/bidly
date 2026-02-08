@@ -15,7 +15,7 @@ Bidly Auction Site is my semester project 2 as part of my studies to become a fr
 [Bidly Auction Site][bidly-auction-site]
 
 [//]: # 'Source definitions'
-[bidly-auction-site]: https://bidly-auction-site.netlify.app 'Bitly Auction Site'
+[bidly-auction-site]: https://bidly-auction-site.netlify.app/ 'Bitly Auction Site'
 
 ## Feature overview
 
